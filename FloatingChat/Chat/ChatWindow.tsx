@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '../ui/scroll-area';
 import { usePocketBase } from './PocketBaseContext';
@@ -31,13 +31,13 @@ interface Message {
 
 type ViewType = 'chat' | 'users' | 'userProfile';
 
-interface User {
+interface UserType {
   id: string;
   username: string;
   avatar?: string;
   online: boolean;
   lastSeen?: string;
-  [key: string]: any; // For any additional properties that might be present
+  [key: string]: any;
 }
 
 // Memoize the user list component to prevent unnecessary re-renders
@@ -50,7 +50,7 @@ const UserList = React.memo(({
 }: {
   connectedUsers: any[];
   handleUserSelect: (id: string) => void;
-  handleUserViewProfile: (user: User) => void;
+  handleUserViewProfile: (user: UserType) => void;
   t: any;
   pb: any;
 }) => (
@@ -118,62 +118,24 @@ const UserList = React.memo(({
 
 export function ChatWindow({ onLogout, style }: ChatWindowProps) {
   const { t } = useLanguage();
-  const { pb, user, logout, connectedUsers, isLoading: pbIsLoading } = usePocketBase();
+  const context = usePocketBase();
+
+  // Safe access to context values
+  const pb = context?.pb;
+  const user = context?.user;
+  const logout = context?.logout;
+  const connectedUsers = context?.connectedUsers || [];
+  const pbIsLoading = context?.isLoading ?? true;
 
   // Initialize all hooks first (before any conditional returns)
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentView, setCurrentView] = useState<ViewType>('users');
   const [recipient, setRecipient] = useState<string | null>(null);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
 
-  const messagesEndRef = React.useRef<HTMLDivElement>(null);
-  const messageListContainerRef = React.useRef<HTMLDivElement>(null);
-
-  // Auto-create anonymous user if no user is logged in
-  useEffect(() => {
-    if (!pbIsLoading && !user) {
-      const anonymousUsername = `anon_${Math.random().toString(36).substring(2, 10)}`;
-      const anonymousEmail = `${anonymousUsername}@anon.local`;
-      const anonymousPassword = 'anonymous';
-
-      pb.collection('users').create({
-        username: anonymousUsername,
-        email: anonymousEmail,
-        password: anonymousPassword,
-        passwordConfirm: anonymousPassword,
-      }).then(() => {
-        pb.collection('users').authWithPassword(anonymousEmail, anonymousPassword);
-      }).catch((err) => {
-        // Try to login with existing anonymous user
-        pb.collection('users').authWithPassword(anonymousEmail, anonymousPassword).catch(() => {
-          console.warn('Could not create or login anonymous user:', err.message);
-        });
-      });
-    }
-  }, [pb, user, pbIsLoading]);
-
-  if (pbIsLoading) {
-    return (
-      <div className="h-full flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
-          <p className="text-sm text-muted">{t.common.loading}</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return (
-      <div className="h-full flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
-          <p className="text-sm text-muted">Iniciando sesión...</p>
-        </div>
-      </div>
-    );
-  }
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messageListContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -200,28 +162,14 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
     };
   }, []);
 
-  // Style for the chat window
-  const chatWindowStyle = style ? { ...style } : {};
   const loadMessages = useCallback(async () => {
-    try {
-      const attempt = async () => {
-        return pb.collection('messages_chat').getList(1, 50, {
-          sort: '-created',
-          expand: 'user,target_user',
-          requestKey: null, // disable PocketBase auto-cancel for this call
-        });
-      };
+    if (!pb) return;
 
-      let records;
-      try {
-        records = await attempt();
-      } catch (err: any) {
-        // Retry once if it looks like an auto-cancel/abort race.
-        const isAbort = err?.name === 'AbortError' || (err?.name === 'ClientResponseError' && err?.originalError?.name === 'AbortError');
-        if (!isAbort) throw err;
-        console.warn('Retrying message load after abort/auto-cancel');
-        records = await attempt();
-      }
+    try {
+      const records = await pb.collection('messages_chat').getList(1, 50, {
+        sort: '-created',
+        expand: 'user,target_user',
+      });
 
       const formattedMessages = records.items.reverse().map(record => ({
         id: record.id,
@@ -238,19 +186,14 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
       setMessages(formattedMessages);
       setIsLoading(false);
     } catch (error: any) {
-      // Aborts should already be rare; log non-abort errors only.
-      const isAbort = error.name === 'AbortError' || (error.name === 'ClientResponseError' && error.originalError?.name === 'AbortError');
-      if (isAbort) {
-        console.log('Message loading aborted:', error.message);
-      } else {
-        console.error('Error loading messages:', error);
-      }
+      console.error('Error loading messages:', error);
       setIsLoading(false);
     }
   }, [pb]);
 
-  // Función para suscribirse a mensajes
   const subscribeToMessages = useCallback(async () => {
+    if (!pb) return;
+
     try {
       pb.collection('messages_chat').subscribe('*', (e) => {
         if (e.record) {
@@ -275,35 +218,33 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
     }
   }, [pb, connectedUsers]);
 
-  // Efecto para cargar mensajes y suscribirse a actualizaciones
   useEffect(() => {
     loadMessages();
     subscribeToMessages();
 
     return () => {
-      pb.collection('messages_chat').unsubscribe('*');
+      if (pb) {
+        pb.collection('messages_chat').unsubscribe('*');
+      }
     };
   }, [loadMessages, subscribeToMessages, pb]);
 
-  const sendMessage: (content: string, type?: 'text' | 'image' | 'audio' | 'video', file?: File) => Promise<void> = async (content, type = 'text', file) => {
-    try {
-      const formData = new FormData();
-      formData.append('content', content);
-      formData.append('type', type);
-      formData.append('user', user?.id || '');
+  const sendMessage = useCallback(async (content: string, type: 'text' | 'image' | 'audio' | 'video' = 'text', file?: File) => {
+    if (!pb || !user) return;
 
+    try {
       const data: { [key: string]: any } = {
         content: content,
         type: type,
-        user: user?.id || '',
+        user: user.id,
         target_user: recipient || '',
       };
 
       if (file) {
-        // If there's a file, we still need to use FormData
+        const formData = new FormData();
         formData.append('content', content);
         formData.append('type', type);
-        formData.append('user', user?.id || '');
+        formData.append('user', user.id);
         formData.append('target_user', recipient || '');
         formData.append('file', file);
         await pb.collection('messages_chat').create(formData);
@@ -313,41 +254,85 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
     } catch (error) {
       console.error('Failed to send message:', error);
     }
-  };
+  }, [pb, user, recipient]);
 
   const handleLogout = () => {
-    logout();
+    if (logout) logout();
     onLogout();
   };
 
-  if (isLoading) {
-    return (
-      <div className="h-full flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
-          <p className="text-sm text-muted">{t.common.loading}</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Handler functions
   const handleUserSelect = (userId: string) => {
     setRecipient(userId);
     setCurrentView('chat');
   };
 
-
   const handleBackToUsers = () => {
-    console.log("Calling handleBackToUsers. setSelectedUser type:", typeof setSelectedUser);
     setSelectedUser(null);
-    setRecipient(null); // Reset recipient when going back to users
+    setRecipient(null);
     setCurrentView('users');
   };
 
+  const handleUserViewProfile = (user: UserType) => {
+    setSelectedUser(user);
+    setCurrentView('userProfile');
+  };
+
+  // Render chat view
+  const renderChat = () => {
+    if (!recipient) {
+      return (
+        <div className="h-full flex flex-col items-center justify-center text-center p-8 user-card-bg rounded-lg">
+          <Users className="w-12 h-12 text-muted mb-4" />
+          <h3 className="text-lg font-semibold text-primary mb-2">{t.chat.selectUserToChat}</h3>
+          <p className="text-muted">{t.chat.selectUserToChatDescription}</p>
+        </div>
+      );
+    }
+
+    return (
+      <div className="flex-1 flex flex-col h-full">
+        <ScrollArea className="flex-1 p-4 chat-messages-background min-h-[300px]">
+          <div ref={messageListContainerRef}>
+            <MessageList
+              messages={messages.filter(m => (m.user === user?.id && m.target_user === recipient) ||
+                (m.user === recipient && m.target_user === user?.id)
+              )}
+              currentUserId={user?.id}
+              pb={pb}
+              onDeleteMessage={function (messageId: string): void {
+                throw new Error('Function not implemented.');
+              }}
+            />
+            <div ref={messagesEndRef} />
+          </div>
+        </ScrollArea>
+        <div className="border-t border-custom bg-background p-4 flex-shrink-0">
+          <MessageInput onSendMessage={sendMessage} disabled={!recipient} />
+        </div>
+      </div>
+    );
+  };
+
+  // Render user list view
+  const renderUserList = () => (
+    <div className="flex-1 flex flex-col h-full">
+      <div className="p-4 border-b border-custom bg-muted/30 dark:bg-[#14532d] dark:border-[#1a5f37] text-black dark:text-white">
+        <h3 className="font-semibold text-foreground dark:text-white">
+          {t.chat.welcome}, {user?.username}
+        </h3>
+      </div>
+      <UserList
+        connectedUsers={connectedUsers}
+        handleUserSelect={handleUserSelect}
+        handleUserViewProfile={handleUserViewProfile}
+        t={t}
+        pb={pb}
+      />
+    </div>
+  );
+
   const renderUserProfile = () => {
-    if (!selectedUser) {
-      // Reset states properly when no user is selected
+    if (!selectedUser || !pb) {
       setRecipient(null);
       setCurrentView('users');
       return null;
@@ -409,66 +394,6 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
     );
   };
 
-  // Render chat view
-  const renderChat = () => {
-    if (!recipient) {
-      return (
-        <div className="h-full flex flex-col items-center justify-center text-center p-8 user-card-bg rounded-lg">
-          <Users className="w-12 h-12 text-muted mb-4" />
-          <h3 className="text-lg font-semibold text-primary mb-2">{t.chat.selectUserToChat}</h3>
-          <p className="text-muted">{t.chat.selectUserToChatDescription}</p>
-        </div>
-      );
-    }
-
-    return (
-      <div className="flex-1 flex flex-col h-full">
-        <ScrollArea className="flex-1 p-4 chat-messages-background min-h-[300px]">
-          <div ref={messageListContainerRef}>
-            <MessageList
-              messages={messages.filter(m => (m.user === user?.id && m.target_user === recipient) ||
-                (m.user === recipient && m.target_user === user?.id)
-              )}
-              currentUserId={user?.id}
-              pb={pb}
-              onImageLoad={scrollToBottom} onDeleteMessage={function (messageId: string): void {
-                throw new Error('Function not implemented.');
-              } }            />
-            <div ref={messagesEndRef} />
-          </div>
-        </ScrollArea>
-        <div className="border-t border-custom bg-background p-4 flex-shrink-0">
-          <MessageInput onSendMessage={sendMessage} disabled={!recipient} />
-        </div>
-      </div>
-    );
-  };
-
-  // Render user list view
-  const renderUserList = () => (
-    <div className="flex-1 flex flex-col h-full">
-      <div className="p-4 border-b border-custom bg-muted/30 dark:bg-[#14532d] dark:border-[#1a5f37] text-black dark:text-white">
-        <h3 className="font-semibold text-foreground dark:text-white">
-          {t.chat.welcome}, {user?.username}
-        </h3>
-      </div>
-      <UserList
-        connectedUsers={connectedUsers}
-        handleUserSelect={(userId) => {
-          setRecipient(userId);
-          setCurrentView('chat');
-        }}
-        handleUserViewProfile={(user) => {
-          setSelectedUser(user);
-          setCurrentView('userProfile');
-        }}
-        t={t}
-        pb={pb}
-      />
-    </div>
-  );
-
-  // Render the appropriate view based on currentView state
   const renderView = () => {
     switch (currentView) {
       case 'userProfile':
@@ -481,8 +406,30 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
     }
   };
 
+  // Loading states
+  if (pbIsLoading) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+          <p className="text-sm text-muted">{t.common.loading}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-sm text-muted">Iniciando sesión...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="h-full flex flex-col bg-white dark:bg-[#0c4a1e] text-foreground" style={chatWindowStyle}>
+    <div className="h-full flex flex-col bg-white dark:bg-[#0c4a1e] text-foreground" style={style}>
       <div className="flex items-center border-b border-custom bg-white dark:bg-[#14532d] text-black dark:text-white cursor-grab">
         <button
           className={`flex-1 py-3 px-4 text-center font-medium transition-colors ${

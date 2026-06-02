@@ -47,32 +47,43 @@ export const THEME = {
   },
 };
 
+// IDs de las colecciones en PocketBase
+const IMAGENES_COLLECTION_ID = 'pbc_1998862360';
+
+// Helper para construir URL de imagen desde PocketBase
+// Usa los IDs de registro que debes obtener después de subir las imágenes
+const pbImage = (recordId: string, fieldName: string = 'field') => {
+  return `${POCKETBASE_URL}/api/files/${IMAGENES_COLLECTION_ID}/${recordId}/${fieldName}`;
+};
+
 export const IMAGES = {
-  chatExpandido: "/uploads/Chat Expandido.jpg",
-  modalConfiguracion: "/uploads/Modal Configuracion Generar API.jpg",
-  pestanaComponentes: "/uploads/Pestaña Componentes.jpg",
-  pestanaCreadorEstructuras: "/uploads/Pestaña Creador de Estructuras.jpg",
-  pestanaExplorador: "/uploads/Pestaña Explorador.jpg",
-  pestanaGeneradorAppAplicacion: "/uploads/Pestaña Generador APP-Aplicacion Generada.jpg",
-  pestanaGeneradorAppConfig: "/uploads/Pestaña Generador APP-Configuracion.jpg",
-  pestanaGeneradorAppEstructura: "/uploads/Pestaña Generador APP-Estructura.jpg",
-  pestanaGeneradorAppGenerando: "/uploads/Pestaña Generador APP-Generando Contenido.jpg",
-  pestanaGeneradorApiInicio: "/uploads/Pestaña Generador de Api- Inicio.jpg",
-  pestanaGeneradorApiProyecto: "/uploads/Pestaña Generador de Api- Proyecto.jpg",
-  pestanaIDEComparadorCarpetas: "/uploads/Pestaña IDE- Comparador de Carpetas.jpg",
-  pestanaIDEComparadorCodigo: "/uploads/Pestaña IDE- Comparador de Codigo.jpg",
-  pestanaIDECorregirCodigo: "/uploads/Pestaña IDE- Corregir Codigo.jpg",
-  pestanaIDECorregirDependencias: "/uploads/Pestaña IDE- Corregir Dependencias.jpg",
-  pestanaIDECorregirImportaciones: "/uploads/Pestaña IDE- Corregir Importaciones Faltantes.jpg",
-  pestanaIDEEsquemaCarpetas: "/uploads/Pestaña IDE- Esquema de Carpetas.jpg",
-  pestanaIDEGeneradorComponentes: "/uploads/Pestaña IDE- Generador de Componentes.jpg",
-  pestanaIDEGenerarIcono: "/uploads/Pestaña IDE- Generar Icono.jpg",
-  pestanaIDE: "/uploads/Pestaña IDE.jpg",
-  pestanaIDEFormateador: "/uploads/Pestaña IDE-Formateador de Codigo.jpg",
-  pestanaPanelControl: "/uploads/Pestaña Panel de Control Vista Previa.jpg",
-  pestanaPlanEstructuras: "/uploads/Pestaña Plan de Estructuras.jpg",
-  pestanaProbadorApis: "/uploads/Pestaña Probador de Apis.jpg",
-  pestanaVistaPrevia: "/uploads/Pestaña Vista Previa.jpg",
+  // Sube cada imagen a PocketBase (colección 'imagenes') y usa el recordId retornado
+  // Ejemplo: sube "Chat Expandido.jpg" al campo 'field' y usa el ID del registro
+  chatExpandido: pbImage('RECORD_ID_CHAT_EXPANDIDO', 'field'),
+  modalConfiguracion: pbImage('RECORD_ID_MODAL_CONFIG', 'field'),
+  pestanaComponentes: pbImage('RECORD_ID_COMPONENTES', 'field'),
+  pestanaCreadorEstructuras: pbImage('RECORD_ID_CREADOR', 'field'),
+  pestanaExplorador: pbImage('RECORD_ID_EXPLORADOR', 'field'),
+  pestanaGeneradorAppAplicacion: pbImage('RECORD_ID_GEN_APP', 'field'),
+  pestanaGeneradorAppConfig: pbImage('RECORD_ID_GEN_APP_CONFIG', 'field'),
+  pestanaGeneradorAppEstructura: pbImage('RECORD_ID_GEN_APP_ESTRUCTURA', 'field'),
+  pestanaGeneradorAppGenerando: pbImage('RECORD_ID_GEN_APP_GENERANDO', 'field'),
+  pestanaGeneradorApiInicio: pbImage('RECORD_ID_GEN_API_INICIO', 'field'),
+  pestanaGeneradorApiProyecto: pbImage('RECORD_ID_GEN_API_PROYECTO', 'field'),
+  pestanaIDEComparadorCarpetas: pbImage('RECORD_ID_IDE_COMPARADOR_CARPETAS', 'field'),
+  pestanaIDEComparadorCodigo: pbImage('RECORD_ID_IDE_COMPARADOR_CODIGO', 'field'),
+  pestanaIDECorregirCodigo: pbImage('RECORD_ID_IDE_CORREGIR_CODIGO', 'field'),
+  pestanaIDECorregirDependencias: pbImage('RECORD_ID_IDE_CORREGIR_DEPENDENCIAS', 'field'),
+  pestanaIDECorregirImportaciones: pbImage('RECORD_ID_IDE_CORREGIR_IMPORTACIONES', 'field'),
+  pestanaIDEEsquemaCarpetas: pbImage('RECORD_ID_IDE_ESQUEMA', 'field'),
+  pestanaIDEGeneradorComponentes: pbImage('RECORD_ID_IDE_GENERADOR_COMPONENTES', 'field'),
+  pestanaIDEGenerarIcono: pbImage('RECORD_ID_IDE_GENERAR_ICONO', 'field'),
+  pestanaIDE: pbImage('RECORD_ID_IDE', 'field'),
+  pestanaIDEFormateador: pbImage('RECORD_ID_IDE_FORMATEADOR', 'field'),
+  pestanaPanelControl: pbImage('RECORD_ID_PANEL_CONTROL', 'field'),
+  pestanaPlanEstructuras: pbImage('RECORD_ID_PLAN_ESTRUCTURAS', 'field'),
+  pestanaProbadorApis: pbImage('RECORD_ID_PROBADOR_APIS', 'field'),
+  pestanaVistaPrevia: pbImage('RECORD_ID_VISTA_PREVIA', 'field'),
 };
 
 export const FEATURES = [
