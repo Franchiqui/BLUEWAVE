@@ -49,6 +49,8 @@ export interface Translations {
     chatWith: string;
     back: string;
     lastSeen: string;
+    selectUserToChat: string;
+    selectUserToChatDescription: string;
   };
 
   // Common
@@ -133,6 +135,8 @@ export const translations: Record<string, Translations> = {
       chatWith: "Chat con",
       back: "Atrás",
       lastSeen: "Visto por última vez",
+      selectUserToChat: "Selecciona un usuario para chatear",
+      selectUserToChatDescription: "Elige un usuario de la lista para iniciar una conversación",
     },
     common: {
       loading: "Cargando...",
@@ -211,6 +215,8 @@ export const translations: Record<string, Translations> = {
       chatWith: "Chat with",
       back: "Back",
       lastSeen: "Last seen",
+      selectUserToChat: "Select a user to chat",
+      selectUserToChatDescription: "Choose a user from the list to start a conversation",
     },
     common: {
       loading: "Loading...",
