@@ -120,6 +120,29 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
   const { t } = useLanguage();
   const { pb, user, logout, connectedUsers, isLoading: pbIsLoading } = usePocketBase();
 
+  // Auto-create anonymous user if no user is logged in
+  useEffect(() => {
+    if (!pbIsLoading && !user) {
+      const anonymousUsername = `anon_${Math.random().toString(36).substring(2, 10)}`;
+      const anonymousEmail = `${anonymousUsername}@anon.local`;
+      const anonymousPassword = 'anonymous';
+
+      pb.collection('users').create({
+        username: anonymousUsername,
+        email: anonymousEmail,
+        password: anonymousPassword,
+        passwordConfirm: anonymousPassword,
+      }).then(() => {
+        pb.collection('users').authWithPassword(anonymousEmail, anonymousPassword);
+      }).catch(() => {
+        // Try to login with existing anonymous user
+        pb.collection('users').authWithPassword(anonymousEmail, anonymousPassword).catch(() => {
+          console.warn('Could not create or login anonymous user');
+        });
+      });
+    }
+  }, [pb, user, pbIsLoading]);
+
   if (pbIsLoading) {
     return (
       <div className="h-full flex items-center justify-center">
@@ -129,12 +152,6 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
         </div>
       </div>
     );
-  }
-
-  if (!user) {
-    // If not loading but no user, ChatWindow should not render its content.
-    // The parent component should handle showing AuthForm.
-    return null;
   }
 
   const [messages, setMessages] = useState<Message[]>([]);

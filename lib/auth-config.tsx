@@ -12,6 +12,7 @@ export const authPaths = {
   verifyEmail: '/auth/verify-email',
 } as const;
 
+// Todas las rutas son públicas - autenticación desactivada
 export const publicPaths = [
   '/',
   '/auth/login',
@@ -24,6 +25,29 @@ export const publicPaths = [
   '/contact',
   '/blog',
   '/docs',
+  '/dashboard',
+  '/profile',
+  '/settings',
+  '/admin',
+  '/chat',
+  '/calendar',
+  '/tasks',
+  '/notifications',
+  '/media',
+  '/analytics',
+  '/e-commerce',
+  '/forms',
+  '/maps',
+  '/search',
+  '/explorador',
+  '/ide',
+  '/probador-de-apis',
+  '/generador-de-app',
+  '/creador-de-estructuras',
+  '/plan-de-estructura',
+  '/generador-de-api',
+  '/vista-previa',
+  '/componentes',
 ] as const;
 
 export const authRoutes = {

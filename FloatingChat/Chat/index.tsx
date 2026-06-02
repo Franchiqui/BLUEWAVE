@@ -25,14 +25,14 @@ interface FloatingChatProps {
   config: FloatingChatConfig;
   isOpen?: boolean;
   onClose?: () => void;
-  isAuthenticated: boolean;
-  setIsAuthenticated: (value: boolean) => void;
+  isAuthenticated?: boolean;
+  setIsAuthenticated?: (value: boolean) => void;
 }
 
 interface FloatingChatContentProps extends FloatingChatProps {
 }
 
-function FloatingChatContent({ config, isOpen = true, onClose, isAuthenticated, setIsAuthenticated }: FloatingChatContentProps) {
+function FloatingChatContent({ config, isOpen = true, onClose }: FloatingChatContentProps) {
   const { t } = useLanguage();
   const [view, setView] = useState<'chat' | 'profile'>('chat');
   const { height: containerHeight } = useChatSize();
@@ -46,7 +46,7 @@ function FloatingChatContent({ config, isOpen = true, onClose, isAuthenticated, 
   };
 
   // Calculate chat window height based on container size
-  const chatWindowStyle = containerHeight 
+  const chatWindowStyle = containerHeight
     ? { height: `${containerHeight - 100}px` } // Subtract header height
     : { height: '625px' };
 
@@ -97,23 +97,19 @@ function FloatingChatContent({ config, isOpen = true, onClose, isAuthenticated, 
       <div className="flex-1 overflow-hidden">
         {view === 'profile' ? (
           <ProfileSettings onClose={handleBackToChat} />
-        ) : isAuthenticated ? (
-          <ChatWindow onLogout={() => setIsAuthenticated(false)} style={chatWindowStyle} />
         ) : (
-          <div className="h-full flex items-center justify-center p-4">
-            <AuthForm onAuthenticated={() => setIsAuthenticated(true)} />
-          </div>
+          <ChatWindow onLogout={() => {}} style={chatWindowStyle} />
         )}
       </div>
     </div>
   );
 }
 
-export function FloatingChat({ config, isOpen, onClose, isAuthenticated, setIsAuthenticated }: FloatingChatProps) {
+export function FloatingChat({ config, isOpen, onClose }: FloatingChatProps) {
   return (
     <PocketBaseProvider url={config.pocketbaseUrl}>
       <LanguageProvider>
-        <FloatingChatContent config={config} isOpen={isOpen} onClose={onClose} isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+        <FloatingChatContent config={config} isOpen={isOpen} onClose={onClose} />
       </LanguageProvider>
     </PocketBaseProvider>
   );

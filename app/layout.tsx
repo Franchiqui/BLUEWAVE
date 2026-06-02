@@ -24,8 +24,6 @@ export default function RootLayout({
 }) {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
- const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   const handleToggleChat = () => {
     setIsChatOpen((prev) => !prev);
   };
@@ -46,10 +44,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <Navbar />
-          
+
           <ComponentSelectorHelper />
           {children}
-          
+
           {!isMainApp && (
             <>
               <FloatingChatButton onClick={handleToggleChat}>
@@ -65,8 +63,6 @@ export default function RootLayout({
                     config={{ pocketbaseUrl: process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://127.0.0.1:8164' }}
                     isOpen={true}
                     onClose={handleCloseChat}
-                    isAuthenticated={isAuthenticated}
-                    setIsAuthenticated={setIsAuthenticated}
                   />
                 </DraggableFloatingChat>
               )}

@@ -50,7 +50,6 @@ import {
   Laptop,
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { useAuth } from '@/hooks/use-auth';
 import { useChat } from '@/hooks/use-chat';
 import { useSidebar } from '@/hooks/use-sidebar';
 
@@ -78,7 +77,6 @@ const userNavigation = [
 function HeaderComponent({ className }: HeaderProps) {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
-  const { user, logout, isLoading } = useAuth();
   const { isChatOpen, toggleChat } = useChat();
   const { isSidebarOpen, toggleSidebar } = useSidebar();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -91,10 +89,6 @@ function HeaderComponent({ className }: HeaderProps) {
     },
     [pathname]
   );
-
-  const handleLogout = useCallback(async () => {
-    await logout();
-  }, [logout]);
 
   const handleThemeChange = useCallback(() => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -217,90 +211,23 @@ function HeaderComponent({ className }: HeaderProps) {
             )}
           </button>
 
-          {/* User menu */}
-          {user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="flex items-center gap-2 rounded-lg p-1 hover:bg-gray-800"
-                >
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage
-                      src={user.avatar || '/uploads/Chat Expandido.jpg'}
-                      alt={user.name || 'Usuario'}
-                    />
-                    <AvatarFallback className="bg-emerald-500/20 text-emerald-400">
-                      {user.name?.charAt(0)?.toUpperCase() || 'U'}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="hidden text-left lg:block">
-                    <p className="text-sm font-medium text-white">
-                      {user.name || 'Usuario'}
-                    </p>
-                    <p className="text-xs text-gray-400">
-                      {user.email || 'usuario@zeus-ia.com'}
-                    </p>
-                  </div>
-                  <ChevronDown className="hidden h-4 w-4 text-gray-400 lg:block" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                className="w-56 border-gray-800 bg-gray-950 text-white"
-              >
-                <DropdownMenuLabel className="font-normal">
-                  <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">
-                      {user.name || 'Usuario'}
-                    </p>
-                    <p className="text-xs leading-none text-gray-400">
-                      {user.email || 'usuario@zeus-ia.com'}
-                    </p>
-                  </div>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator className="bg-gray-800" />
-                {userNavigation.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <DropdownMenuItem key={item.name} asChild>
-                      <Link
-                        href={item.href}
-                        className="flex cursor-pointer items-center gap-2 text-gray-400 hover:text-white"
-                      >
-                        <Icon className="h-4 w-4" />
-                        <span>{item.name}</span>
-                      </Link>
-                    </DropdownMenuItem>
-                  );
-                })}
-                <DropdownMenuSeparator className="bg-gray-800" />
-                <DropdownMenuItem
-                  onClick={handleLogout}
-                  className="flex cursor-pointer items-center gap-2 text-red-400 hover:text-red-300"
-                >
-                  <LogOut className="h-4 w-4" />
-                  <span>Cerrar sesión</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                className="text-gray-400 hover:text-white"
-                asChild
-              >
-                <Link href="/login">Iniciar sesión</Link>
-              </Button>
-              <Button
-                className="bg-emerald-500 text-white hover:bg-emerald-600"
-                asChild
-              >
-                <Link href="/registro">Registrarse</Link>
-              </Button>
-            </div>
-          )}
+          {/* User menu - Auth disabled */}
+          <div className="flex items-center gap-2">
+            <Link
+              href="/perfil"
+              className="hidden lg:flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-400 hover:bg-gray-800 hover:text-white transition-colors"
+            >
+              <User className="h-4 w-4" />
+              <span>Perfil</span>
+            </Link>
+            <Link
+              href="/configuracion"
+              className="hidden lg:flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-400 hover:bg-gray-800 hover:text-white transition-colors"
+            >
+              <Settings className="h-4 w-4" />
+              <span>Configuración</span>
+            </Link>
+          </div>
 
           {/* Mobile menu button */}
           <button
