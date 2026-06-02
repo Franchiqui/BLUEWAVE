@@ -1,0 +1,224 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import Footer from '@/components/layout/footer';
+
+
+
+const features = [
+  {
+    title: 'Inicio Rápido',
+    description: 'Comienza a generar tu API en segundos con nuestra interfaz intuitiva.',
+    image: '/uploads/Pestaña Generador de Api- Inicio.jpg',
+    alt: 'Inicio del generador de API',
+  },
+  {
+    title: 'Gestión de Proyectos',
+    description: 'Organiza tus APIs por proyectos con estructura modular.',
+    image: '/uploads/Pestaña Generador de Api- Proyecto.jpg',
+    alt: 'Proyecto de API',
+  },
+  {
+    title: 'Configuración Avanzada',
+    description: 'Personaliza cada aspecto de tu API con opciones detalladas.',
+    image: '/uploads/Modal Configuracion Generar API.jpg',
+    alt: 'Configuración de API',
+  },
+  {
+    title: 'Chat Integrado',
+    description: 'Asistencia en tiempo real con IA para resolver dudas.',
+    image: '/uploads/Chat Expandido.jpg',
+    alt: 'Chat de asistencia',
+  },
+];
+
+const steps = [
+  {
+    number: '01',
+    title: 'Define tu API',
+    description: 'Describe los endpoints y modelos que necesitas.',
+    image: '/uploads/Pestaña Generador de Api- Inicio.jpg',
+  },
+  {
+    number: '02',
+    title: 'Configura',
+    description: 'Ajusta parámetros, autenticación y base de datos.',
+    image: '/uploads/Modal Configuracion Generar API.jpg',
+  },
+  {
+    number: '03',
+    title: 'Genera',
+    description: 'Zeus IA crea el código completo de tu API.',
+    image: '/uploads/Pestaña Generador APP-Generando Contenido.jpg',
+  },
+  {
+    number: '04',
+    title: 'Prueba',
+    description: 'Usa el probador de APIs integrado para verificar.',
+    image: '/uploads/Pestaña Probador de Apis.jpg',
+  },
+];
+
+const relatedPages = [
+  { href: '/explorador', label: 'Explorador', image: '/uploads/Pestaña Explorador.jpg' },
+  { href: '/ide', label: 'IDE', image: '/uploads/Pestaña IDE.jpg' },
+  { href: '/probador-de-apis', label: 'Probador de APIs', image: '/uploads/Pestaña Probador de Apis.jpg' },
+  { href: '/generador-de-app', label: 'Generador de App', image: '/uploads/Pestaña Generador APP-Configuracion.jpg' },
+  { href: '/creador-de-estructuras', label: 'Creador de Estructuras', image: '/uploads/Pestaña Creador de Estructuras.jpg' },
+  { href: '/plan-de-estructura', label: 'Plan de Estructura', image: '/uploads/Pestaña Plan de Estructuras.jpg' },
+  { href: '/vista-previa', label: 'Vista Previa', image: '/uploads/Pestaña Vista Previa.jpg' },
+  { href: '/componentes', label: 'Componentes', image: '/uploads/Pestaña Componentes.jpg' },
+];
+
+export default function GeneradorDeApiPage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-gray-100">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden border-b border-gray-800">
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/20 to-blue-900/20" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+                <span className="text-emerald-400">Generador</span> de API
+              </h1>
+              <p className="mt-6 text-lg sm:text-xl text-gray-300 leading-relaxed">
+                Crea APIs completas y listas para producción en minutos. Describe lo que necesitas y Zeus IA genera el código, la documentación y las pruebas automáticamente.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href="/probador-de-apis"
+                  className="inline-flex items-center px-6 py-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition-colors shadow-lg shadow-emerald-900/30"
+                >
+                  Probar APIs
+                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/ide"
+                  className="inline-flex items-center px-6 py-3 rounded-lg border border-gray-700 hover:border-gray-500 text-gray-200 font-semibold transition-colors"
+                >
+                  Ir al IDE
+                </Link>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="rounded-xl overflow-hidden shadow-2xl shadow-emerald-900/20 border border-gray-800">
+                <Image
+                  src="/uploads/Pestaña Generador de Api- Inicio.jpg"
+                  alt="Generador de API Zeus IA"
+                  width={800}
+                  height={500}
+                  className="w-full h-auto"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-emerald-400">
+            Características Principales
+          </h2>
+          <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
+            Todo lo que necesitas para crear APIs profesionales con el poder de la inteligencia artificial.
+          </p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="group rounded-xl bg-gray-900/50 border border-gray-800 overflow-hidden hover:border-emerald-700/50 transition-all duration-300"
+            >
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src={feature.image}
+                  alt={feature.alt}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold text-emerald-300">{feature.title}</h3>
+                <p className="mt-2 text-sm text-gray-400">{feature.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How it Works */}
+      <section className="bg-gray-900/30 border-y border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-emerald-400">
+              Cómo Funciona
+            </h2>
+            <p className="mt-4 text-lg text-gray-400">
+              Cuatro pasos simples para tener tu API lista.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {steps.map((step) => (
+              <div key={step.number} className="relative">
+                <div className="text-5xl font-bold text-emerald-800/40 mb-4">{step.number}</div>
+                <div className="relative h-40 rounded-lg overflow-hidden mb-4 border border-gray-800">
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold text-emerald-300">{step.title}</h3>
+                <p className="mt-2 text-gray-400">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Related Pages */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-emerald-400">
+            Explora Más
+          </h2>
+          <p className="mt-4 text-lg text-gray-400">
+            Descubre todas las herramientas que Zeus IA tiene para ti.
+          </p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {relatedPages.map((page) => (
+            <Link
+              key={page.href}
+              href={page.href}
+              className="group relative rounded-lg overflow-hidden border border-gray-800 hover:border-emerald-700/50 transition-all duration-300"
+            >
+              <div className="relative h-32">
+                <Image
+                  src={page.image}
+                  alt={page.label}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/60 to-transparent" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-3">
+                <span className="text-sm font-medium text-emerald-300">{page.label}</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}

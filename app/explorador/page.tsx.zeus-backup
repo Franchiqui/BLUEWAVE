@@ -1,0 +1,273 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import Footer from '@/components/layout/footer';
+
+
+const features = [
+  {
+    title: 'Chat Inteligente',
+    description: 'Asistente de IA contextual para desarrollo. Resuelve dudas, genera código y optimiza tu flujo de trabajo.',
+    image: '/uploads/Chat Expandido.jpg',
+    href: '/Pestaña Explorador.jpg',
+  },
+  {
+    title: 'IDE Completo',
+    description: 'Editor de código con comparador de carpetas, formateador, generador de componentes y más.',
+    image: '/uploads/Pestaña IDE.jpg',
+    href: '/ide',
+  },
+  {
+    title: 'Generador de APIs',
+    description: 'Crea APIs REST completas desde cero con configuración guiada y generación automática.',
+    image: '/uploads/Pestaña Generador de Api- Inicio.jpg',
+    href: '/generador-de-api',
+  },
+  {
+    title: 'Generador de Apps',
+    description: 'Genera aplicaciones completas con estructura, configuración y contenido automático.',
+    image: '/uploads/Pestaña Generador APP-Configuracion.jpg',
+    href: '/generador-de-app',
+  },
+  {
+    title: 'Creador de Estructuras',
+    description: 'Diseña y visualiza estructuras de proyectos con planificación inteligente.',
+    image: '/uploads/Pestaña Creador de Estructuras.jpg',
+    href: '/creador-de-estructuras',
+  },
+  {
+    title: 'Probador de APIs',
+    description: 'Prueba y depura tus endpoints REST directamente desde el IDE.',
+    image: '/uploads/Pestaña Probador de Apis.jpg',
+    href: '/probador-de-apis',
+  },
+  {
+    title: 'Vista Previa',
+    description: 'Previsualiza tus aplicaciones en tiempo real mientras desarrollas.',
+    image: '/uploads/Pestaña Vista Previa.jpg',
+    href: '/vista-previa',
+  },
+  {
+    title: 'Panel de Control',
+    description: 'Monitorea y controla todos los aspectos de tu proyecto desde un solo lugar.',
+    image: '/uploads/Pestaña Panel de Control Vista Previa.jpg',
+    href: '/explorador',
+  },
+  {
+    title: 'Componentes',
+    description: 'Biblioteca de componentes reutilizables con vista previa y personalización.',
+    image: '/uploads/Pestaña Componentes.jpg',
+    href: '/componentes',
+  },
+  {
+    title: 'Plan de Estructuras',
+    description: 'Planifica la arquitectura de tus proyectos con diagramas y esquemas.',
+    image: '/uploads/Pestaña Plan de Estructuras.jpg',
+    href: '/plan-de-estructura',
+  },
+  {
+    title: 'Explorador',
+    description: 'Navega y gestiona los archivos de tu proyecto con facilidad.',
+    image: '/uploads/Pestaña Explorador.jpg',
+    href: '/explorador',
+  },
+  {
+    title: 'Comparador de Código',
+    description: 'Compara versiones de código y carpetas para identificar cambios.',
+    image: '/uploads/Pestaña IDE- Comparador de Codigo.jpg',
+    href: '/ide',
+  },
+];
+
+const testimonials = [
+  {
+    name: 'Carlos Mendoza',
+    role: 'Desarrollador Full Stack',
+    content: 'Zeus IA ha transformado mi forma de trabajar. El chat contextual entiende perfectamente mi proyecto y me ayuda a resolver problemas en segundos.',
+    image: '/uploads/Pestaña Explorador.jpg',
+  },
+  {
+    name: 'Ana García',
+    role: 'CTO en TechStart',
+    content: 'La capacidad de generar APIs completas desde cero es impresionante. Ahorramos horas de trabajo manual en cada proyecto.',
+    image: '/uploads/Pestaña Generador de Api- Proyecto.jpg',
+  },
+  {
+    name: 'Luis Torres',
+    role: 'Desarrollador Independiente',
+    content: 'El generador de componentes y el formateador de código son herramientas que uso a diario. La integración con Electron es perfecta.',
+    image: '/uploads/Pestaña IDE- Generador de Componentes.jpg',
+  },
+];
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 pb-24">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden border-b border-gray-800">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-transparent" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                Explorador Zeus 
+                <span className="text-emerald-400">IA</span>
+              </h1>
+              <p className="text-xl text-gray-300 leading-relaxed">
+                Navega, explora y gestiona todos los componentes de tu proyecto con el explorador inteligente de Zeus IA.
+              Visualiza la estructura completa, accede a herramientas de desarrollo y potencia tu productividad.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="/explorador"
+                  className="inline-flex items-center px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg transition-colors"
+                >
+                  Comenzar ahora
+                </Link>
+                <Link
+                  href="/ide"
+                  className="inline-flex items-center px-6 py-3 bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold rounded-lg border border-gray-700 transition-colors"
+                >
+                  Explorar IDE
+                </Link>
+              </div>
+              <div className="flex items-center gap-6 text-sm text-gray-400">
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-emerald-400 rounded-full" />
+                  Next.js 16
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full" />
+                  Electron 41
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-purple-400 rounded-full" />
+                  Express API
+                </span>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-emerald-500/10 rounded-2xl blur-3xl" />
+              <Image
+                src="/uploads/Pestaña Explorador.jpg"
+                alt="Pestaña Explorador"
+                width={800}
+                height={600}
+                className="relative rounded-2xl shadow-2xl border border-gray-700"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            Todo lo que necesitas en un solo{' '}
+            <span className="text-emerald-400">lugar</span>
+          </h2>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Desde chat inteligente hasta generación de APIs, Zeus IA integra todas las herramientas que un desarrollador necesita.
+          </p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feature) => (
+            <Link
+              key={feature.title}
+              href={feature.href}
+              className="group relative bg-gray-900/50 border border-gray-800 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300"
+            >
+              <div className="aspect-video relative overflow-hidden">
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  width={400}
+                  height={225}
+                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
+              </div>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-gray-400">
+                  {feature.description}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-gray-800">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            Lo que dicen nuestros{' '}
+            <span className="text-emerald-400">usuarios</span>
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial) => (
+            <div
+              key={testimonial.name}
+              className="bg-gray-900/50 border border-gray-800 rounded-xl p-6"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-800">
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    width={48}
+                    height={48}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <div>
+                  <h4 className="text-white font-semibold">{testimonial.name}</h4>
+                  <p className="text-sm text-gray-400">{testimonial.role}</p>
+                </div>
+              </div>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                &ldquo;{testimonial.content}&rdquo;
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-gray-800">
+        <div className="relative bg-gradient-to-r from-blue-900/30 to-emerald-900/30 rounded-2xl p-12 text-center border border-gray-700">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            ¿Listo para potenciar tu{' '}
+            <span className="text-emerald-400">desarrollo</span>?
+          </h2>
+          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+            Descarga Zeus IA y transforma tu flujo de trabajo con asistencia de IA contextual.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/explorador"
+              className="inline-flex items-center px-8 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg transition-colors"
+            >
+              Explorar funciones
+            </Link>
+            <Link
+              href="/ide"
+              className="inline-flex items-center px-8 py-3 bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold rounded-lg border border-gray-700 transition-colors"
+            >
+              Ir al IDE
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}
