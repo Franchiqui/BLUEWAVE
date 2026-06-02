@@ -4,7 +4,7 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useS
 import PocketBase, { AuthModel } from 'pocketbase';
 
 interface UserStatus {
-  avatar: any;
+  avatar?: string;
   id: string;
   username: string;
   online: boolean;

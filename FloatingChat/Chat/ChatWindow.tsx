@@ -193,7 +193,7 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
   const loadMessages = useCallback(async () => {
     try {
       const attempt = async () => {
-        return pb.collection('messages').getList(1, 50, {
+        return pb.collection('messages_chat').getList(1, 50, {
           sort: '-created',
           expand: 'user,target_user',
           requestKey: null, // disable PocketBase auto-cancel for this call
@@ -214,7 +214,7 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
       const formattedMessages = records.items.reverse().map(record => ({
         id: record.id,
         content: record.content,
-        type: record.type,
+        type: record.type || 'text',
         user: record.user,
         username: record.expand?.user?.username || 'Unknown',
         created: record.created,
@@ -240,13 +240,13 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
   // Función para suscribirse a mensajes
   const subscribeToMessages = useCallback(async () => {
     try {
-      pb.collection('messages').subscribe('*', (e) => {
+      pb.collection('messages_chat').subscribe('*', (e) => {
         if (e.record) {
           const userRecord = connectedUsers.find(u => u.id === e.record.user);
           const newMessage = {
             id: e.record.id,
             content: e.record.content,
-            type: e.record.type,
+            type: e.record.type || 'text',
             user: e.record.user,
             username: userRecord?.username || 'Unknown',
             created: e.record.created,
@@ -269,7 +269,7 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
     subscribeToMessages();
 
     return () => {
-      pb.collection('messages').unsubscribe('*');
+      pb.collection('messages_chat').unsubscribe('*');
     };
   }, [loadMessages, subscribeToMessages, pb]);
 
@@ -284,24 +284,19 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
         content: content,
         type: type,
         user: user?.id || '',
+        target_user: recipient || '',
       };
-
-      if (recipient) {
-        data.target_user = recipient; // Send as single ID for relation field
-      }
 
       if (file) {
         // If there's a file, we still need to use FormData
         formData.append('content', content);
         formData.append('type', type);
         formData.append('user', user?.id || '');
-        if (recipient) {
-          formData.append('target_user', recipient);
-        }
+        formData.append('target_user', recipient || '');
         formData.append('file', file);
-        await pb.collection('messages').create(formData);
+        await pb.collection('messages_chat').create(formData);
       } else {
-        await pb.collection('messages').create(data);
+        await pb.collection('messages_chat').create(data);
       }
     } catch (error) {
       console.error('Failed to send message:', error);

@@ -3,7 +3,7 @@ export const APP_DESCRIPTION = "IDE / Studio de desarrollo con asistencia de IA"
 
 export const APP_VERSION = "1.0.0";
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8742";
-export const POCKETBASE_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || "http://localhost:8091";
+export const POCKETBASE_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || "https://pocketbase-render-7yol.onrender.com";
 
 export const NAV_LINKS = [
   { label: "Explorador", href: "/explorador" },

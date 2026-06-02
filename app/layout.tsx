@@ -60,7 +60,7 @@ export default function RootLayout({
                   onClose={handleCloseChat}
                 >
                   <FloatingChat
-                    config={{ pocketbaseUrl: process.env.NEXT_PUBLIC_POCKETBASE_URL || 'http://127.0.0.1:8164' }}
+                    config={{ pocketbaseUrl: process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase-render-7yol.onrender.com' }}
                     isOpen={true}
                     onClose={handleCloseChat}
                   />
