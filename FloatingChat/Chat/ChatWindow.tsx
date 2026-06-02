@@ -120,6 +120,16 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
   const { t } = useLanguage();
   const { pb, user, logout, connectedUsers, isLoading: pbIsLoading } = usePocketBase();
 
+  // Initialize all hooks first (before any conditional returns)
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentView, setCurrentView] = useState<ViewType>('users');
+  const [recipient, setRecipient] = useState<string | null>(null);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+
+  const messagesEndRef = React.useRef<HTMLDivElement>(null);
+  const messageListContainerRef = React.useRef<HTMLDivElement>(null);
+
   // Auto-create anonymous user if no user is logged in
   useEffect(() => {
     if (!pbIsLoading && !user) {
@@ -134,10 +144,10 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
         passwordConfirm: anonymousPassword,
       }).then(() => {
         pb.collection('users').authWithPassword(anonymousEmail, anonymousPassword);
-      }).catch(() => {
+      }).catch((err) => {
         // Try to login with existing anonymous user
         pb.collection('users').authWithPassword(anonymousEmail, anonymousPassword).catch(() => {
-          console.warn('Could not create or login anonymous user');
+          console.warn('Could not create or login anonymous user:', err.message);
         });
       });
     }
@@ -154,14 +164,16 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
     );
   }
 
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [currentView, setCurrentView] = useState<ViewType>('users');
-  const [recipient, setRecipient] = useState<string | null>(null);
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
-
-  const messagesEndRef = React.useRef<HTMLDivElement>(null);
-  const messageListContainerRef = React.useRef<HTMLDivElement>(null);
+  if (!user) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
+          <p className="text-sm text-muted">Iniciando sesión...</p>
+        </div>
+      </div>
+    );
+  }
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
