@@ -1,51 +1,52 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '@/components/layout/footer';
+import { PbImage } from '@/components/pb-image';
+import { IMAGES } from '@/lib/constants';
 
 
 const features = [
   {
     title: 'Chat Inteligente',
     description: 'Asistente de IA contextual para desarrollo. Resuelve dudas, genera código y optimiza tu flujo de trabajo.',
-    image: '/uploads/Chat Expandido.jpg',
-    href: '/Pestaña Explorador.jpg',
+    image: IMAGES.chatExpandido,
+    href: '/explorador',
   },
   {
     title: 'IDE Completo',
     description: 'Editor de código con comparador de carpetas, formateador, generador de componentes y más.',
-    image: '/uploads/Pestaña IDE.jpg',
+    image: IMAGES.pestanaIDE,
     href: '/ide',
   },
   {
     title: 'Generador de APIs',
     description: 'Crea APIs REST completas desde cero con configuración guiada y generación automática.',
-    image: '/uploads/Pestaña Generador de Api- Inicio.jpg',
+    image: IMAGES.pestanaGeneradorApiInicio,
     href: '/generador-de-api',
   },
   {
     title: 'Generador de Apps',
     description: 'Genera aplicaciones completas con estructura, configuración y contenido automático.',
-    image: '/uploads/Pestaña Generador APP-Configuracion.jpg',
+    image: IMAGES.pestanaGeneradorAppConfig,
     href: '/generador-de-app',
   },
   {
     title: 'Creador de Estructuras',
     description: 'Diseña y visualiza estructuras de proyectos con planificación inteligente.',
-    image: '/uploads/Pestaña Creador de Estructuras.jpg',
+    image: IMAGES.pestanaCreadorEstructuras,
     href: '/creador-de-estructuras',
   },
   {
     title: 'Probador de APIs',
     description: 'Prueba y depura tus endpoints REST directamente desde el IDE.',
-    image: '/uploads/Pestaña Probador de Apis.jpg',
+    image: IMAGES.pestanaProbadorApis,
     href: '/probador-de-apis',
   },
   {
     title: 'Vista Previa',
     description: 'Previsualiza tus aplicaciones en tiempo real mientras desarrollas.',
-    image: '/uploads/Pestaña Vista Previa.jpg',
+    image: IMAGES.pestanaVistaPrevia,
     href: '/vista-previa',
   },
   {
@@ -149,8 +150,8 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-emerald-500/10 rounded-2xl blur-3xl" />
-              <Image
-                src="/uploads/Pestaña Explorador.jpg"
+                      <PbImage
+                        src={IMAGES.pestanaExplorador}
                 alt="Pestaña Explorador"
                 width={800}
                 height={600}
@@ -181,7 +182,7 @@ export default function HomePage() {
               className="group relative bg-gray-900/50 border border-gray-800 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300"
             >
               <div className="aspect-video relative overflow-hidden">
-                <Image
+                <PbImage
                   src={feature.image}
                   alt={feature.title}
                   width={400}
@@ -219,7 +220,7 @@ export default function HomePage() {
             >
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-800">
-                  <Image
+                  <PbImage
                     src={testimonial.image}
                     alt={testimonial.name}
                     width={48}

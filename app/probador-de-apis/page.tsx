@@ -1,12 +1,13 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '@/components/layout/footer';
-import { 
-  BeakerIcon, 
-  CodeBracketIcon, 
-  DocumentTextIcon, 
+import { PbImage } from '@/components/pb-image';
+import { IMAGES } from '@/lib/constants';
+import {
+  BeakerIcon,
+  CodeBracketIcon,
+  DocumentTextIcon,
   ArrowPathIcon,
   CheckCircleIcon,
   ExclamationTriangleIcon,
@@ -190,8 +191,8 @@ export default function ProbadorDeAPIsPage() {
               <h2 className="text-lg font-semibold text-gray-200 mb-4">Vistas del Probador</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="relative group">
-                  <Image
-                    src="/uploads/Pestaña Probador de Apis.jpg"
+                  <PbImage
+                    src={IMAGES.pestanaProbadorApis}
                     alt="Vista principal del probador de APIs"
                     width={600}
                     height={400}
@@ -202,8 +203,8 @@ export default function ProbadorDeAPIsPage() {
                   </div>
                 </div>
                 <div className="relative group">
-                  <Image
-                    src="/uploads/Modal Configuracion Generar API.jpg"
+                  <PbImage
+                    src={IMAGES.modalConfiguracion}
                     alt="Configuración de generación de API"
                     width={600}
                     height={400}

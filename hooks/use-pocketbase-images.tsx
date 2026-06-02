@@ -35,7 +35,8 @@ export function usePocketBaseImages(categoria?: string) {
           sort: '-created',
         });
 
-        setImages(records);
+        // Cast PocketBase RecordModel to PocketBaseImage
+        setImages(records as unknown as PocketBaseImage[]);
         setIsLoading(false);
       } catch (err: any) {
         console.error('Error fetching images:', err);

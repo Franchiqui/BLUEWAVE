@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Search, Code2, FileJson, FolderTree, Globe, ChevronRight, Sparkles, Package, BookOpen, Terminal, Database, Shield, Zap, Layers, Braces, GitBranch, Workflow, Cpu, Monitor, Smartphone, Cloud, Lock, Settings, Users, Star, ArrowRight, CheckCircle, Clock, MessageSquare, Bot, Brain, Network, Server, Container, Key, Puzzle, Rocket, Palette, PenTool, Sliders, Eye, Play, Download, Upload, RefreshCw, Plus, Minus, X, Menu, ChevronDown, ChevronUp, ChevronLeft, ChevronRight as ChevronRightIcon, Home, Info, Mail, Phone, MapPin, ExternalLink, Github, Twitter, Linkedin, Youtube, Figma, Globe as GlobeIcon, Bookmark, Heart, Share2, Copy, Check, AlertCircle, Loader2, Trash2, Edit3, MoreHorizontal, FileText, Image as ImageIcon, Video, Music, Archive, File, Folder, FolderOpen, FileCode, FileJson as FileJsonIcon, FileType, FileSpreadsheet, FileImage, FileVideo, FileAudio, FileArchive, FileText as FileTextIcon, FileCode as FileCodeIcon, FileJson as FileJsonIcon2, FileType as FileTypeIcon, FileSpreadsheet as FileSpreadsheetIcon, FileImage as FileImageIcon, FileVideo as FileVideoIcon, FileAudio as FileAudioIcon, FileArchive as FileArchiveIcon } from 'lucide-react';
+import { IMAGES } from '@/lib/constants';
+import { PbImage } from '@/components/pb-image';
 import Footer from '@/components/layout/footer';
 
 const features = [
@@ -12,63 +13,63 @@ const features = [
     title: 'Explorador de Archivos',
     description: 'Navega y gestiona tu proyecto con un explorador de archivos integrado. Visualiza la estructura completa de tu aplicación.',
     icon: FolderTree,
-    image: '/uploads/Pestaña Explorador.jpg',
+    image: IMAGES.pestanaExplorador,
     link: '/explorador',
   },
   {
     title: 'IDE Completo',
     description: 'Editor de código con múltiples herramientas: comparador de carpetas, comparador de código, corrector de código, generador de componentes y más.',
     icon: Code2,
-    image: '/uploads/Pestaña IDE.jpg',
+    image: IMAGES.pestanaIDE,
     link: '/ide',
   },
   {
     title: 'Probador de APIs',
     description: 'Prueba y depura tus endpoints REST con una interfaz intuitiva. Soporta múltiples métodos HTTP y autenticación.',
     icon: Globe,
-    image: '/uploads/Pestaña Probador de Apis.jpg',
+    image: IMAGES.pestanaProbadorApis,
     link: '/probador-de-apis',
   },
   {
     title: 'Generador de Apps',
     description: 'Crea aplicaciones completas desde cero con configuración personalizada, estructura de proyecto y generación de contenido.',
     icon: Sparkles,
-    image: '/uploads/Pestaña Generador APP-Configuracion.jpg',
+    image: IMAGES.pestanaGeneradorAppConfig,
     link: '/generador-de-app',
   },
   {
     title: 'Creador de Estructuras',
     description: 'Diseña y visualiza la arquitectura de tu proyecto con un creador de estructuras interactivo.',
     icon: Layers,
-    image: '/uploads/Pestaña Creador de Estructuras.jpg',
+    image: IMAGES.pestanaCreadorEstructuras,
     link: '/creador-de-estructuras',
   },
   {
     title: 'Plan de Estructuras',
     description: 'Planifica la organización de tu proyecto con herramientas de planificación de estructuras.',
     icon: Workflow,
-    image: '/uploads/Pestaña Plan de Estructuras.jpg',
+    image: IMAGES.pestanaPlanEstructuras,
     link: '/plan-de-estructura',
   },
   {
     title: 'Generador de APIs',
     description: 'Genera APIs REST completas con endpoints, modelos y documentación automática.',
     icon: Braces,
-    image: '/uploads/Pestaña Generador de Api- Inicio.jpg',
+    image: IMAGES.pestanaGeneradorApiInicio,
     link: '/generador-de-api',
   },
   {
     title: 'Vista Previa',
     description: 'Visualiza tus aplicaciones en tiempo real con el panel de vista previa integrado.',
     icon: Eye,
-    image: '/uploads/Pestaña Vista Previa.jpg',
+    image: IMAGES.pestanaVistaPrevia,
     link: '/vista-previa',
   },
   {
     title: 'Componentes',
     description: 'Biblioteca de componentes reutilizables con diseño moderno y personalizable.',
     icon: Puzzle,
-    image: '/uploads/Pestaña Componentes.jpg',
+    image: IMAGES.pestanaComponentes,
     link: '/componentes',
   },
 ];
@@ -300,7 +301,7 @@ export default function ExploradorPage() {
                   className="group relative bg-gray-800/30 border border-gray-700/50 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300"
                 >
                   <div className="relative h-48 overflow-hidden">
-                    <Image
+                    <PbImage
                       src={feature.image}
                       alt={feature.title}
                       fill
@@ -341,7 +342,7 @@ export default function ExploradorPage() {
                   className="group relative bg-gray-800/30 border border-gray-700/50 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300"
                 >
                   <div className="relative h-48 overflow-hidden">
-                    <Image
+                    <PbImage
                       src={tool.image}
                       alt={tool.title}
                       fill
@@ -393,31 +394,31 @@ export default function ExploradorPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { src: '/uploads/Chat Expandido.jpg', alt: 'Chat Expandido', title: 'Chat Inteligente' },
-              { src: '/uploads/Modal Configuracion Generar API.jpg', alt: 'Configuración API', title: 'Configuración de API' },
-              { src: '/uploads/Pestaña Componentes.jpg', alt: 'Componentes', title: 'Biblioteca de Componentes' },
-              { src: '/uploads/Pestaña Creador de Estructuras.jpg', alt: 'Creador de Estructuras', title: 'Creador de Estructuras' },
-              { src: '/uploads/Pestaña Explorador.jpg', alt: 'Explorador', title: 'Explorador de Archivos' },
-              { src: '/uploads/Pestaña Generador APP-Aplicacion Generada.jpg', alt: 'App Generada', title: 'Aplicación Generada' },
-              { src: '/uploads/Pestaña Generador APP-Configuracion.jpg', alt: 'Configuración App', title: 'Configuración de App' },
-              { src: '/uploads/Pestaña Generador APP-Estructura.jpg', alt: 'Estructura App', title: 'Estructura de App' },
-              { src: '/uploads/Pestaña Generador APP-Generando Contenido.jpg', alt: 'Generando Contenido', title: 'Generación de Contenido' },
-              { src: '/uploads/Pestaña Generador de Api- Inicio.jpg', alt: 'Generador API Inicio', title: 'Generador de API' },
-              { src: '/uploads/Pestaña Generador de Api- Proyecto.jpg', alt: 'Generador API Proyecto', title: 'Proyecto API' },
-              { src: '/uploads/Pestaña IDE- Comparador de Carpetas.jpg', alt: 'Comparador Carpetas', title: 'Comparador de Carpetas' },
-              { src: '/uploads/Pestaña IDE- Comparador de Codigo.jpg', alt: 'Comparador Código', title: 'Comparador de Código' },
-              { src: '/uploads/Pestaña IDE- Corregir Codigo.jpg', alt: 'Corregir Código', title: 'Corrector de Código' },
-              { src: '/uploads/Pestaña IDE- Corregir Dependencias.jpg', alt: 'Corregir Dependencias', title: 'Corrector de Dependencias' },
-              { src: '/uploads/Pestaña IDE- Corregir Importaciones Faltantes.jpg', alt: 'Corregir Importaciones', title: 'Corrector de Importaciones' },
-              { src: '/uploads/Pestaña IDE- Esquema de Carpetas.jpg', alt: 'Esquema Carpetas', title: 'Esquema de Carpetas' },
-              { src: '/uploads/Pestaña IDE- Generador de Componentes.jpg', alt: 'Generador Componentes', title: 'Generador de Componentes' },
-              { src: '/uploads/Pestaña IDE- Generar Icono.jpg', alt: 'Generar Icono', title: 'Generador de Iconos' },
-              { src: '/uploads/Pestaña IDE.jpg', alt: 'IDE', title: 'IDE Completo' },
-              { src: '/uploads/Pestaña IDE-Formateador de Codigo.jpg', alt: 'Formateador', title: 'Formateador de Código' },
-              { src: '/uploads/Pestaña Panel de Control Vista Previa.jpg', alt: 'Panel Control', title: 'Panel de Control' },
-              { src: '/uploads/Pestaña Plan de Estructuras.jpg', alt: 'Plan Estructuras', title: 'Plan de Estructuras' },
-              { src: '/uploads/Pestaña Probador de Apis.jpg', alt: 'Probador APIs', title: 'Probador de APIs' },
-              { src: '/uploads/Pestaña Vista Previa.jpg', alt: 'Vista Previa', title: 'Vista Previa' },
+              { src: IMAGES.chatExpandido, alt: 'Chat Expandido', title: 'Chat Inteligente' },
+              { src: IMAGES.modalConfiguracion, alt: 'Configuración API', title: 'Configuración de API' },
+              { src: IMAGES.pestanaComponentes, alt: 'Componentes', title: 'Biblioteca de Componentes' },
+              { src: IMAGES.pestanaCreadorEstructuras, alt: 'Creador de Estructuras', title: 'Creador de Estructuras' },
+              { src: IMAGES.pestanaExplorador, alt: 'Explorador', title: 'Explorador de Archivos' },
+              { src: IMAGES.pestanaGeneradorAppAplicacion, alt: 'App Generada', title: 'Aplicación Generada' },
+              { src: IMAGES.pestanaGeneradorAppConfig, alt: 'Configuración App', title: 'Configuración de App' },
+              { src: IMAGES.pestanaGeneradorAppEstructura, alt: 'Estructura App', title: 'Estructura de App' },
+              { src: IMAGES.pestanaGeneradorAppGenerando, alt: 'Generando Contenido', title: 'Generación de Contenido' },
+              { src: IMAGES.pestanaGeneradorApiInicio, alt: 'Generador API Inicio', title: 'Generador de API' },
+              { src: IMAGES.pestanaGeneradorApiProyecto, alt: 'Generador API Proyecto', title: 'Proyecto API' },
+              { src: IMAGES.pestanaIDEComparadorCarpetas, alt: 'Comparador Carpetas', title: 'Comparador de Carpetas' },
+              { src: IMAGES.pestanaIDEComparadorCodigo, alt: 'Comparador Código', title: 'Comparador de Código' },
+              { src: IMAGES.pestanaIDECorregirCodigo, alt: 'Corregir Código', title: 'Corrector de Código' },
+              { src: IMAGES.pestanaIDECorregirDependencias, alt: 'Corregir Dependencias', title: 'Corrector de Dependencias' },
+              { src: IMAGES.pestanaIDECorregirImportaciones, alt: 'Corregir Importaciones', title: 'Corrector de Importaciones' },
+              { src: IMAGES.pestanaIDEEsquemaCarpetas, alt: 'Esquema Carpetas', title: 'Esquema de Carpetas' },
+              { src: IMAGES.pestanaIDEGeneradorComponentes, alt: 'Generador Componentes', title: 'Generador de Componentes' },
+              { src: IMAGES.pestanaIDEGenerarIcono, alt: 'Generar Icono', title: 'Generador de Iconos' },
+              { src: IMAGES.pestanaIDE, alt: 'IDE', title: 'IDE Completo' },
+              { src: IMAGES.pestanaIDEFormateador, alt: 'Formateador', title: 'Formateador de Código' },
+              { src: IMAGES.pestanaPanelControl, alt: 'Panel Control', title: 'Panel de Control' },
+              { src: IMAGES.pestanaPlanEstructuras, alt: 'Plan Estructuras', title: 'Plan de Estructuras' },
+              { src: IMAGES.pestanaProbadorApis, alt: 'Probador APIs', title: 'Probador de APIs' },
+              { src: IMAGES.pestanaVistaPrevia, alt: 'Vista Previa', title: 'Vista Previa' },
             ].map((image, index) => (
               <motion.div
                 key={image.title}
@@ -427,7 +428,7 @@ export default function ExploradorPage() {
                 className="group relative bg-gray-800/30 border border-gray-700/50 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300"
               >
                 <div className="relative h-48 overflow-hidden">
-                  <Image
+                  <PbImage
                     src={image.src}
                     alt={image.alt}
                     fill
@@ -476,7 +477,7 @@ export default function ExploradorPage() {
               >
                 <div className="flex items-center gap-4 mb-4">
                   <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                    <Image
+                    <PbImage
                       src={testimonial.avatar}
                       alt={testimonial.name}
                       fill
@@ -548,7 +549,7 @@ export default function ExploradorPage() {
             onClick={e => e.stopPropagation()}
           >
             <div className="relative h-64 md:h-80">
-              <Image
+              <PbImage
                 src={selectedTool.image}
                 alt={selectedTool.title}
                 fill

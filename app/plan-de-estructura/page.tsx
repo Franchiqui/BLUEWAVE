@@ -1,8 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '@/components/layout/footer';
+import { PbImage } from '@/components/pb-image';
+import { IMAGES } from '@/lib/constants';
 
 
 
@@ -41,8 +42,8 @@ export default function PlanDeEstructuraPage() {
             Visualiza y planifica la arquitectura completa de tu proyecto con la asistencia inteligente de Zeus IA.
           </p>
           <div className="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden shadow-2xl border border-gray-700">
-            <Image
-              src="/uploads/Pestaña Plan de Estructuras.jpg"
+            <PbImage
+              src={IMAGES.pestanaPlanEstructuras}
               alt="Plan de Estructura Zeus IA"
               width={1920}
               height={1080}
@@ -80,8 +81,8 @@ export default function PlanDeEstructuraPage() {
           <h2 className="text-3xl font-bold text-center mb-12 text-emerald-400">Vistas del Plan de Estructura</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="relative rounded-xl overflow-hidden border border-gray-800 group">
-              <Image
-                src="/uploads/Pestaña IDE- Esquema de Carpetas.jpg"
+              <PbImage
+                src={IMAGES.pestanaIDEEsquemaCarpetas}
                 alt="Esquema de Carpetas"
                 width={800}
                 height={600}
@@ -92,8 +93,8 @@ export default function PlanDeEstructuraPage() {
               </div>
             </div>
             <div className="relative rounded-xl overflow-hidden border border-gray-800 group">
-              <Image
-                src="/uploads/Pestaña IDE- Comparador de Carpetas.jpg"
+              <PbImage
+                src={IMAGES.pestanaIDEComparadorCarpetas}
                 alt="Comparador de Carpetas"
                 width={800}
                 height={600}
@@ -104,8 +105,8 @@ export default function PlanDeEstructuraPage() {
               </div>
             </div>
             <div className="relative rounded-xl overflow-hidden border border-gray-800 group">
-              <Image
-                src="/uploads/Pestaña IDE- Comparador de Codigo.jpg"
+              <PbImage
+                src={IMAGES.pestanaIDEComparadorCodigo}
                 alt="Comparador de Código"
                 width={800}
                 height={600}
@@ -116,8 +117,8 @@ export default function PlanDeEstructuraPage() {
               </div>
             </div>
             <div className="relative rounded-xl overflow-hidden border border-gray-800 group">
-              <Image
-                src="/uploads/Pestaña IDE- Corregir Codigo.jpg"
+              <PbImage
+                src={IMAGES.pestanaIDECorregirCodigo}
                 alt="Corregir Código"
                 width={800}
                 height={600}

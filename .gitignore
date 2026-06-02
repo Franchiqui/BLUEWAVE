@@ -78,3 +78,25 @@ dist/
 
 # Vercel
 .vercel
+
+# PocketBase
+pocketbase.exe
+*.db
+*.sst
+*.wal
+*.shm
+pb_data/
+pb_migrations/
+
+# Archives
+*.rar
+*.zip
+*.7z
+
+# Logs
+logs/
+*.log
+
+# Uploads (imágenes locales - ahora van en PocketBase)
+public/uploads/*
+!public/uploads/.gitkeep

@@ -1,8 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '@/components/layout/footer';
+import { PbImage } from '@/components/pb-image';
+import { IMAGES } from '@/lib/constants';
 
 
 
@@ -10,25 +11,25 @@ const features = [
   {
     title: 'Inicio Rápido',
     description: 'Comienza a generar tu API en segundos con nuestra interfaz intuitiva.',
-    image: '/uploads/Pestaña Generador de Api- Inicio.jpg',
+    image: IMAGES.pestanaGeneradorApiInicio,
     alt: 'Inicio del generador de API',
   },
   {
     title: 'Gestión de Proyectos',
     description: 'Organiza tus APIs por proyectos con estructura modular.',
-    image: '/uploads/Pestaña Generador de Api- Proyecto.jpg',
+    image: IMAGES.pestanaGeneradorApiProyecto,
     alt: 'Proyecto de API',
   },
   {
     title: 'Configuración Avanzada',
     description: 'Personaliza cada aspecto de tu API con opciones detalladas.',
-    image: '/uploads/Modal Configuracion Generar API.jpg',
+    image: IMAGES.modalConfiguracion,
     alt: 'Configuración de API',
   },
   {
     title: 'Chat Integrado',
     description: 'Asistencia en tiempo real con IA para resolver dudas.',
-    image: '/uploads/Chat Expandido.jpg',
+    image: IMAGES.chatExpandido,
     alt: 'Chat de asistencia',
   },
 ];
@@ -106,8 +107,8 @@ export default function GeneradorDeApiPage() {
             </div>
             <div className="relative">
               <div className="rounded-xl overflow-hidden shadow-2xl shadow-emerald-900/20 border border-gray-800">
-                <Image
-                  src="/uploads/Pestaña Generador de Api- Inicio.jpg"
+                <PbImage
+                  src={IMAGES.pestanaGeneradorApiInicio}
                   alt="Generador de API Zeus IA"
                   width={800}
                   height={500}
@@ -137,7 +138,7 @@ export default function GeneradorDeApiPage() {
               className="group rounded-xl bg-gray-900/50 border border-gray-800 overflow-hidden hover:border-emerald-700/50 transition-all duration-300"
             >
               <div className="relative h-48 overflow-hidden">
-                <Image
+                <PbImage
                   src={feature.image}
                   alt={feature.alt}
                   fill
@@ -169,7 +170,7 @@ export default function GeneradorDeApiPage() {
               <div key={step.number} className="relative">
                 <div className="text-5xl font-bold text-emerald-800/40 mb-4">{step.number}</div>
                 <div className="relative h-40 rounded-lg overflow-hidden mb-4 border border-gray-800">
-                  <Image
+                  <PbImage
                     src={step.image}
                     alt={step.title}
                     fill
@@ -202,7 +203,7 @@ export default function GeneradorDeApiPage() {
               className="group relative rounded-lg overflow-hidden border border-gray-800 hover:border-emerald-700/50 transition-all duration-300"
             >
               <div className="relative h-32">
-                <Image
+                <PbImage
                   src={page.image}
                   alt={page.label}
                   fill

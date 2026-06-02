@@ -2,14 +2,15 @@
 
 import React, { memo, useState, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { 
-  Menu, X, Zap, MessageSquare, Code, Shield, 
+import {
+  Menu, X, Zap, MessageSquare, Code, Shield,
   ChevronRight, Star, CheckCircle, ArrowRight,
   Github, Twitter, Linkedin, Mail
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { PbImage } from '@/components/pb-image';
+import { IMAGES } from '@/lib/constants';
 
 // Types
 interface NavItem {
@@ -21,7 +22,7 @@ interface NavItem {
 interface FeatureCard {
   title: string;
   description: string;
-  image: string;
+  image: string | null;
   href: string;
   tags: string[];
 }
@@ -30,7 +31,7 @@ interface Testimonial {
   quote: string;
   author: string;
   role: string;
-  avatar: string;
+  avatar: string | null;
 }
 
 // Constants
@@ -51,56 +52,56 @@ const FEATURES: FeatureCard[] = [
   {
     title: 'Chat Inteligente',
     description: 'Asistente IA contextual con memoria de proyecto y generación de código en tiempo real.',
-    image: '/uploads/Chat Expandido.jpg',
+    image: IMAGES.chatExpandido,
     href: '/explorador',
     tags: ['IA', 'Chat', 'Contexto'],
   },
   {
     title: 'IDE Completo',
     description: 'Editor de código con comparador, corrector, generador de componentes y más.',
-    image: '/uploads/Pestaña IDE.jpg',
+    image: IMAGES.pestanaIDE,
     href: '/ide',
     tags: ['IDE', 'Editor', 'Herramientas'],
   },
   {
     title: 'Generador de APIs',
     description: 'Crea APIs REST completas con autenticación, documentación y pruebas integradas.',
-    image: '/uploads/Pestaña Generador de Api- Inicio.jpg',
+    image: IMAGES.pestanaGeneradorApiInicio,
     href: '/generador-de-api',
     tags: ['API', 'REST', 'Backend'],
   },
   {
     title: 'Generador de Apps',
     description: 'Genera aplicaciones completas con estructura, configuración y contenido automático.',
-    image: '/uploads/Pestaña Generador APP-Configuracion.jpg',
+    image: IMAGES.pestanaGeneradorAppConfig,
     href: '/generador-de-app',
     tags: ['App', 'Generación', 'Full-stack'],
   },
   {
     title: 'Creador de Estructuras',
     description: 'Diseña y visualiza arquitecturas de proyectos con planos interactivos.',
-    image: '/uploads/Pestaña Creador de Estructuras.jpg',
+    image: IMAGES.pestanaCreadorEstructuras,
     href: '/creador-de-estructuras',
     tags: ['Estructura', 'Arquitectura', 'Planos'],
   },
   {
     title: 'Probador de APIs',
     description: 'Prueba endpoints, visualiza respuestas y genera documentación automática.',
-    image: '/uploads/Pestaña Probador de Apis.jpg',
+    image: IMAGES.pestanaProbadorApis,
     href: '/probador-de-apis',
     tags: ['Testing', 'API', 'Documentación'],
   },
   {
     title: 'Panel de Control',
     description: 'Vista previa en tiempo real de componentes y aplicaciones en desarrollo.',
-    image: '/uploads/Pestaña Panel de Control Vista Previa.jpg',
+    image: IMAGES.pestanaPanelControl,
     href: '/vista-previa',
     tags: ['Preview', 'Live', 'Debug'],
   },
   {
     title: 'Explorador de Archivos',
     description: 'Navegación visual de proyectos con esquemas de carpetas y comparadores.',
-    image: '/uploads/Pestaña Explorador.jpg',
+    image: IMAGES.pestanaExplorador,
     href: '/explorador',
     tags: ['Explorador', 'Archivos', 'Navegación'],
   },
@@ -278,8 +279,8 @@ const HeroSection = memo(() => (
         >
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-2xl blur-2xl" />
-            <Image
-              src="/uploads/Chat Expandido.jpg"
+            <PbImage
+              src={IMAGES.chatExpandido}
               alt="Zeus IA Chat Interface"
               width={600}
               height={400}
@@ -322,7 +323,7 @@ const FeaturesSection = memo(() => (
               className="group block bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-green-500/50 transition-all duration-300"
             >
               <div className="relative h-48 overflow-hidden">
-                <Image
+                <PbImage
                   src={feature.image}
                   alt={feature.title}
                   fill
@@ -385,7 +386,7 @@ const TestimonialsSection = memo(() => (
             </div>
             <p className="text-gray-300 mb-6">&ldquo;{testimonial.quote}&rdquo;</p>
             <div className="flex items-center gap-3">
-              <Image
+              <PbImage
                 src={testimonial.avatar}
                 alt={testimonial.author}
                 width={40}

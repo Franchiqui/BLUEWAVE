@@ -1,16 +1,17 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '@/components/layout/footer';
-import { 
-  Code2, 
-  Layers, 
-  Database, 
-  Box, 
-  GitBranch, 
-  FileCode, 
-  Settings, 
+import { PbImage } from '@/components/pb-image';
+import { IMAGES } from '@/lib/constants';
+import {
+  Code2,
+  Layers,
+  Database,
+  Box,
+  GitBranch,
+  FileCode,
+  Settings,
   Eye,
   ArrowRight,
   Sparkles,
@@ -25,37 +26,37 @@ const features = [
     icon: Layers,
     title: 'Estructuras Predefinidas',
     description: 'Plantillas optimizadas para Next.js, React, Node.js y más frameworks modernos.',
-    image: '/uploads/Pestaña Creador de Estructuras.jpg',
+    image: IMAGES.pestanaCreadorEstructuras,
   },
   {
     icon: Database,
     title: 'Modelos de Datos',
     description: 'Define esquemas de base de datos y relaciones de forma visual e inteligente.',
-    image: '/uploads/Pestaña Plan de Estructuras.jpg',
+    image: IMAGES.pestanaPlanEstructuras,
   },
   {
     icon: GitBranch,
     title: 'Arquitectura Modular',
     description: 'Genera estructuras modulares y escalables siguiendo las mejores prácticas.',
-    image: '/uploads/Pestaña IDE- Esquema de Carpetas.jpg',
+    image: IMAGES.pestanaIDEEsquemaCarpetas,
   },
   {
     icon: FileCode,
     title: 'Componentes Reutilizables',
     description: 'Crea componentes con estructura optimizada y código limpio y mantenible.',
-    image: '/uploads/Pestaña Componentes.jpg',
+    image: IMAGES.pestanaComponentes,
   },
   {
     icon: Box,
     title: 'Generación Automática',
     description: 'IA genera automáticamente la estructura completa de tu proyecto.',
-    image: '/uploads/Pestaña Generador APP-Estructura.jpg',
+    image: IMAGES.pestanaGeneradorAppEstructura,
   },
   {
     icon: Settings,
     title: 'Configuración Flexible',
     description: 'Personaliza cada aspecto de la estructura según tus necesidades específicas.',
-    image: '/uploads/Pestaña Generador APP-Configuracion.jpg',
+    image: IMAGES.pestanaGeneradorAppConfig,
   },
 ];
 
@@ -64,19 +65,19 @@ const structureTypes = [
     title: 'Frontend Moderno',
     description: 'Next.js, React, Vue, Angular con estructura optimizada',
     icon: Code2,
-    image: '/uploads/Pestaña IDE.jpg',
+    image: IMAGES.pestanaIDE,
   },
   {
     title: 'Backend Escalable',
     description: 'Node.js, Express, NestJS con arquitectura limpia',
     icon: Database,
-    image: '/uploads/Pestaña Generador de Api- Proyecto.jpg',
+    image: IMAGES.pestanaGeneradorApiProyecto,
   },
   {
     title: 'Full Stack Completo',
     description: 'Aplicaciones completas con frontend y backend integrados',
     icon: Layers,
-    image: '/uploads/Pestaña Generador APP-Aplicacion Generada.jpg',
+    image: IMAGES.pestanaGeneradorAppAplicacion,
   },
 ];
 
@@ -85,25 +86,25 @@ const steps = [
     number: '01',
     title: 'Selecciona el Tipo',
     description: 'Elige entre las plantillas disponibles o crea una personalizada.',
-    image: '/uploads/Pestaña Creador de Estructuras.jpg',
+    image: IMAGES.pestanaCreadorEstructuras,
   },
   {
     number: '02',
     title: 'Configura Opciones',
     description: 'Personaliza rutas, componentes, estilos y dependencias.',
-    image: '/uploads/Modal Configuracion Generar API.jpg',
+    image: IMAGES.modalConfiguracion,
   },
   {
     number: '03',
     title: 'Genera Estructura',
     description: 'La IA genera automáticamente toda la estructura del proyecto.',
-    image: '/uploads/Pestaña Generador APP-Generando Contenido.jpg',
+    image: IMAGES.pestanaGeneradorAppGenerando,
   },
   {
     number: '04',
     title: 'Visualiza y Edita',
     description: 'Explora la estructura generada y realiza ajustes si es necesario.',
-    image: '/uploads/Pestaña Explorador.jpg',
+    image: IMAGES.pestanaExplorador,
   },
 ];
 
@@ -166,8 +167,8 @@ export default function CreadorDeEstructurasPage() {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-2xl blur-3xl" />
               <div className="relative rounded-2xl overflow-hidden border border-gray-800 shadow-2xl">
-                <Image
-                  src="/uploads/Pestaña Creador de Estructuras.jpg"
+                <PbImage
+                  src={IMAGES.pestanaCreadorEstructuras}
                   alt="Creador de Estructuras Zeus IA"
                   width={800}
                   height={600}
@@ -198,7 +199,7 @@ export default function CreadorDeEstructurasPage() {
               className="group relative bg-gray-900/50 rounded-2xl overflow-hidden border border-gray-800 hover:border-emerald-500/50 transition-all duration-300"
             >
               <div className="relative h-48 overflow-hidden">
-                <Image
+                <PbImage
                   src={type.image}
                   alt={type.title}
                   width={400}
@@ -239,7 +240,7 @@ export default function CreadorDeEstructurasPage() {
                 className="group bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700 hover:border-emerald-500/30 transition-all duration-300"
               >
                 <div className="relative h-48 overflow-hidden">
-                  <Image
+                  <PbImage
                     src={feature.image}
                     alt={feature.title}
                     width={400}
@@ -278,7 +279,7 @@ export default function CreadorDeEstructurasPage() {
             <div key={step.number} className="relative">
               <div className="text-6xl font-bold text-emerald-500/20 mb-4">{step.number}</div>
               <div className="relative rounded-xl overflow-hidden mb-4 border border-gray-800">
-                <Image
+                <PbImage
                   src={step.image}
                   alt={step.title}
                   width={300}

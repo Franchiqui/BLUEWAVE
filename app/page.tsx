@@ -1,16 +1,17 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '@/components/layout/footer';
-import { 
-  MessageSquare, 
-  Code2, 
-  Box, 
-  Layout, 
-  GitBranch, 
-  Shield, 
-  Zap, 
+import { PbImage } from '@/components/pb-image';
+import { IMAGES } from '@/lib/constants';
+import {
+  MessageSquare,
+  Code2,
+  Box,
+  Layout,
+  GitBranch,
+  Shield,
+  Zap,
   Database,
   ChevronRight,
   Star,
@@ -23,28 +24,28 @@ const features = [
   {
     title: 'Chat Inteligente',
     description: 'Asistente de IA contextual que entiende tu código y proyecto',
-    image: '/uploads/Chat Expandido.jpg',
+    image: IMAGES.chatExpandido,
     href: '/explorador',
     icon: MessageSquare,
   },
   {
     title: 'IDE Completo',
     description: 'Editor con comparador de código, formateador, generador de componentes y más',
-    image: '/uploads/Pestaña IDE.jpg',
+    image: IMAGES.pestanaIDE,
     href: '/ide',
     icon: Code2,
   },
   {
     title: 'Generador de APIs',
     description: 'Crea APIs REST completas con configuración automatizada',
-    image: '/uploads/Pestaña Generador de Api- Inicio.jpg',
+    image: IMAGES.pestanaGeneradorApiInicio,
     href: '/generador-de-api',
     icon: Database,
   },
   {
     title: 'Generador de Apps',
     description: 'Genera aplicaciones completas con estructura y configuración',
-    image: '/uploads/Pestaña Generador APP-Aplicacion Generada.jpg',
+    image: IMAGES.pestanaGeneradorAppAplicacion,
     href: '/generador-de-app',
     icon: Layout,
   },
@@ -176,7 +177,7 @@ export default function HomePage() {
               className="group bg-gray-800/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10"
             >
               <div className="relative h-48 overflow-hidden">
-                <Image
+                <PbImage
                   src={feature.image}
                   alt={feature.title}
                   fill
@@ -227,8 +228,8 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden">
-              <Image
-                src="/uploads/Pestaña IDE- Esquema de Carpetas.jpg"
+              <PbImage
+                src={IMAGES.pestanaIDEEsquemaCarpetas}  
                 alt="Arquitectura Zeus IA"
                 fill
                 className="object-cover"
@@ -255,7 +256,7 @@ export default function HomePage() {
             >
               <div className="flex items-center gap-4 mb-4">
                 <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                  <Image
+                  <PbImage
                     src={testimonial.avatar}
                     alt={testimonial.name}
                     fill

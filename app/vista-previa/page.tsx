@@ -1,8 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '@/components/layout/footer';
+import { PbImage } from '@/components/pb-image';
+import { IMAGES } from '@/lib/constants';
 
 
 
@@ -58,8 +59,8 @@ export default function VistaPreviaPage() {
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="relative rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-green-500/10">
-            <Image
-              src="/uploads/Pestaña Vista Previa.jpg"
+            <PbImage
+              src={IMAGES.pestanaVistaPrevia}
               alt="Vista previa de Zeus IA"
               width={1200}
               height={675}
@@ -136,145 +137,145 @@ export default function VistaPreviaPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Chat Expandido.jpg" alt="Chat expandido de Zeus IA" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.chatExpandido} alt="Chat expandido de Zeus IA" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Chat Inteligente</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Modal Configuracion Generar API.jpg" alt="Configuración de API" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.modalConfiguracion} alt="Configuración de API" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Configuración API</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña Componentes.jpg" alt="Pestaña de componentes" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaComponentes} alt="Pestaña de componentes" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Componentes</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña Creador de Estructuras.jpg" alt="Creador de estructuras" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaCreadorEstructuras} alt="Creador de estructuras" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Creador de Estructuras</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña Explorador.jpg" alt="Explorador de proyectos" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaExplorador} alt="Explorador de proyectos" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Explorador</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña Generador APP-Aplicacion Generada.jpg" alt="App generada" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaGeneradorAppAplicacion} alt="App generada" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">App Generada</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña Generador APP-Configuracion.jpg" alt="Configuración de app" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaGeneradorAppConfig} alt="Configuración de app" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Configuración App</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña Generador APP-Estructura.jpg" alt="Estructura de app" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaGeneradorAppEstructura} alt="Estructura de app" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Estructura App</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña Generador APP-Generando Contenido.jpg" alt="Generando contenido" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaGeneradorAppGenerando} alt="Generando contenido" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Generando Contenido</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña Generador de Api- Inicio.jpg" alt="Generador de API inicio" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaGeneradorApiInicio} alt="Generador de API inicio" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Generador API</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña Generador de Api- Proyecto.jpg" alt="Proyecto API" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaGeneradorApiProyecto} alt="Proyecto API" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Proyecto API</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña IDE- Comparador de Carpetas.jpg" alt="Comparador de carpetas" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaIDEComparadorCarpetas} alt="Comparador de carpetas" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Comparador Carpetas</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña IDE- Comparador de Codigo.jpg" alt="Comparador de código" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaIDEComparadorCodigo} alt="Comparador de código" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Comparador Código</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña IDE- Corregir Codigo.jpg" alt="Corregir código" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaIDECorregirCodigo} alt="Corregir código" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Corregir Código</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña IDE- Corregir Dependencias.jpg" alt="Corregir dependencias" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaIDECorregirDependencias} alt="Corregir dependencias" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Corregir Dependencias</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña IDE- Corregir Importaciones Faltantes.jpg" alt="Corregir importaciones" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaIDECorregirImportaciones} alt="Corregir importaciones" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Corregir Importaciones</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña IDE- Esquema de Carpetas.jpg" alt="Esquema de carpetas" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaIDEEsquemaCarpetas} alt="Esquema de carpetas" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Esquema Carpetas</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña IDE- Generador de Componentes.jpg" alt="Generador de componentes" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaIDEGeneradorComponentes} alt="Generador de componentes" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Generador Componentes</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña IDE- Generar Icono.jpg" alt="Generar icono" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaIDEGenerarIcono} alt="Generar icono" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Generar Icono</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña IDE.jpg" alt="IDE principal" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaIDE} alt="IDE principal" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">IDE Principal</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña IDE-Formateador de Codigo.jpg" alt="Formateador de código" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaIDEFormateador} alt="Formateador de código" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Formateador Código</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña Panel de Control Vista Previa.jpg" alt="Panel de control" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaPanelControl} alt="Panel de control" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Panel de Control</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña Plan de Estructuras.jpg" alt="Plan de estructuras" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaPlanEstructuras} alt="Plan de estructuras" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Plan de Estructuras</span>
               </div>
             </div>
             <div className="relative group rounded-xl overflow-hidden border border-gray-800">
-              <Image src="/uploads/Pestaña Probador de Apis.jpg" alt="Probador de APIs" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
+              <PbImage src={IMAGES.pestanaProbadorApis} alt="Probador de APIs" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                 <span className="text-sm text-green-400 font-medium">Probador APIs</span>
               </div>
