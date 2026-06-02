@@ -2283,4 +2283,10 @@ export interface CSSStyleConfig {
   msScrollTranslation?: string;
   msScrollbar3dlightColor?: string;
   msScrollbarArrowColor?: string;
-  msScrollbar}
+  msScrollbarBaseColor?: string;
+  msScrollbarDarkshadowColor?: string;
+  msScrollbarFaceColor?: string;
+  msScrollbarHighlightColor?: string;
+  msScrollbarShadowColor?: string;
+  msScrollbarTrackColor?: string;
+}

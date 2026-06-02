@@ -149,7 +149,9 @@ apiClient.interceptors.response.use(
         localStorage.setItem('zeus_auth_token', token);
 
         // Retry original request
-        originalRequest.headers.Authorization = `Bearer ${token}`;
+        if (originalRequest.headers) {
+          originalRequest.headers.Authorization = `Bearer ${token}`;
+        }
         return apiClient(originalRequest);
       } catch (refreshError) {
         // Clear auth data and redirect to login

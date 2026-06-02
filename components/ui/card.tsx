@@ -1,28 +1,34 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 
-const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { hoverable?: boolean }
->(({ className, hoverable, ...props }, ref) => {
-  const Component = hoverable ? motion.div : 'div';
-  const motionProps = hoverable
-    ? {
-        whileHover: { scale: 1.02, boxShadow: '0 10px 30px -15px rgba(0,0,0,0.2)' },
-        transition: { type: 'spring', stiffness: 300, damping: 20 },
-      }
-    : {};
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  hoverable?: boolean;
+}
+
+const Card = React.forwardRef<HTMLDivElement, CardProps>(({ className, hoverable, ...props }, ref) => {
+  if (hoverable) {
+    return (
+      <motion.div
+        ref={ref}
+        className={cn(
+          'rounded-xl border bg-card text-card-foreground shadow-sm cursor-pointer transition-shadow',
+          className
+        )}
+        whileHover={{ scale: 1.02, boxShadow: '0 10px 30px -15px rgba(0,0,0,0.2)' }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        {...(props as HTMLMotionProps<'div'>)}
+      />
+    );
+  }
 
   return (
-    <Component
+    <div
       ref={ref}
       className={cn(
         'rounded-xl border bg-card text-card-foreground shadow-sm',
-        hoverable && 'cursor-pointer transition-shadow',
         className
       )}
-      {...motionProps}
       {...props}
     />
   );
