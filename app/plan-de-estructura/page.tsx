@@ -10,27 +10,7 @@ import { IMAGES } from '@/lib/constants';
 export default function PlanDeEstructuraPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-blue-950 text-gray-100">
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 bg-gray-950/80 backdrop-blur-md border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold text-emerald-400">Zeus IA</span>
-            </Link>
-            <div className="hidden md:flex space-x-6">
-              <Link href="/explorador" className="text-gray-300 hover:text-emerald-400 transition">Explorador</Link>
-              <Link href="/ide" className="text-gray-300 hover:text-emerald-400 transition">IDE</Link>
-              <Link href="/probador-de-apis" className="text-gray-300 hover:text-emerald-400 transition">Probador de APIs</Link>
-              <Link href="/generador-de-app" className="text-gray-300 hover:text-emerald-400 transition">Generador App</Link>
-              <Link href="/creador-de-estructuras" className="text-gray-300 hover:text-emerald-400 transition">Creador Estructuras</Link>
-              <Link href="/plan-de-estructura" className="text-emerald-400 font-semibold border-b-2 border-emerald-400">Plan Estructura</Link>
-              <Link href="/generador-de-api" className="text-gray-300 hover:text-emerald-400 transition">Generador API</Link>
-              <Link href="/vista-previa" className="text-gray-300 hover:text-emerald-400 transition">Vista Previa</Link>
-              <Link href="/componentes" className="text-gray-300 hover:text-emerald-400 transition">Componentes</Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      
 
       {/* Hero Section */}
       <section className="relative py-20 px-4">

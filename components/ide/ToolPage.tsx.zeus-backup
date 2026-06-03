@@ -1,0 +1,25 @@
+import { useState, useEffect } from 'react';
+import { ideTabsData } from '@/lib/ide-tabs-data';
+import { IMAGES } from '@/lib/constants';
+
+const ToolPage = ({ tool }: { tool: string }) => {
+  const tabData = ideTabsData.find(t => t.key === tool);
+  if (!tabData) {
+    return (
+      <div className="p-6">
+        <h1 className="text-2xl font-bold mb-4">Herramienta no encontrada</h1>
+        <p className="text-red-500">La herramienta '{tool}' no existe en la configuración.</p>
+      </div>
+    );
+  }
+
+  const [context, setContext] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchContext = async () => {
+      try {
+        const res = await fetch(`/uploads/ZEUS_IA_CONTEXT.md`);
+        if (!res.ok) {
+          throw new Error(`Error al cargar el contexto: ${res.status

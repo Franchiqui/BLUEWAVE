@@ -78,16 +78,32 @@ export function MessageList({ messages, currentUserId, pb, onImageLoad, onDelete
       case 'image':
         return (
           <div className="space-y-2">
-            {message.file && (
+            {message.file ? (
               <div className="relative">
                 <img
-                  src={`${pb.baseUrl}/api/files/messages/${message.id}/${message.file}`}
+                  src={`${pb.baseUrl}/api/files/messages_chat/${message.id}/${message.file}`}
                   alt="Shared image"
                   className="max-w-full h-auto rounded-lg"
                   style={{ maxHeight: '200px' }}
-                  onLoad={onImageLoad}
+                  onLoad={() => {
+                    console.log('Image loaded successfully:', message.id);
+                    if (onImageLoad) onImageLoad();
+                  }}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    console.error('Error loading image:', {
+                      messageId: message.id,
+                      file: message.file,
+                      url: `${pb.baseUrl}/api/files/messages_chat/${message.id}/${message.file}`,
+                      naturalWidth: target.naturalWidth,
+                      naturalHeight: target.naturalHeight,
+                      complete: target.complete
+                    });
+                  }}
                 />
               </div>
+            ) : (
+              <p className="text-xs text-muted-foreground">No file attached</p>
             )}
             {message.content && <p className="text-sm">{message.content}</p>}
           </div>
@@ -104,7 +120,7 @@ export function MessageList({ messages, currentUserId, pb, onImageLoad, onDelete
                 <div className="flex-1">
                   <p className="text-sm font-medium">{t.chat.audioMessage}</p>
                   <audio controls className="w-full mt-1">
-                    <source src={`${pb.baseUrl}/api/files/messages/${message.id}/${message.file}`} type="audio/mpeg" />
+                    <source src={`${pb.baseUrl}/api/files/messages_chat/${message.id}/${message.file}`} type="audio/mpeg" />
                     Your browser does not support the audio element.
                   </audio>
                 </div>
@@ -120,7 +136,7 @@ export function MessageList({ messages, currentUserId, pb, onImageLoad, onDelete
             {message.file && (
               <div className="relative">
                 <video controls className="max-w-full h-auto rounded-lg" style={{ maxHeight: '200px' }}>
-                  <source src={`${pb.baseUrl}/api/files/messages/${message.id}/${message.file}`} />
+                  <source src={`${pb.baseUrl}/api/files/messages_chat/${message.id}/${message.file}`} />
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -189,7 +205,9 @@ export function MessageList({ messages, currentUserId, pb, onImageLoad, onDelete
                 "text-xs mt-2",
                 isOwnMessage ? "text-primary-foreground/70" : "text-muted-foreground"
               )}>
-                {format(new Date(message.created), 'HH:mm')}
+                {message.created && !isNaN(new Date(message.created).getTime())
+                  ? format(new Date(message.created), 'HH:mm')
+                  : ''}
               </p>
             </div>
           </div>

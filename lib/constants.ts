@@ -3,7 +3,7 @@ export const APP_DESCRIPTION = "IDE / Studio de desarrollo con asistencia de IA"
 
 export const APP_VERSION = "1.0.0";
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8742";
-export const POCKETBASE_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || "https://pocketbase-render-7yol.onrender.com";
+export const POCKETBASE_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || "https://pocketbase-zeus.fly.dev";
 
 export const NAV_LINKS = [
   { label: "Explorador", href: "/explorador" },
@@ -50,42 +50,36 @@ export const THEME = {
 // IDs de las colecciones en PocketBase
 const IMAGENES_COLLECTION_ID = 'pbc_1998862360';
 
-// Helper para construir URL de imagen desde PocketBase
-// Si no hay recordId, devuelve null para usar placeholder
-const pbImage = (recordId: string | null, fieldName: string = 'field') => {
-  if (!recordId) return null;
-  return `${POCKETBASE_URL}/api/files/${IMAGENES_COLLECTION_ID}/${recordId}/${fieldName}`;
-};
+// Helper para URL completa directa
+const pbImageUrl = (url: string) => url;
 
 export const IMAGES = {
-  // Sube cada imagen a PocketBase (colección 'imagenes') y usa el recordId retornado
-  // Ejemplo: sube "Chat Expandido.jpg" al campo 'field' y usa el ID del registro
-  // Deja null mientras no subas la imagen - se mostrará un placeholder
-  chatExpandido: null, // pbImage('RECORD_ID_CHAT_EXPANDIDO', 'field'),
-  modalConfiguracion: null, // pbImage('RECORD_ID_MODAL_CONFIG', 'field'),
-  pestanaComponentes: null, // pbImage('RECORD_ID_COMPONENTES', 'field'),
-  pestanaCreadorEstructuras: null, // pbImage('RECORD_ID_CREADOR', 'field'),
-  pestanaExplorador: null, // pbImage('RECORD_ID_EXPLORADOR', 'field'),
-  pestanaGeneradorAppAplicacion: null, // pbImage('RECORD_ID_GEN_APP', 'field'),
-  pestanaGeneradorAppConfig: null, // pbImage('RECORD_ID_GEN_APP_CONFIG', 'field'),
-  pestanaGeneradorAppEstructura: null, // pbImage('RECORD_ID_GEN_APP_ESTRUCTURA', 'field'),
-  pestanaGeneradorAppGenerando: null, // pbImage('RECORD_ID_GEN_APP_GENERANDO', 'field'),
-  pestanaGeneradorApiInicio: null, // pbImage('RECORD_ID_GEN_API_INICIO', 'field'),
-  pestanaGeneradorApiProyecto: null, // pbImage('RECORD_ID_GEN_API_PROYECTO', 'field'),
-  pestanaIDEComparadorCarpetas: null, // pbImage('RECORD_ID_IDE_COMPARADOR_CARPETAS', 'field'),
-  pestanaIDEComparadorCodigo: null, // pbImage('RECORD_ID_IDE_COMPARADOR_CODIGO', 'field'),
-  pestanaIDECorregirCodigo: null, // pbImage('RECORD_ID_IDE_CORREGIR_CODIGO', 'field'),
-  pestanaIDECorregirDependencias: null, // pbImage('RECORD_ID_IDE_CORREGIR_DEPENDENCIAS', 'field'),
-  pestanaIDECorregirImportaciones: null, // pbImage('RECORD_ID_IDE_CORREGIR_IMPORTACIONES', 'field'),
-  pestanaIDEEsquemaCarpetas: null, // pbImage('RECORD_ID_IDE_ESQUEMA', 'field'),
-  pestanaIDEGeneradorComponentes: null, // pbImage('RECORD_ID_IDE_GENERADOR_COMPONENTES', 'field'),
-  pestanaIDEGenerarIcono: null, // pbImage('RECORD_ID_IDE_GENERAR_ICONO', 'field'),
-  pestanaIDE: null, // pbImage('RECORD_ID_IDE', 'field'),
-  pestanaIDEFormateador: null, // pbImage('RECORD_ID_IDE_FORMATEADOR', 'field'),
-  pestanaPanelControl: null, // pbImage('RECORD_ID_PANEL_CONTROL', 'field'),
-  pestanaPlanEstructuras: null, // pbImage('RECORD_ID_PLAN_ESTRUCTURAS', 'field'),
-  pestanaProbadorApis: null, // pbImage('RECORD_ID_PROBADOR_APIS', 'field'),
-  pestanaVistaPrevia: null, // pbImage('RECORD_ID_VISTA_PREVIA', 'field'),
+  // Imágenes subidas a PocketBase (colección 'imagenes')
+  chatExpandido: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/3p74z32vzwmxb4y/chat_expandido_6tnlwpmx07.jpg'),
+  modalConfiguracion: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/0512023r4670wd9/modal_configuracion_generar_api_rav0rob95c.jpg'),
+  pestanaComponentes: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/7wip0313k11wp24/pesta_a_componentes_op1v8mjd68.jpg'),
+  pestanaCreadorEstructuras: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/ph987oh3g7u5mzq/pesta_a_creador_de_estructuras_elvzmcu9z3.jpg'),
+  pestanaExplorador: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/o8gs8t20b116zi1/pesta_a_explorador_vqsnlzkai4.jpg'),
+  pestanaGeneradorAppAplicacion: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/c0010chn4du3502/pesta_a_generador_app_aplicacion_generada_9mpy1t9qg2.jpg'),
+  pestanaGeneradorAppConfig: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/b8v58di996w82hr/pesta_a_generador_app_configuracion_q2783ju3av.jpg'),
+  pestanaGeneradorAppEstructura: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/je98fx2v3bze3x4/pesta_a_generador_app_estructura_yoa899uyss.jpg'),
+  pestanaGeneradorAppGenerando: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/uiz885mqtu8s1ea/pesta_a_generador_app_generando_contenido_06oljx2ige.jpg'),
+  pestanaGeneradorApiInicio: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/4u9xda3u889l9qn/pesta_a_generador_de_api_inicio_lt33o4lus0.jpg'),
+  pestanaGeneradorApiProyecto: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/7yxgmvae9u829bj/pesta_a_generador_de_api_proyecto_u73eyjaorc.jpg'),
+  pestanaIDEComparadorCarpetas: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/cj826o4k55uqv1d/pesta_a_ide_comparador_de_carpetas_yv6h90cgc3.jpg'),
+  pestanaIDEComparadorCodigo: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/1p6lph331840dca/pesta_a_ide_comparador_de_codigo_t551p7m1iq.jpg'),
+  pestanaIDECorregirCodigo: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/jxodiy2ox997018/pesta_a_ide_corregir_codigo_af7oza4tu3.jpg'),
+  pestanaIDECorregirDependencias: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/0y26c864ef2v67v/pesta_a_ide_corregir_dependencias_a6jgwgyasz.jpg'),
+  pestanaIDECorregirImportaciones: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/r09f1374498t0p8/pesta_a_ide_corregir_importaciones_faltantes_8cfatzkbs2.jpg'),
+  pestanaIDEEsquemaCarpetas: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/124ongvp0b0l3x4/pesta_a_ide_esquema_de_carpetas_hpvzcuydz4.jpg'),
+  pestanaIDEGeneradorComponentes: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/643b371j025nx4e/pesta_a_ide_generador_de_componentes_pfuxe2pjjz.jpg'),
+  pestanaIDEGenerarIcono: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/we6jj86wn61714x/pesta_a_ide_generar_icono_8bmsjgpwu7.jpg'),
+  pestanaIDE: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/o3v23amaf40fw1h/pesta_a_ide_9j9cav5vqb.jpg'),
+  pestanaIDEFormateador: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/6rrb08dn6q9p57c/pesta_a_ide_formateador_de_codigo_69ofzxtfaz.jpg'),
+  pestanaPanelControl: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/v03063hk306ire4/pesta_a_panel_de_control_vista_previa_1ova53tqrc.jpg'),
+  pestanaPlanEstructuras: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/i7nj3e3589tg2ie/pesta_a_plan_de_estructuras_mbg32ir8kc.jpg'),
+  pestanaProbadorApis: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/0t9dpmkud87fh4f/pesta_a_probador_de_apis_uhu4f4rwh8.jpg'),
+  pestanaVistaPrevia: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/a4sxc055ceu161y/pesta_a_vista_previa_dp64v9p0nt.jpg'),
 };
 
 // Helper para verificar si una imagen está disponible
@@ -174,4 +168,44 @@ export const ERROR_MESSAGES = {
   auth: "Sesión expirada. Inicia sesión nuevamente.",
   generic: "Ocurrió un error. Intenta de nuevo.",
   validation: "Datos inválidos. Revisa los campos.",
+};
+
+// lib/constants.ts
+// Existing constants (preserve as-is)
+
+export const SITE_DESCRIPTION =
+  "Plataforma integral de desarrollo asistido por IA";
+export const DEFAULT_THEME = "system";
+// ... any other existing constants would remain here
+
+/**
+ * Mapping of IDE tool names to their corresponding image paths.
+ * Images should be placed in the `public` folder (e.g., /images/tools/...).
+ */
+export const IDE_TOOL_IMAGES = {
+  "Comparador de Carpetas": "/images/tools/folder-comparator.png",
+  "Comparador de Código": "/images/tools/code-comparator.png",
+  "Corrector de Código": "/images/tools/code-corrector.png",
+  "Corrector de Dependencias": "/images/tools/dependency-corrector.png",
+  "Corrector de Importaciones": "/images/tools/import-corrector.png",
+  "Esquema de Carpetas": "/images/tools/folder-schema.png",
+  "Generador de Componentes": "/images/tools/component-generator.png",
+  "Generador de Iconos": "/images/tools/icon-generator.png",
+  "Formateador de Código": "/images/tools/code-formatter.png",
+};
+
+/**
+ * Mapping of IDE tool IDs to their corresponding image paths.
+ * Used in the IDE page to display icons for each tool.
+ */
+export const tabImages: Record<string, string> = {
+  'folder-comparer': IMAGES.pestanaIDEComparadorCarpetas,
+  'code-comparer': IMAGES.pestanaIDEComparadorCodigo,
+  'code-corrector': IMAGES.pestanaIDECorregirCodigo,
+  'dependency-corrector': IMAGES.pestanaIDECorregirDependencias,
+  'import-corrector': IMAGES.pestanaIDECorregirImportaciones,
+  'folder-schema': IMAGES.pestanaIDEEsquemaCarpetas,
+  'component-generator': IMAGES.pestanaIDEGeneradorComponentes,
+  'icon-generator': IMAGES.pestanaIDEGenerarIcono,
+  'code-formatter': IMAGES.pestanaIDEFormateador,
 };

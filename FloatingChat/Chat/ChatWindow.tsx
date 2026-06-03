@@ -197,6 +197,7 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
     try {
       pb.collection('messages_chat').subscribe('*', (e) => {
         if (e.record) {
+          console.log('New message received:', e.record);
           const userRecord = connectedUsers.find(u => u.id === e.record.user);
           const newMessage = {
             id: e.record.id,
@@ -210,6 +211,7 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
             target_username: connectedUsers.find(u => u.id === e.record.target_user)?.username || null
           };
 
+          console.log('Formatted message:', newMessage);
           setMessages(prev => [...prev, newMessage]);
         }
       });
@@ -233,6 +235,8 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
     if (!pb || !user) return;
 
     try {
+      console.log('Sending message:', { content, type, file: file?.name });
+
       const data: { [key: string]: any } = {
         content: content,
         type: type,
@@ -247,7 +251,8 @@ export function ChatWindow({ onLogout, style }: ChatWindowProps) {
         formData.append('user', user.id);
         formData.append('target_user', recipient || '');
         formData.append('file', file);
-        await pb.collection('messages_chat').create(formData);
+        const result = await pb.collection('messages_chat').create(formData);
+        console.log('Message with file created:', result);
       } else {
         await pb.collection('messages_chat').create(data);
       }

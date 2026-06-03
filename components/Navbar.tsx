@@ -42,11 +42,11 @@ export default function Navbar({
         <div className="hidden md:flex items-center gap-4 ml-4">
         <Link href="/explorador" className="text-sm font-medium hover:opacity-80 transition-opacity">Explorador</Link>
         <Link href="/ide" className="text-sm font-medium hover:opacity-80 transition-opacity">IDE</Link>
-        <Link href="/probador-de-apis" className="text-sm font-medium hover:opacity-80 transition-opacity">Probador de APIs</Link>
-        <Link href="/generador-de-app" className="text-sm font-medium hover:opacity-80 transition-opacity">Generador de App</Link>
-        <Link href="/creador-de-estructuras" className="text-sm font-medium hover:opacity-80 transition-opacity">Creador de Estructuras</Link>
-        <Link href="/plan-de-estructura" className="text-sm font-medium hover:opacity-80 transition-opacity">Plan de Estructura</Link>
-        <Link href="/generador-de-api" className="text-sm font-medium hover:opacity-80 transition-opacity">Generador de API</Link>
+        <Link href="/probador-de-apis" className="text-sm font-medium hover:opacity-80 transition-opacity">Probador APIs</Link>
+        <Link href="/generador-de-app" className="text-sm font-medium hover:opacity-80 transition-opacity">Generador App</Link>
+        <Link href="/creador-de-estructuras" className="text-sm font-medium hover:opacity-80 transition-opacity">Creador Estructuras</Link>
+        <Link href="/plan-de-estructura" className="text-sm font-medium hover:opacity-80 transition-opacity">Plan Estructura</Link>
+        <Link href="/generador-de-api" className="text-sm font-medium hover:opacity-80 transition-opacity">Generador API</Link>
         <Link href="/vista-previa" className="text-sm font-medium hover:opacity-80 transition-opacity">Vista Previa</Link>
         <Link href="/componentes" className="text-sm font-medium hover:opacity-80 transition-opacity">Componentes</Link>
         </div>

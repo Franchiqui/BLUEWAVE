@@ -1,12 +1,22 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Search, Code2, FileJson, FolderTree, Globe, ChevronRight, Sparkles, Package, BookOpen, Terminal, Database, Shield, Zap, Layers, Braces, GitBranch, Workflow, Cpu, Monitor, Smartphone, Cloud, Lock, Settings, Users, Star, ArrowRight, CheckCircle, Clock, MessageSquare, Bot, Brain, Network, Server, Container, Key, Puzzle, Rocket, Palette, PenTool, Sliders, Eye, Play, Download, Upload, RefreshCw, Plus, Minus, X, Menu, ChevronDown, ChevronUp, ChevronLeft, ChevronRight as ChevronRightIcon, Home, Info, Mail, Phone, MapPin, ExternalLink, Github, Twitter, Linkedin, Youtube, Figma, Globe as GlobeIcon, Bookmark, Heart, Share2, Copy, Check, AlertCircle, Loader2, Trash2, Edit3, MoreHorizontal, FileText, Image as ImageIcon, Video, Music, Archive, File, Folder, FolderOpen, FileCode, FileJson as FileJsonIcon, FileType, FileSpreadsheet, FileImage, FileVideo, FileAudio, FileArchive, FileText as FileTextIcon, FileCode as FileCodeIcon, FileJson as FileJsonIcon2, FileType as FileTypeIcon, FileSpreadsheet as FileSpreadsheetIcon, FileImage as FileImageIcon, FileVideo as FileVideoIcon, FileAudio as FileAudioIcon, FileArchive as FileArchiveIcon } from 'lucide-react';
 import { IMAGES } from '@/lib/constants';
 import { PbImage } from '@/components/pb-image';
 import Footer from '@/components/layout/footer';
+
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import IdeTabContent from '@/components/ide/ide-tab-content';
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from '@/components/ui/tabs';
+import { tabImages } from '@/lib/constants';
 
 const features = [
   {
@@ -76,76 +86,94 @@ const features = [
 
 const tools = [
   {
+    id: 'folder-comparer',
     title: 'Comparador de Carpetas',
     description: 'Compara estructuras de carpetas y archivos entre diferentes versiones de tu proyecto.',
     details: 'Escaneo recursivo de dos carpetas con comparación lado a lado. Detecta archivos nuevos, modificados o eliminados entre versiones de tu proyecto. Ideal para sincronizar cambios o revisar migraciones de estructura. Accede desde app/compara-carpetas/ con escaneo recursivo y comparación en tiempo real.',
     icon: GitBranch,
     image: '/uploads/Pestaña IDE- Comparador de Carpetas.jpg',
     link: '/ide',
+    keyPoints: ['Escaneo recursivo de dos carpetas', 'Comparación lado a lado', 'Detecta archivos nuevos, modificados o eliminados'],
   },
   {
+    id: 'code-comparer',
     title: 'Comparador de Código',
     description: 'Compara archivos de código lado a lado con resaltado de diferencias.',
     details: 'Comparación de bloques de código (diff) con resaltado de diferencias. Soporta múltiples lenguajes y resalta cambios línea por línea para facilitar revisiones de código y merges manuales. Disponible en app/compara-code/ con visualización lado a lado.',
     icon: FileCode,
     image: '/uploads/Pestaña IDE- Comparador de Codigo.jpg',
     link: '/ide',
+    keyPoints: ['Comparación de bloques de código (diff)', 'Resaltado de diferencias', 'Soporta múltiples lenguajes'],
   },
   {
+    id: 'code-corrector',
     title: 'Corrector de Código',
     description: 'Analiza y corrige errores de sintaxis y lógica en tu código automáticamente.',
     details: 'Analiza errores de sintaxis y lógica vía IA. Utiliza los endpoints POST /api/correct-file-code para archivos individuales y POST /api/correct-code para múltiples archivos. Aplica parches automáticos con respaldo .zeus-backup antes de cualquier modificación. Integrado con el IDE de Zeus IA.',
     icon: CheckCircle,
     image: '/uploads/Pestaña IDE- Corregir Codigo.jpg',
     link: '/ide',
+    keyPoints: ['Análisis de errores de sintaxis y lógica', 'Corrección vía IA', 'Aplica parches automáticos con respaldo'],
   },
   {
+    id: 'dependency-corrector',
     title: 'Corrector de Dependencias',
     description: 'Verifica y corrige dependencias faltantes o desactualizadas en tu proyecto.',
     details: 'Verifica dependencias faltantes o desactualizadas en package.json. Ejecuta reinstalación y limpieza automática vía POST /api/fix-dependencies. Compatible con npm, yarn y pnpm. Detecta versiones incompatibles y sugiere actualizaciones seguras basadas en el ecosistema de tu plantilla.',
     icon: Package,
     image: '/uploads/Pestaña IDE- Corregir Dependencias.jpg',
     link: '/ide',
+    keyPoints: ['Verifica dependencias en package.json', 'Reinstalación y limpieza automática', 'Compatible con npm, yarn y pnpm'],
   },
   {
+    id: 'import-corrector',
     title: 'Corrector de Importaciones',
     description: 'Detecta y corrige importaciones faltantes o incorrectas automáticamente.',
     details: 'Detecta imports faltantes o incorrectas automáticamente. Usa POST /api/fix-missing-imports para escanear el proyecto y corregir rutas de importación en archivos TypeScript/JavaScript. Reconoce alias de path (@/*) y módulos relativos, ajustando automáticamente las rutas según la estructura real del proyecto.',
     icon: FileJson,
     image: '/uploads/Pestaña IDE- Corregir Importaciones Faltantes.jpg',
     link: '/ide',
+    keyPoints: ['Detecta imports faltantes o incorrectas', 'Reconoce alias de path (@/*)', 'Ajusta rutas según la estructura real'],
   },
   {
+    id: 'folder-schema',
     title: 'Esquema de Carpetas',
     description: 'Visualiza la estructura completa de tu proyecto en un esquema jerárquico.',
     details: 'Visualización jerárquica completa del proyecto. Obtén el esquema simplificado vía GET /api/schema/simple o el esquema completo recursivo con GET /api/schema. Ignora node_modules, .next y archivos de build automáticamente. Perfecto para documentar la arquitectura o compartir la estructura con el equipo.',
     icon: FolderTree,
     image: '/uploads/Pestaña IDE- Esquema de Carpetas.jpg',
     link: '/ide',
+    keyPoints: ['Visualización jerárquica completa', 'Esquema simplificado o completo recursivo', 'Ignora node_modules y build files'],
   },
   {
+    id: 'component-generator',
     title: 'Generador de Componentes',
     description: 'Genera componentes React con TypeScript, estilos y pruebas automáticamente.',
     details: 'Genera componentes React con TypeScript, estilos Tailwind CSS y pruebas automáticamente. Integrado con el flujo de generación de apps (TwoStepAppGenerator). Crea archivos .tsx, .test.tsx y stories en segundos. Soporta componentes funcionales con hooks, server components y client components según el contexto.',
     icon: Code2,
     image: '/uploads/Pestaña IDE- Generador de Componentes.jpg',
     link: '/ide',
+    keyPoints: ['Componentes React con TypeScript', 'Estilos Tailwind CSS', 'Genera .tsx, .test.tsx y stories'],
   },
   {
+    id: 'icon-generator',
     title: 'Generador de Iconos',
     description: 'Crea iconos personalizados para tu aplicación con diferentes formatos y tamaños.',
     details: 'Crea iconos .ico personalizados en tamaños 16, 24, 32, 48, 128 y 256 píxeles. Soporta tres modos: generación con DALL-E 3, descarga desde URL o subida de PNG/base64. Actualiza automáticamente el favicon y los metadatos de package.json. Persiste el asset en PocketBase si se proporciona projectId.',
     icon: ImageIcon,
     image: '/uploads/Pestaña IDE- Generar Icono.jpg',
     link: '/ide',
+    keyPoints: ['Iconos .ico en múltiples tamaños', 'Generación con DALL-E 3', 'Descarga desde URL o subida de PNG'],
   },
   {
+    id: 'code-formatter',
     title: 'Formateador de Código',
     description: 'Formatea tu código automáticamente siguiendo las mejores prácticas y estándares.',
     details: 'Formatea automáticamente siguiendo las mejores prácticas y estándares del proyecto. Integrado en el IDE para formatear archivos individuales o carpetas completas con atajos de teclado. Respeta la configuración de Prettier y ESLint del proyecto, manteniendo la consistencia de estilo en todo el codebase.',
     icon: PenTool,
     image: '/uploads/Pestaña IDE-Formateador de Codigo.jpg',
     link: '/ide',
+    keyPoints: ['Sigue mejores prácticas y estándares', 'Respeta configuración de Prettier y ESLint', 'Mantiene consistencia de estilo'],
   },
 ];
 
@@ -182,6 +210,7 @@ export default function ExploradorPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
   const [selectedTool, setSelectedTool] = useState<typeof tools[0] | null>(null);
+  const [activeTool, setActiveTool] = useState(tools[0].id);
 
   const filteredFeatures = features.filter(f =>
     f.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -192,6 +221,7 @@ export default function ExploradorPage() {
     t.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     t.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-blue-950 to-gray-900 text-white">
@@ -251,125 +281,90 @@ export default function ExploradorPage() {
         </div>
       </section>
 
-      {/* Search and Tabs */}
+      {/* Interactive Tools Section - Full Width replacing Search and Tabs */}
       <section className="py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
-            <div className="flex gap-4">
-              <button
-                onClick={() => setActiveTab('features')}
-                className={`px-4 py-2 rounded-lg transition-all duration-200 ${
-                  activeTab === 'features'
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50'
-                    : 'bg-gray-800/50 text-gray-400 border border-gray-700 hover:bg-gray-800'
-                }`}
-              >
-                Características
-              </button>
-              <button
-                onClick={() => setActiveTab('tools')}
-                className={`px-4 py-2 rounded-lg transition-all duration-200 ${
-                  activeTab === 'tools'
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50'
-                    : 'bg-gray-800/50 text-gray-400 border border-gray-700 hover:bg-gray-800'
-                }`}
-              >
-                Herramientas
-              </button>
-            </div>
-            <div className="relative w-full md:w-64">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Buscar..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500/50"
-              />
+        <div className="w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-8 px-4"
+          >
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                Herramientas del IDE
+              </span>
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Explora todas las herramientas disponibles en el IDE de Zeus IA.
+            </p>
+          </motion.div>
+
+          <div className="flex min-h-[600px] border border-gray-700 rounded-xl overflow-hidden mx-4">
+            {/* Vertical Tab Navigation */}
+            <nav className="w-64 border-r bg-gray-800/50">
+              <div className="flex flex-col w-full h-full items-start bg-transparent p-0">
+                {tools.map((tool) => (
+                  <button
+                    key={tool.id}
+                    onClick={() => setActiveTool(tool.id)}
+                    className={`w-full justify-start px-4 py-3 flex items-center transition-colors ${
+                      activeTool === tool.id ? 'bg-muted text-white' : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
+                    }`}
+                  >
+                    {tabImages[tool.id] && (
+                      <Image
+                        src={tabImages[tool.id]}
+                        alt={tool.title}
+                        width={16}
+                        height={16}
+                        className="h-4 w-4 mr-2"
+                      />
+                    )}
+                    <span className="text-sm">{tool.title}</span>
+                  </button>
+                ))}
+              </div>
+            </nav>
+            {/* Tab Content */}
+            <div className="flex-1 bg-gray-900/50 p-6">
+              {tools.map((tool) => (
+                activeTool === tool.id && (
+                  <div key={tool.id} className="space-y-6">
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-2">{tool.title}</h3>
+                      <p className="text-gray-400">{tool.description}</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+                        <h4 className="text-lg font-semibold text-white mb-3">Puntos Clave</h4>
+                        <ul className="space-y-2">
+                          {tool.keyPoints.map((point, index) => (
+                            <li key={index} className="text-sm text-gray-400 flex items-start">
+                              <span className="text-emerald-400 mr-2">•</span>
+                              {point}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+                        <h4 className="text-lg font-semibold text-white mb-3">Vista Previa</h4>
+                        {tabImages[tool.id] && (
+                          <Image
+                            src={tabImages[tool.id]}
+                            alt={tool.title}
+                            width={400}
+                            height={225}
+                            className="rounded-lg object-cover w-full"
+                          />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )
+              ))}
             </div>
           </div>
-
-          {/* Features Grid */}
-          {activeTab === 'features' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredFeatures.map((feature, index) => (
-                <motion.div
-                  key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative bg-gray-800/30 border border-gray-700/50 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <PbImage
-                      src={feature.image}
-                      alt={feature.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2 bg-emerald-500/10 rounded-lg">
-                        <feature.icon className="w-5 h-5 text-emerald-400" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
-                    </div>
-                    <p className="text-gray-400 text-sm mb-4">{feature.description}</p>
-                    <Link
-                      href={feature.link}
-                      className="inline-flex items-center text-emerald-400 hover:text-emerald-300 transition-colors duration-200 text-sm"
-                    >
-                      Explorar
-                      <ArrowRight className="w-4 h-4 ml-1" />
-                    </Link>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          )}
-
-          {/* Tools Grid */}
-          {activeTab === 'tools' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredTools.map((tool, index) => (
-                <motion.div
-                  key={tool.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative bg-gray-800/30 border border-gray-700/50 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <PbImage
-                      src={tool.image}
-                      alt={tool.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2 bg-cyan-500/10 rounded-lg">
-                        <tool.icon className="w-5 h-5 text-cyan-400" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-white">{tool.title}</h3>
-                    </div>
-                    <p className="text-gray-400 text-sm mb-4">{tool.description}</p>
-                    <Link
-                      href={tool.link}
-                      className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors duration-200 text-sm"
-                    >
-                      Ver más
-                      <ArrowRight className="w-4 h-4 ml-1" />
-                    </Link>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          )}
         </div>
       </section>
 
@@ -584,7 +579,11 @@ export default function ExploradorPage() {
           </motion.div>
         </div>
       )}
+
       <Footer />
     </div>
   );
 }
+
+
+

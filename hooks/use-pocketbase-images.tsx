@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import PocketBase from 'pocketbase';
 
-const POCKETBASE_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase-render-7yol.onrender.com';
+const POCKETBASE_URL = process.env.NEXT_PUBLIC_POCKETBASE_URL || 'https://pocketbase-zeus.fly.dev';
 
 export interface PocketBaseImage {
   id: string;
