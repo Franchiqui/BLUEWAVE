@@ -11,6 +11,7 @@ import {
 import { cn } from '@/lib/utils';
 import { PbImage } from '@/components/pb-image';
 import { IMAGES } from '@/lib/constants';
+import { useImageExpansion, ImageExpansionModal } from '@/components/image-expansion-modal';
 
 // Types
 interface NavItem {
@@ -210,7 +211,7 @@ const Navbar = memo(() => {
 
 Navbar.displayName = 'Navbar';
 
-const HeroSection = memo(() => (
+const HeroSection = memo(({ expandImage }: { expandImage: (imageUrl: string) => void }) => (
   <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" />
     <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
@@ -277,7 +278,7 @@ const HeroSection = memo(() => (
           transition={{ duration: 0.5, delay: 0.3 }}
           className="hidden lg:block lg:w-1/2 mt-8 lg:mt-0"
         >
-          <div className="relative">
+          <div className="relative cursor-pointer" onClick={() => expandImage(IMAGES.chatExpandido)}>
             <div className="absolute -inset-4 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-2xl blur-2xl" />
             <PbImage
               src={IMAGES.chatExpandido}
@@ -296,7 +297,7 @@ const HeroSection = memo(() => (
 
 HeroSection.displayName = 'HeroSection';
 
-const FeaturesSection = memo(() => (
+const FeaturesSection = memo(({ expandImage }: { expandImage: (imageUrl: string) => void }) => (
   <section className="py-16 lg:py-24 bg-gray-800/50">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-12">
@@ -318,9 +319,9 @@ const FeaturesSection = memo(() => (
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <Link
-              href={feature.href}
-              className="group block bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-green-500/50 transition-all duration-300"
+            <div
+              className="group block bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-green-500/50 transition-all duration-300 cursor-pointer"
+              onClick={() => feature.image && expandImage(feature.image)}
             >
               <div className="relative h-48 overflow-hidden">
                 <PbImage
@@ -350,7 +351,7 @@ const FeaturesSection = memo(() => (
                   ))}
                 </div>
               </div>
-            </Link>
+            </div>
           </motion.div>
         ))}
       </div>
@@ -360,7 +361,7 @@ const FeaturesSection = memo(() => (
 
 FeaturesSection.displayName = 'FeaturesSection';
 
-const TestimonialsSection = memo(() => (
+const TestimonialsSection = memo(({ expandImage }: { expandImage: (imageUrl: string) => void }) => (
   <section className="py-16 lg:py-24">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-12">
@@ -386,13 +387,15 @@ const TestimonialsSection = memo(() => (
             </div>
             <p className="text-gray-300 mb-6">&ldquo;{testimonial.quote}&rdquo;</p>
             <div className="flex items-center gap-3">
-              <PbImage
-                src={testimonial.avatar}
-                alt={testimonial.author}
-                width={40}
-                height={40}
-                className="rounded-full"
-              />
+              <div className="cursor-pointer" onClick={() => testimonial.avatar && expandImage(testimonial.avatar)}>
+                <PbImage
+                  src={testimonial.avatar}
+                  alt={testimonial.author}
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+              </div>
               <div>
                 <p className="text-sm font-semibold text-white">{testimonial.author}</p>
                 <p className="text-xs text-gray-500">{testimonial.role}</p>
@@ -517,15 +520,18 @@ Footer.displayName = 'Footer';
 
 // Main Page Component
 const ComponentesPage = memo(() => {
+  const { expandedImage, expandImage, closeImage } = useImageExpansion();
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Navbar />
       <main>
-        <HeroSection />
-        <FeaturesSection />
-        <TestimonialsSection />
+        <HeroSection expandImage={expandImage} />
+        <FeaturesSection expandImage={expandImage} />
+        <TestimonialsSection expandImage={expandImage} />
         <CTASection />
       </main>
+      <ImageExpansionModal expandedImage={expandedImage} onClose={closeImage} />
       <Footer />
     </div>
   );

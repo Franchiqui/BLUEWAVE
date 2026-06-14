@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Footer from '@/components/layout/footer';
 import { PbImage } from '@/components/pb-image';
 import { IMAGES } from '@/lib/constants';
+import { useImageExpansion, ImageExpansionModal } from '@/components/image-expansion-modal';
 
 
 
@@ -73,6 +74,8 @@ const relatedPages = [
 ];
 
 export default function GeneradorDeApiPage() {
+  const { expandedImage, expandImage, closeImage } = useImageExpansion();
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-gray-100">
       {/* Hero Section */}
@@ -105,7 +108,7 @@ export default function GeneradorDeApiPage() {
                 </Link>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative cursor-pointer" onClick={() => expandImage(IMAGES.pestanaGeneradorApiInicio)}>
               <div className="rounded-xl overflow-hidden shadow-2xl shadow-emerald-900/20 border border-gray-800">
                 <PbImage
                   src={IMAGES.pestanaGeneradorApiInicio}
@@ -135,7 +138,8 @@ export default function GeneradorDeApiPage() {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="group rounded-xl bg-gray-900/50 border border-gray-800 overflow-hidden hover:border-emerald-700/50 transition-all duration-300"
+              className="group rounded-xl bg-gray-900/50 border border-gray-800 overflow-hidden hover:border-emerald-700/50 transition-all duration-300 cursor-pointer"
+              onClick={() => expandImage(feature.image)}
             >
               <div className="relative h-48 overflow-hidden">
                 <PbImage
@@ -169,7 +173,7 @@ export default function GeneradorDeApiPage() {
             {steps.map((step) => (
               <div key={step.number} className="relative">
                 <div className="text-5xl font-bold text-emerald-800/40 mb-4">{step.number}</div>
-                <div className="relative h-40 rounded-lg overflow-hidden mb-4 border border-gray-800">
+                <div className="relative h-40 rounded-lg overflow-hidden mb-4 border border-gray-800 cursor-pointer" onClick={() => expandImage(step.image)}>
                   <PbImage
                     src={step.image}
                     alt={step.title}
@@ -197,10 +201,10 @@ export default function GeneradorDeApiPage() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {relatedPages.map((page) => (
-            <Link
+            <div
               key={page.href}
-              href={page.href}
-              className="group relative rounded-lg overflow-hidden border border-gray-800 hover:border-emerald-700/50 transition-all duration-300"
+              className="group relative rounded-lg overflow-hidden border border-gray-800 hover:border-emerald-700/50 transition-all duration-300 cursor-pointer"
+              onClick={() => expandImage(page.image)}
             >
               <div className="relative h-32">
                 <PbImage
@@ -214,10 +218,15 @@ export default function GeneradorDeApiPage() {
               <div className="absolute bottom-0 left-0 right-0 p-3">
                 <span className="text-sm font-medium text-emerald-300">{page.label}</span>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </section>
+
+      <ImageExpansionModal 
+        expandedImage={expandedImage} 
+        onClose={closeImage} 
+      />
 
       <Footer />
     </div>

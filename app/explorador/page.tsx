@@ -4,105 +4,10 @@ import Link from 'next/link';
 import Footer from '@/components/layout/footer';
 import { PbImage } from '@/components/pb-image';
 import { IMAGES } from '@/lib/constants';
-
-
-const features = [
-  {
-    title: 'Chat Inteligente',
-    description: 'Asistente de IA contextual para desarrollo. Resuelve dudas, genera código y optimiza tu flujo de trabajo.',
-    image: IMAGES.chatExpandido,
-    href: '/explorador',
-  },
-  {
-    title: 'IDE Completo',
-    description: 'Editor de código con comparador de carpetas, formateador, generador de componentes y más.',
-    image: IMAGES.pestanaIDE,
-    href: '/ide',
-  },
-  {
-    title: 'Generador de APIs',
-    description: 'Crea APIs REST completas desde cero con configuración guiada y generación automática.',
-    image: IMAGES.pestanaGeneradorApiInicio,
-    href: '/generador-de-api',
-  },
-  {
-    title: 'Generador de Apps',
-    description: 'Genera aplicaciones completas con estructura, configuración y contenido automático.',
-    image: IMAGES.pestanaGeneradorAppConfig,
-    href: '/generador-de-app',
-  },
-  {
-    title: 'Creador de Estructuras',
-    description: 'Diseña y visualiza estructuras de proyectos con planificación inteligente.',
-    image: IMAGES.pestanaCreadorEstructuras,
-    href: '/creador-de-estructuras',
-  },
-  {
-    title: 'Probador de APIs',
-    description: 'Prueba y depura tus endpoints REST directamente desde el IDE.',
-    image: IMAGES.pestanaProbadorApis,
-    href: '/probador-de-apis',
-  },
-  {
-    title: 'Vista Previa',
-    description: 'Previsualiza tus aplicaciones en tiempo real mientras desarrollas.',
-    image: IMAGES.pestanaVistaPrevia,
-    href: '/vista-previa',
-  },
-  {
-    title: 'Panel de Control',
-    description: 'Monitorea y controla todos los aspectos de tu proyecto desde un solo lugar.',
-    image: '/uploads/Pestaña Panel de Control Vista Previa.jpg',
-    href: '/explorador',
-  },
-  {
-    title: 'Componentes',
-    description: 'Biblioteca de componentes reutilizables con vista previa y personalización.',
-    image: '/uploads/Pestaña Componentes.jpg',
-    href: '/componentes',
-  },
-  {
-    title: 'Plan de Estructuras',
-    description: 'Planifica la arquitectura de tus proyectos con diagramas y esquemas.',
-    image: '/uploads/Pestaña Plan de Estructuras.jpg',
-    href: '/plan-de-estructura',
-  },
-  {
-    title: 'Explorador',
-    description: 'Navega y gestiona los archivos de tu proyecto con facilidad.',
-    image: '/uploads/Pestaña Explorador.jpg',
-    href: '/explorador',
-  },
-  {
-    title: 'Comparador de Código',
-    description: 'Compara versiones de código y carpetas para identificar cambios.',
-    image: '/uploads/Pestaña IDE- Comparador de Codigo.jpg',
-    href: '/ide',
-  },
-];
-
-const testimonials = [
-  {
-    name: 'Carlos Mendoza',
-    role: 'Desarrollador Full Stack',
-    content: 'Zeus IA ha transformado mi forma de trabajar. El chat contextual entiende perfectamente mi proyecto y me ayuda a resolver problemas en segundos.',
-    image: '/uploads/Pestaña Explorador.jpg',
-  },
-  {
-    name: 'Ana García',
-    role: 'CTO en TechStart',
-    content: 'La capacidad de generar APIs completas desde cero es impresionante. Ahorramos horas de trabajo manual en cada proyecto.',
-    image: '/uploads/Pestaña Generador de Api- Proyecto.jpg',
-  },
-  {
-    name: 'Luis Torres',
-    role: 'Desarrollador Independiente',
-    content: 'El generador de componentes y el formateador de código son herramientas que uso a diario. La integración con Electron es perfecta.',
-    image: '/uploads/Pestaña IDE- Generador de Componentes.jpg',
-  },
-];
+import { useImageExpansion, ImageExpansionModal } from '@/components/image-expansion-modal';
 
 export default function HomePage() {
+  const { expandedImage, expandImage, closeImage } = useImageExpansion();
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950">
       {/* Hero Section */}
@@ -112,46 +17,24 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                Explorador Zeus 
-                <span className="text-emerald-400">IA</span>
+                Pestaña <span className="text-emerald-400">Explorador</span>
               </h1>
               <p className="text-xl text-gray-300 leading-relaxed">
-                Navega, explora y gestiona todos los componentes de tu proyecto con el explorador inteligente de Zeus IA.
-              Visualiza la estructura completa, accede a herramientas de desarrollo y potencia tu productividad.
+                El panel principal de navegación y gestión de archivos dentro del entorno de desarrollo de Zeus. Su función es similar a la de un explorador de archivos de cualquier sistema operativo o IDE, pero está optimizado para trabajar con los proyectos que creas y modificas a través de la API.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/explorador"
+                  href="/ide"
                   className="inline-flex items-center px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg transition-colors"
                 >
-                  Comenzar ahora
+                  Ir al IDE
                 </Link>
-                <Link
-                  href="/ide"
-                  className="inline-flex items-center px-6 py-3 bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold rounded-lg border border-gray-700 transition-colors"
-                >
-                  Explorar IDE
-                </Link>
-              </div>
-              <div className="flex items-center gap-6 text-sm text-gray-400">
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-emerald-400 rounded-full" />
-                  Next.js 16
-                </span>
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-blue-400 rounded-full" />
-                  Electron 41
-                </span>
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-purple-400 rounded-full" />
-                  Express API
-                </span>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative cursor-pointer" onClick={() => expandImage(IMAGES.pestanaExplorador)}>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-emerald-500/10 rounded-2xl blur-3xl" />
-                      <PbImage
-                        src={IMAGES.pestanaExplorador}
+              <PbImage
+                src={IMAGES.pestanaExplorador}
                 alt="Pestaña Explorador"
                 width={800}
                 height={600}
@@ -163,110 +46,138 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features Grid */}
+      {/* Main Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Todo lo que necesitas en un solo{' '}
-            <span className="text-emerald-400">lugar</span>
-          </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Desde chat inteligente hasta generación de APIs, Zeus IA integra todas las herramientas que un desarrollador necesita.
-          </p>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature) => (
-            <Link
-              key={feature.title}
-              href={feature.href}
-              className="group relative bg-gray-900/50 border border-gray-800 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300"
-            >
-              <div className="aspect-video relative overflow-hidden">
-                <PbImage
-                  src={feature.image}
-                  alt={feature.title}
-                  width={400}
-                  height={225}
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
-              </div>
-              <div className="p-5">
-                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-gray-400">
-                  {feature.description}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+        <div className="space-y-16">
+          {/* Introduction */}
+          <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 lg:p-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">
+              ¿Qué es el Explorador?
+            </h2>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              El Explorador es tu <span className="text-emerald-400 font-semibold">mesa de trabajo visual</span>. Te permite ver, organizar y seleccionar los archivos de tu proyecto, mientras que la IA es la "mano de obra" que los crea, modifica y elimina según tus instrucciones.
+            </p>
+          </div>
 
-      {/* Testimonials */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-gray-800">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Lo que dicen nuestros{' '}
-            <span className="text-emerald-400">usuarios</span>
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.name}
-              className="bg-gray-900/50 border border-gray-800 rounded-xl p-6"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-800">
-                  <PbImage
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    width={48}
-                    height={48}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-                <div>
-                  <h4 className="text-white font-semibold">{testimonial.name}</h4>
-                  <p className="text-sm text-gray-400">{testimonial.role}</p>
+          {/* Features */}
+          <div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-12 text-center">
+              Funcionalidades <span className="text-emerald-400">Principales</span>
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Feature 1 */}
+              <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-gray-800 rounded-xl p-8 hover:border-emerald-500/30 transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-3">Visualización del Árbol de Directorios</h3>
+                    <p className="text-gray-400 leading-relaxed">
+                      Muestra de forma jerárquica todas las carpetas y archivos de tu proyecto actual. Puedes expandir y colapsar las carpetas para navegar por la estructura del proyecto.
+                    </p>
+                  </div>
                 </div>
               </div>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                &ldquo;{testimonial.content}&rdquo;
+
+              {/* Feature 2 */}
+              <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-gray-800 rounded-xl p-8 hover:border-emerald-500/30 transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-3">Gestión de Archivos y Carpetas</h3>
+                    <ul className="text-gray-400 space-y-2">
+                      <li className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
+                        <strong>Crear:</strong> Nuevos archivos y carpetas directamente desde la interfaz
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
+                        <strong>Renombrar:</strong> Cambiar el nombre de cualquier archivo o carpeta
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
+                        <strong>Eliminar:</strong> Borrar archivos o carpetas completas
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
+                        <strong>Mover/Copiar:</strong> Reorganizar la estructura del proyecto
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-gray-800 rounded-xl p-8 hover:border-emerald-500/30 transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-3">Apertura de Archivos en el Editor</h3>
+                    <p className="text-gray-400 leading-relaxed">
+                      Al hacer clic en un archivo (`.tsx`, `.js`, `.json`, `.css`, etc.), este se abre en el editor de código central de Zeus, permitiéndote ver y modificar su contenido.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Feature 4 */}
+              <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 border border-gray-800 rounded-xl p-8 hover:border-emerald-500/30 transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-3">Contexto para la IA</h3>
+                    <p className="text-gray-400 leading-relaxed">
+                      Es la herramienta que utilizas para indicarle a la IA <strong>qué</strong> archivos debe leer o modificar. Cuando seleccionas un archivo en el explorador, le estás dando contexto a la IA para que pueda trabajar sobre él.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* How it relates to AI */}
+          <div className="bg-gradient-to-r from-emerald-900/30 to-blue-900/30 border border-emerald-700/50 rounded-2xl p-8 lg:p-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">
+              ¿Cómo se relaciona con la IA?
+            </h2>
+            <p className="text-lg text-gray-300 leading-relaxed mb-6">
+              Cuando tú me pides, por ejemplo, <span className="text-emerald-400 font-semibold">"crea una carpeta `components` dentro de `app`"</span>, o <span className="text-emerald-400 font-semibold">"abre el archivo `page.tsx`"</span>, estás interactuando con la lógica que subyace a esta pestaña.
+            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              Yo, como IA, ejecuto las acciones a través de la API que manipula exactamente esta estructura de archivos que ves en el Explorador.
+            </p>
+          </div>
+
+          {/* Summary */}
+          <div className="text-center py-12">
+            <div className="inline-block bg-gray-900/50 border border-gray-800 rounded-2xl p-8 lg:p-12 max-w-3xl">
+              <p className="text-xl text-gray-300 leading-relaxed">
+                <span className="text-emerald-400 font-bold">En resumen:</span> El Explorador es tu "mesa de trabajo visual". Te permite ver, organizar y seleccionar los archivos de tu proyecto, mientras que la IA es la "mano de obra" que los crea, modifica y elimina según tus instrucciones.
               </p>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-gray-800">
-        <div className="relative bg-gradient-to-r from-blue-900/30 to-emerald-900/30 rounded-2xl p-12 text-center border border-gray-700">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            ¿Listo para potenciar tu{' '}
-            <span className="text-emerald-400">desarrollo</span>?
-          </h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Descarga Zeus IA y transforma tu flujo de trabajo con asistencia de IA contextual.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/explorador"
-              className="inline-flex items-center px-8 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-lg transition-colors"
-            >
-              Explorar funciones
-            </Link>
-            <Link
-              href="/ide"
-              className="inline-flex items-center px-8 py-3 bg-gray-800 hover:bg-gray-700 text-gray-200 font-semibold rounded-lg border border-gray-700 transition-colors"
-            >
-              Ir al IDE
-            </Link>
           </div>
         </div>
       </section>
+
+      <ImageExpansionModal 
+        expandedImage={expandedImage} 
+        onClose={closeImage} 
+      />
 
       <Footer />
     </div>

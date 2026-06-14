@@ -11,6 +11,7 @@ interface IdeContext {
   generadorComponentes: string;
   generarIcono: string;
   formateadorCodigo: string;
+  IntegracionGitHub: string;
 }
 
 interface UseIdeContextReturn {
@@ -29,6 +30,7 @@ const defaultContext: IdeContext = {
   generadorComponentes: 'Genera componentes reutilizables con las mejores prácticas.',
   generarIcono: 'Crea iconos personalizados para tu aplicación.',
   formateadorCodigo: 'Formatea tu código siguiendo las convenciones de estilo establecidas.',
+  IntegracionGitHub: 'Integra tu proyecto con GitHub para gestión de versiones y colaboración.',
 };
 
 // Mapeo de nombres de sección a claves del contexto
@@ -41,6 +43,7 @@ const sectionKeys: Record<string, keyof IdeContext> = {
   'Generador de Componentes': 'generadorComponentes',
   'Generar Icono': 'generarIcono',
   'Formateador de Codigo': 'formateadorCodigo',
+  'Integracion GitHub': 'IntegracionGitHub',
 };
 
 // Expresiones regulares para parsear el markdown
@@ -78,6 +81,10 @@ function parseMarkdownContext(markdown: string): IdeContext {
       sections['generarIcono'] = description;
     } else if (trimmedTitle.includes('formateador') || trimmedTitle.includes('formato')) {
       sections['formateadorCodigo'] = description;
+    } else if (trimmedTitle.includes('formateador') || trimmedTitle.includes('formato')) {
+      sections['formateadorCodigo'] = description;
+    } else if (trimmedTitle.includes('integracion') || trimmedTitle.includes('github')) {
+      sections['integracionGitHub'] = description;
     }
   }
 

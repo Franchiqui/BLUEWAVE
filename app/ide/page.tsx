@@ -6,6 +6,7 @@ import { Search, Code2, FileJson, FolderTree, Globe, ChevronRight, Sparkles, Pac
 import { IMAGES } from '@/lib/constants';
 import { PbImage } from '@/components/pb-image';
 import Footer from '@/components/layout/footer';
+import { useImageExpansion, ImageExpansionModal } from '@/components/image-expansion-modal';
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
@@ -175,6 +176,16 @@ const tools = [
     link: '/ide',
     keyPoints: ['Sigue mejores prácticas y estándares', 'Respeta configuración de Prettier y ESLint', 'Mantiene consistencia de estilo'],
   },
+  {
+    id: 'github-integration',
+    title: 'Integración GitHub',
+    description: 'Panel Git local y modal GitHub para gestión completa de repositorios y sincronización con GitHub.',
+    details: 'Panel Git local que detecta repositorios .git automáticamente, mostrando branch activa, upstream, ahead/behind, staged/unstaged, diff inline, historial de commits y lista de ramas. Operaciones: init, add, restore --staged, commit, push, pull, checkout, branch, config. Modal GitHub con auth via PAT, lista de repos del usuario, detección automática de proyectos Next.js, creación de nuevos repos y subida de cambios vía API REST directa sin depender del CLI de git.',
+    icon: Github,
+    image: '/uploads/Pestaña IDE- Comparador de Carpetas.jpg',
+    link: '/ide',
+    keyPoints: ['Panel Git local con detección automática', 'Operaciones completas: init, add, commit, push, pull', 'Modal GitHub con auth y gestión de repos'],
+  },
 ];
 
 const stats = [
@@ -206,6 +217,7 @@ const testimonials = [
 ];
 
 export default function ExploradorPage() {
+  const { expandedImage, expandImage, closeImage } = useImageExpansion();
   const [activeTab, setActiveTab] = useState('features');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
@@ -350,13 +362,15 @@ export default function ExploradorPage() {
                       <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
                         <h4 className="text-lg font-semibold text-white mb-3">Vista Previa</h4>
                         {tabImages[tool.id] && (
-                          <Image
-                            src={tabImages[tool.id]}
-                            alt={tool.title}
-                            width={400}
-                            height={225}
-                            className="rounded-lg object-cover w-full"
-                          />
+                          <div className="cursor-pointer" onClick={() => expandImage(tabImages[tool.id])}>
+                            <Image
+                              src={tabImages[tool.id]}
+                              alt={tool.title}
+                              width={200}
+                              height={112}
+                              className="rounded-lg object-cover w-1/2 mx-auto hover:scale-105 transition-transform"
+                            />
+                          </div>
                         )}
                       </div>
                     </div>
@@ -420,7 +434,8 @@ export default function ExploradorPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="group relative bg-gray-800/30 border border-gray-700/50 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300"
+                className="group relative bg-gray-800/30 border border-gray-700/50 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-all duration-300 cursor-pointer"
+                onClick={() => expandImage(image.src)}
               >
                 <div className="relative h-48 overflow-hidden">
                   <PbImage
@@ -543,7 +558,7 @@ export default function ExploradorPage() {
             className="relative max-w-3xl w-full bg-gray-900 border border-gray-700 rounded-2xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
             onClick={e => e.stopPropagation()}
           >
-            <div className="relative h-64 md:h-80">
+            <div className="relative h-64 md:h-80 cursor-pointer" onClick={() => expandImage(selectedTool.image)}>
               <PbImage
                 src={selectedTool.image}
                 alt={selectedTool.title}
@@ -552,7 +567,7 @@ export default function ExploradorPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent" />
               <button
-                onClick={() => setSelectedTool(null)}
+                onClick={(e) => { e.stopPropagation(); setSelectedTool(null); }}
                 className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors"
               >
                 <X className="w-5 h-5" />
@@ -579,6 +594,11 @@ export default function ExploradorPage() {
           </motion.div>
         </div>
       )}
+
+      <ImageExpansionModal 
+        expandedImage={expandedImage} 
+        onClose={closeImage} 
+      />
 
       <Footer />
     </div>

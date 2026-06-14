@@ -4,10 +4,13 @@ import Link from 'next/link';
 import Footer from '@/components/layout/footer';
 import { PbImage } from '@/components/pb-image';
 import { IMAGES } from '@/lib/constants';
+import { useImageExpansion, ImageExpansionModal } from '@/components/image-expansion-modal';
 
 
 
 export default function PlanDeEstructuraPage() {
+  const { expandedImage, expandImage, closeImage } = useImageExpansion();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-blue-950 text-gray-100">
       
@@ -21,7 +24,7 @@ export default function PlanDeEstructuraPage() {
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
             Visualiza y planifica la arquitectura completa de tu proyecto con la asistencia inteligente de Zeus IA.
           </p>
-          <div className="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden shadow-2xl border border-gray-700">
+          <div className="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden shadow-2xl border border-gray-700 cursor-pointer" onClick={() => expandImage(IMAGES.pestanaPlanEstructuras)}>
             <PbImage
               src={IMAGES.pestanaPlanEstructuras}
               alt="Plan de Estructura Zeus IA"
@@ -60,7 +63,7 @@ export default function PlanDeEstructuraPage() {
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12 text-emerald-400">Vistas del Plan de Estructura</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative rounded-xl overflow-hidden border border-gray-800 group">
+            <div className="relative rounded-xl overflow-hidden border border-gray-800 group cursor-pointer" onClick={() => expandImage(IMAGES.pestanaIDEEsquemaCarpetas)}>
               <PbImage
                 src={IMAGES.pestanaIDEEsquemaCarpetas}
                 alt="Esquema de Carpetas"
@@ -72,7 +75,7 @@ export default function PlanDeEstructuraPage() {
                 <span className="text-emerald-400 font-semibold">Esquema de Carpetas</span>
               </div>
             </div>
-            <div className="relative rounded-xl overflow-hidden border border-gray-800 group">
+            <div className="relative rounded-xl overflow-hidden border border-gray-800 group cursor-pointer" onClick={() => expandImage(IMAGES.pestanaIDEComparadorCarpetas)}>
               <PbImage
                 src={IMAGES.pestanaIDEComparadorCarpetas}
                 alt="Comparador de Carpetas"
@@ -84,7 +87,7 @@ export default function PlanDeEstructuraPage() {
                 <span className="text-emerald-400 font-semibold">Comparador de Carpetas</span>
               </div>
             </div>
-            <div className="relative rounded-xl overflow-hidden border border-gray-800 group">
+            <div className="relative rounded-xl overflow-hidden border border-gray-800 group cursor-pointer" onClick={() => expandImage(IMAGES.pestanaIDEComparadorCodigo)}>
               <PbImage
                 src={IMAGES.pestanaIDEComparadorCodigo}
                 alt="Comparador de Código"
@@ -96,7 +99,7 @@ export default function PlanDeEstructuraPage() {
                 <span className="text-emerald-400 font-semibold">Comparador de Código</span>
               </div>
             </div>
-            <div className="relative rounded-xl overflow-hidden border border-gray-800 group">
+            <div className="relative rounded-xl overflow-hidden border border-gray-800 group cursor-pointer" onClick={() => expandImage(IMAGES.pestanaIDECorregirCodigo)}>
               <PbImage
                 src={IMAGES.pestanaIDECorregirCodigo}
                 alt="Corregir Código"
@@ -135,6 +138,11 @@ export default function PlanDeEstructuraPage() {
           </div>
         </div>
       </section>
+
+      <ImageExpansionModal 
+        expandedImage={expandedImage} 
+        onClose={closeImage} 
+      />
 
       <Footer />
     </div>

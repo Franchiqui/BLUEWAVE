@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Footer from '@/components/layout/footer';
 import { PbImage } from '@/components/pb-image';
 import { IMAGES } from '@/lib/constants';
+import { useImageExpansion, ImageExpansionModal } from '@/components/image-expansion-modal';
 import {
   MessageSquare,
   Code2,
@@ -16,8 +17,12 @@ import {
   ChevronRight,
   Star,
   Users,
-  Sparkles
+  Sparkles,
+  Palette,
+  Check,
+  X
 } from 'lucide-react';
+import { useState } from 'react';
 
 
 const features = [
@@ -101,6 +106,8 @@ const testimonials = [
 ];
 
 export default function HomePage() {
+  const { expandedImage, expandImage, closeImage } = useImageExpansion();
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 pb-24">
       {/* Hero Section */}
@@ -171,10 +178,10 @@ export default function HomePage() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature) => (
-            <Link
+            <div
               key={feature.title}
-              href={feature.href}
-              className="group bg-gray-800/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10"
+              className="group bg-gray-800/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 cursor-pointer"
+              onClick={() => expandImage(feature.image)}
             >
               <div className="relative h-48 overflow-hidden">
                 <PbImage
@@ -197,7 +204,7 @@ export default function HomePage() {
                 </div>
                 <p className="text-sm text-gray-400">{feature.description}</p>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </section>
@@ -227,7 +234,7 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden">
+            <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden cursor-pointer" onClick={() => expandImage(IMAGES.pestanaIDEEsquemaCarpetas)}>
               <PbImage
                 src={IMAGES.pestanaIDEEsquemaCarpetas}  
                 alt="Arquitectura Zeus IA"
@@ -235,6 +242,142 @@ export default function HomePage() {
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Theme Editor Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Palette className="w-6 h-6 text-emerald-400" />
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              Editor de Temas Personalizados
+            </h2>
+          </div>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Personaliza completamente la interfaz de Zeus IA con nuestro editor de temas avanzado. Crea, guarda y comparte tus propios diseños.
+          </p>
+        </div>
+
+        {/* Theme Features */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {[
+            { title: 'Crear Temas', desc: 'Modifica colores de tokens CSS con pickers de color y vista previa en vivo' },
+            { title: 'Guardar Local', desc: 'Almacena temas en PocketBase local con formato JSON completo' },
+            { title: 'Publicar', desc: 'Comparte tus temas con la comunidad en la base de datos remota' },
+            { title: 'Votar', desc: 'Valora temas con estrellas (1-5) y descubre los más populares' },
+          ].map((feature) => (
+            <div key={feature.title} className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-5 border border-gray-700/50">
+              <div className="flex items-center gap-2 mb-2">
+                <Check className="w-4 h-4 text-emerald-400" />
+                <h3 className="text-white font-semibold">{feature.title}</h3>
+              </div>
+              <p className="text-gray-400 text-sm">{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Theme Gallery */}
+        <div className="bg-gray-800/30 backdrop-blur-sm rounded-3xl border border-gray-700/50 p-8">
+          <h3 className="text-2xl font-bold text-white mb-6 text-center">Galería de Temas</h3>
+          
+          {/* Editor de Temas - Grande arriba */}
+          <div className="mb-8">
+            <div className="relative group rounded-xl overflow-hidden border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 min-h-[400px] cursor-pointer" onClick={() => expandImage(IMAGES.ModalEditorTemasIU)}>
+              <PbImage
+                src={IMAGES.ModalEditorTemasIU}
+                alt="Editor de Temas"
+                fill
+                className="object-contain group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 640px) 100vw, 100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white text-lg font-semibold">Editor de Temas</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Temas - Grid 2x2 */}
+          <div className="grid grid-cols-2 gap-6">
+            <div className="relative group rounded-xl overflow-hidden border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 aspect-video cursor-pointer" onClick={() => expandImage(IMAGES.temaMorado)}>
+              <PbImage
+                src={IMAGES.temaMorado}
+                alt="Tema Morado"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 640px) 50vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-0 left-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white text-sm font-semibold">Tema Morado</p>
+              </div>
+            </div>
+            <div className="relative group rounded-xl overflow-hidden border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 aspect-video cursor-pointer" onClick={() => expandImage(IMAGES.temaOceano)}>
+              <PbImage
+                src={IMAGES.temaOceano}
+                alt="Tema Océano"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 640px) 50vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-0 left-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white text-sm font-semibold">Tema Océano</p>
+              </div>
+            </div>
+            <div className="relative group rounded-xl overflow-hidden border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 aspect-video cursor-pointer" onClick={() => expandImage(IMAGES.temaSafari)}>
+              <PbImage
+                src={IMAGES.temaSafari}
+                alt="Tema Safari"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 640px) 50vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-0 left-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white text-sm font-semibold">Tema Safari</p>
+              </div>
+            </div>
+            <div className="relative group rounded-xl overflow-hidden border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 aspect-video cursor-pointer" onClick={() => expandImage(IMAGES.temaSelva)}>
+              <PbImage
+                src={IMAGES.temaSelva}
+                alt="Tema Selva"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 640px) 50vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-0 left-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white text-sm font-semibold">Tema Selva</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Theme Editor Description */}
+          <div className="bg-gray-900/50 rounded-2xl p-6 border border-gray-700">
+            <h4 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+              <Palette className="w-5 h-5 text-emerald-400" />
+              Cómo funciona el Editor de Temas
+            </h4>
+            <div className="space-y-3 text-gray-300">
+              <p>
+                <strong className="text-emerald-400">1. Acceso:</strong> Abre el Editor de Temas desde el botón de paleta en el header de la aplicación.
+              </p>
+              <p>
+                <strong className="text-emerald-400">2. Creación:</strong> Introduce un nombre para tu tema y modifica los colores de tokens CSS (primary, secondary, accent, background, etc.) con pickers de color intuitivos. La vista previa se actualiza en tiempo real.
+              </p>
+              <p>
+                <strong className="text-emerald-400">3. Persistencia:</strong> Los temas se guardan en PocketBase local (colección `zeus_themes`) con todos los colores en formato JSON. El tema activo se persiste en `localStorage` (`zeus-active-theme`) y se restaura automáticamente en cada sesión.
+              </p>
+              <p>
+                <strong className="text-emerald-400">4. Compartir:</strong> Opcionalmente publica tus temas en la base de datos remota para compartir con otros usuarios. La comunidad puede votar con estrellas (1-5) y el rating mostrado es la media de todas las valoraciones.
+              </p>
+              <p>
+                <strong className="text-emerald-400">5. Activación:</strong> Al seleccionar un tema, se aplican inmediatamente los tokens CSS en toda la aplicación. También puedes alternar entre iconos Lucide (SVG) e iconos de imagen tradicionales.
+              </p>
             </div>
           </div>
         </div>
@@ -298,6 +441,12 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      {/* Image Expansion Modal */}
+      <ImageExpansionModal 
+        expandedImage={expandedImage} 
+        onClose={closeImage} 
+      />
 
       <Footer />
     </div>

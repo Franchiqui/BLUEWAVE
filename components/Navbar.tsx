@@ -49,6 +49,7 @@ export default function Navbar({
         <Link href="/generador-de-api" className="text-sm font-medium hover:opacity-80 transition-opacity">Generador API</Link>
         <Link href="/vista-previa" className="text-sm font-medium hover:opacity-80 transition-opacity">Vista Previa</Link>
         <Link href="/componentes" className="text-sm font-medium hover:opacity-80 transition-opacity">Componentes</Link>
+        <Link href="/biblioteca" className="text-sm font-medium hover:opacity-80 transition-opacity">Biblioteca</Link>
         </div>
       </div>
       <div className="flex items-center gap-4">

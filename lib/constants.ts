@@ -15,6 +15,7 @@ export const NAV_LINKS = [
   { label: "Generador de API", href: "/generador-de-api" },
   { label: "Vista Previa", href: "/vista-previa" },
   { label: "Componentes", href: "/componentes" },
+  { label: "Biblioteca", href: "/biblioteca" },
 ];
 
 export const IDE_TABS = [
@@ -27,6 +28,7 @@ export const IDE_TABS = [
   { label: "Generador de Componentes", href: "/ide?tab=generador-componentes" },
   { label: "Generar Icono", href: "/ide?tab=generar-icono" },
   { label: "Formateador de Código", href: "/ide?tab=formateador-codigo" },
+  { label: "Integracion GitHub", href: "/ide?tab=integracion-github" },
 ];
 
 export const THEME = {
@@ -80,6 +82,17 @@ export const IMAGES = {
   pestanaPlanEstructuras: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/i7nj3e3589tg2ie/pesta_a_plan_de_estructuras_mbg32ir8kc.jpg'),
   pestanaProbadorApis: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/0t9dpmkud87fh4f/pesta_a_probador_de_apis_uhu4f4rwh8.jpg'),
   pestanaVistaPrevia: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/a4sxc055ceu161y/pesta_a_vista_previa_dp64v9p0nt.jpg'),
+  pestanaIDEModalIntegracionGitHubTOKEN: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/5egf568l8oas322/modal_integracion_con_git_hub_token_2_s4jbz8478e.jpg'),
+  pestanaIDEModalIntegracionGitHubNuevoRepo: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/2p88k09352c8xqv/modal_integracion_con_git_hub_nuevo_repo_2_ggtrccv006.jpg'),
+  pestanaIDEModalIntegracionGitHubMisRepos: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/900b0tr72n80o9q/modal_integracion_con_git_hub_mis_repos_2_ej0lp6yt0n.jpg'),
+  pestanaIDEModalIntegracionGitHubClonarRepos: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/j3k0usd6zrf87p9/modal_integracion_con_git_hub_clonar_repo_2_jrnol81060.jpg'),
+  pestanaIDEModalIntegracionGitHubActualizarRepos: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/m5emj55w69176ru/modal_integracion_con_git_hub_actualizar_repo_okcdr00e2d.jpg'),
+  pestanaBiblioteca: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/3xn82315abefg11/pesta_a_biblioteca_jnq4bnieux.jpg'),
+  temaMorado: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/47n87u42irh6kvv/tema_morado_zhabf5fxwn.jpg'),
+  temaOceano: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/122c4h3dqtsgkd5/tema_oceano_ro0mpmaviv.jpg'),
+  temaSafari: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/tl4nt4us52ac4s4/tema_safari_ipqsrfxqur.jpg'),
+  temaSelva: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/rj876a4sw66ch6t/tema_selva_vzgo9t1uat.jpg'),
+  ModalEditorTemasIU: pbImageUrl('https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/74m3qvl6l7338zp/modal_editor_temas_iu_ifkhozxbpt.jpg'),
 };
 
 // Helper para verificar si una imagen está disponible
@@ -148,6 +161,12 @@ export const FEATURES = [
     image: IMAGES.pestanaComponentes,
     href: "/componentes",
   },
+  {
+    title: "Biblioteca",
+    description: "Biblioteca de código y aplicaciones generadas con Zeus IA",
+    image: IMAGES.pestanaBiblioteca,
+    href: "/biblioteca",
+  },
 ];
 
 export const AUTH_CONFIG = {
@@ -192,6 +211,7 @@ export const IDE_TOOL_IMAGES = {
   "Generador de Componentes": "/images/tools/component-generator.png",
   "Generador de Iconos": "/images/tools/icon-generator.png",
   "Formateador de Código": "/images/tools/code-formatter.png",
+  "Integracion GitHub": "/images/tools/integration-github.png",
 };
 
 /**
@@ -208,4 +228,5 @@ export const tabImages: Record<string, string> = {
   'component-generator': IMAGES.pestanaIDEGeneradorComponentes,
   'icon-generator': IMAGES.pestanaIDEGenerarIcono,
   'code-formatter': IMAGES.pestanaIDEFormateador,
+  'github-integration': IMAGES.pestanaIDEModalIntegracionGitHubMisRepos,
 };

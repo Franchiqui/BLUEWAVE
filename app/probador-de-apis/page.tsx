@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Footer from '@/components/layout/footer';
 import { PbImage } from '@/components/pb-image';
 import { IMAGES } from '@/lib/constants';
+import { useImageExpansion, ImageExpansionModal } from '@/components/image-expansion-modal';
 import {
   BeakerIcon,
   CodeBracketIcon,
@@ -40,6 +41,8 @@ const savedCollections = [
 ];
 
 export default function ProbadorDeAPIsPage() {
+  const { expandedImage, expandImage, closeImage } = useImageExpansion();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -190,7 +193,7 @@ export default function ProbadorDeAPIsPage() {
             <div className="bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
               <h2 className="text-lg font-semibold text-gray-200 mb-4">Vistas del Probador</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="relative group">
+                <div className="relative group cursor-pointer" onClick={() => expandImage(IMAGES.pestanaProbadorApis)}>
                   <PbImage
                     src={IMAGES.pestanaProbadorApis}
                     alt="Vista principal del probador de APIs"
@@ -202,7 +205,7 @@ export default function ProbadorDeAPIsPage() {
                     <span className="text-white text-sm font-medium">Vista Principal</span>
                   </div>
                 </div>
-                <div className="relative group">
+                <div className="relative group cursor-pointer" onClick={() => expandImage(IMAGES.modalConfiguracion)}>
                   <PbImage
                     src={IMAGES.modalConfiguracion}
                     alt="Configuración de generación de API"
@@ -338,6 +341,12 @@ export default function ProbadorDeAPIsPage() {
           </div>
         </div>
       </div>
+
+      <ImageExpansionModal 
+        expandedImage={expandedImage} 
+        onClose={closeImage} 
+      />
+
       <Footer />
     </div>
   );

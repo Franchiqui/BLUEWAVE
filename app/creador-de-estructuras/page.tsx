@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Footer from '@/components/layout/footer';
 import { PbImage } from '@/components/pb-image';
 import { IMAGES } from '@/lib/constants';
+import { useImageExpansion, ImageExpansionModal } from '@/components/image-expansion-modal';
 import {
   Code2,
   Layers,
@@ -109,6 +110,8 @@ const steps = [
 ];
 
 export default function CreadorDeEstructurasPage() {
+  const { expandedImage, expandImage, closeImage } = useImageExpansion();
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950">
       {/* Hero Section */}
@@ -164,7 +167,7 @@ export default function CreadorDeEstructurasPage() {
                 </div>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative cursor-pointer" onClick={() => expandImage(IMAGES.pestanaCreadorEstructuras)}>
               <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-2xl blur-3xl" />
               <div className="relative rounded-2xl overflow-hidden border border-gray-800 shadow-2xl">
                 <PbImage
@@ -193,10 +196,10 @@ export default function CreadorDeEstructurasPage() {
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {structureTypes.map((type) => (
-            <Link
+            <div
               key={type.title}
-              href="/generador-de-app"
-              className="group relative bg-gray-900/50 rounded-2xl overflow-hidden border border-gray-800 hover:border-emerald-500/50 transition-all duration-300"
+              className="group relative bg-gray-900/50 rounded-2xl overflow-hidden border border-gray-800 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer"
+              onClick={() => expandImage(type.image)}
             >
               <div className="relative h-48 overflow-hidden">
                 <PbImage
@@ -217,7 +220,7 @@ export default function CreadorDeEstructurasPage() {
                 </div>
                 <p className="text-gray-400 text-sm">{type.description}</p>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </section>
@@ -237,7 +240,8 @@ export default function CreadorDeEstructurasPage() {
             {features.map((feature) => (
               <div
                 key={feature.title}
-                className="group bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700 hover:border-emerald-500/30 transition-all duration-300"
+                className="group bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700 hover:border-emerald-500/30 transition-all duration-300 cursor-pointer"
+                onClick={() => expandImage(feature.image)}
               >
                 <div className="relative h-48 overflow-hidden">
                   <PbImage
@@ -278,7 +282,7 @@ export default function CreadorDeEstructurasPage() {
           {steps.map((step) => (
             <div key={step.number} className="relative">
               <div className="text-6xl font-bold text-emerald-500/20 mb-4">{step.number}</div>
-              <div className="relative rounded-xl overflow-hidden mb-4 border border-gray-800">
+              <div className="relative rounded-xl overflow-hidden mb-4 border border-gray-800 cursor-pointer" onClick={() => expandImage(step.image)}>
                 <PbImage
                   src={step.image}
                   alt={step.title}
@@ -326,6 +330,11 @@ export default function CreadorDeEstructurasPage() {
           </div>
         </div>
       </section>
+
+      <ImageExpansionModal 
+        expandedImage={expandedImage} 
+        onClose={closeImage} 
+      />
 
       <Footer />
     </div>
