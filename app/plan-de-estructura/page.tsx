@@ -58,59 +58,20 @@ export default function PlanDeEstructuraPage() {
         </div>
       </section>
 
-      {/* Gallery Section */}
+      {/* Tutorial de Vídeo */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-emerald-400">Vistas del Plan de Estructura</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="relative rounded-xl overflow-hidden border border-gray-800 group cursor-pointer" onClick={() => expandImage(IMAGES.pestanaIDEEsquemaCarpetas)}>
-              <PbImage
-                src={IMAGES.pestanaIDEEsquemaCarpetas}
-                alt="Esquema de Carpetas"
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 to-transparent flex items-end p-4">
-                <span className="text-emerald-400 font-semibold">Esquema de Carpetas</span>
-              </div>
-            </div>
-            <div className="relative rounded-xl overflow-hidden border border-gray-800 group cursor-pointer" onClick={() => expandImage(IMAGES.pestanaIDEComparadorCarpetas)}>
-              <PbImage
-                src={IMAGES.pestanaIDEComparadorCarpetas}
-                alt="Comparador de Carpetas"
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 to-transparent flex items-end p-4">
-                <span className="text-emerald-400 font-semibold">Comparador de Carpetas</span>
-              </div>
-            </div>
-            <div className="relative rounded-xl overflow-hidden border border-gray-800 group cursor-pointer" onClick={() => expandImage(IMAGES.pestanaIDEComparadorCodigo)}>
-              <PbImage
-                src={IMAGES.pestanaIDEComparadorCodigo}
-                alt="Comparador de Código"
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 to-transparent flex items-end p-4">
-                <span className="text-emerald-400 font-semibold">Comparador de Código</span>
-              </div>
-            </div>
-            <div className="relative rounded-xl overflow-hidden border border-gray-800 group cursor-pointer" onClick={() => expandImage(IMAGES.pestanaIDECorregirCodigo)}>
-              <PbImage
-                src={IMAGES.pestanaIDECorregirCodigo}
-                alt="Corregir Código"
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover group-hover:scale-105 transition duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 to-transparent flex items-end p-4">
-                <span className="text-emerald-400 font-semibold">Corregir Código</span>
-              </div>
-            </div>
+          <h2 className="text-3xl font-bold text-center mb-12 text-emerald-400">Tutorial de Vídeo</h2>
+          <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden bg-black border border-gray-800">
+            <video
+              src="https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/25h0p4965zbs411/hmi2nbpg3pm3d8w_o_ret_kz_ona_l_8p3qugtvyh.mp4"
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-contain"
+            >
+              Tu navegador no soporta la reproducción de vídeo.
+            </video>
           </div>
         </div>
       </section>

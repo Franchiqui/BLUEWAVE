@@ -107,86 +107,22 @@ export default function BibliotecaPage() {
         </div>
       </section>
 
-      {/* Galería de Imágenes */}
+      {/* Tutorial de Vídeo */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">
-            <span className="text-green-400">Capturas</span> de Pantalla
+            <span className="text-green-400">Tutorial</span> de Vídeo
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="relative group rounded-xl overflow-hidden border border-gray-800 cursor-pointer" onClick={() => expandImage(IMAGES.chatExpandido)}>
-              <PbImage src={IMAGES.chatExpandido} alt="Chat expandido de Zeus IA" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-sm text-green-400 font-medium">Chat Inteligente</span>
-              </div>
-            </div>
-            <div className="relative group rounded-xl overflow-hidden border border-gray-800 cursor-pointer" onClick={() => expandImage(IMAGES.modalConfiguracion)}>
-              <PbImage src={IMAGES.modalConfiguracion} alt="Configuración de API" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-sm text-green-400 font-medium">Configuración API</span>
-              </div>
-            </div>
-            <div className="relative group rounded-xl overflow-hidden border border-gray-800 cursor-pointer" onClick={() => expandImage(IMAGES.pestanaComponentes)}>
-              <PbImage src={IMAGES.pestanaComponentes} alt="Pestaña de componentes" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-sm text-green-400 font-medium">Componentes</span>
-              </div>
-            </div>
-            <div className="relative group rounded-xl overflow-hidden border border-gray-800 cursor-pointer" onClick={() => expandImage(IMAGES.pestanaCreadorEstructuras)}>
-              <PbImage src={IMAGES.pestanaCreadorEstructuras} alt="Creador de estructuras" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-sm text-green-400 font-medium">Creador de Estructuras</span>
-              </div>
-            </div>
-            <div className="relative group rounded-xl overflow-hidden border border-gray-800 cursor-pointer" onClick={() => expandImage(IMAGES.pestanaExplorador)}>
-              <PbImage src={IMAGES.pestanaExplorador} alt="Explorador de proyectos" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-sm text-green-400 font-medium">Explorador</span>
-              </div>
-            </div>
-            <div className="relative group rounded-xl overflow-hidden border border-gray-800 cursor-pointer" onClick={() => expandImage(IMAGES.pestanaGeneradorAppAplicacion)}>
-              <PbImage src={IMAGES.pestanaGeneradorAppAplicacion} alt="App generada" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-sm text-green-400 font-medium">App Generada</span>
-              </div>
-            </div>
-            <div className="relative group rounded-xl overflow-hidden border border-gray-800 cursor-pointer" onClick={() => expandImage(IMAGES.pestanaGeneradorAppConfig)}>
-              <PbImage src={IMAGES.pestanaGeneradorAppConfig} alt="Configuración de app" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-sm text-green-400 font-medium">Configuración App</span>
-              </div>
-            </div>
-            <div className="relative group rounded-xl overflow-hidden border border-gray-800 cursor-pointer" onClick={() => expandImage(IMAGES.pestanaGeneradorAppEstructura)}>
-              <PbImage src={IMAGES.pestanaGeneradorAppEstructura} alt="Estructura de app" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-sm text-green-400 font-medium">Estructura App</span>
-              </div>
-            </div>
-            <div className="relative group rounded-xl overflow-hidden border border-gray-800 cursor-pointer" onClick={() => expandImage(IMAGES.pestanaGeneradorAppGenerando)}>
-              <PbImage src={IMAGES.pestanaGeneradorAppGenerando} alt="Generando contenido" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-sm text-green-400 font-medium">Generando Contenido</span>
-              </div>
-            </div>
-            <div className="relative group rounded-xl overflow-hidden border border-gray-800 cursor-pointer" onClick={() => expandImage(IMAGES.pestanaGeneradorApiInicio)}>
-              <PbImage src={IMAGES.pestanaGeneradorApiInicio} alt="Generador de API inicio" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-sm text-green-400 font-medium">Generador API</span>
-              </div>
-            </div>
-            <div className="relative group rounded-xl overflow-hidden border border-gray-800 cursor-pointer" onClick={() => expandImage(IMAGES.pestanaGeneradorApiProyecto)}>
-              <PbImage src={IMAGES.pestanaGeneradorApiProyecto} alt="Proyecto API" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-sm text-green-400 font-medium">Proyecto API</span>
-              </div>
-            </div>
-            <div className="relative group rounded-xl overflow-hidden border border-gray-800 cursor-pointer" onClick={() => expandImage(IMAGES.pestanaIDEComparadorCarpetas)}>
-              <PbImage src={IMAGES.pestanaIDEComparadorCarpetas} alt="Comparador de carpetas" width={400} height={250} className="w-full h-48 object-cover transition-transform group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-sm text-green-400 font-medium">Comparador Carpetas</span>
-              </div>
-            </div>
-         
+          <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden bg-black border border-gray-800">
+            <video
+              src="https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/25h0p4965zbs411/hmi2nbpg3pm3d8w_o_ret_kz_ona_l_8p3qugtvyh.mp4"
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-contain"
+            >
+              Tu navegador no soporta la reproducción de vídeo.
+            </video>
           </div>
         </div>
       </section>

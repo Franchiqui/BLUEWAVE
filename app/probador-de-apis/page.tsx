@@ -189,34 +189,19 @@ export default function ProbadorDeAPIsPage() {
               </div>
             </div>
 
-            {/* Screenshot Gallery */}
+            {/* Tutorial de Vídeo */}
             <div className="bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
-              <h2 className="text-lg font-semibold text-gray-200 mb-4">Vistas del Probador</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="relative group cursor-pointer" onClick={() => expandImage(IMAGES.pestanaProbadorApis)}>
-                  <PbImage
-                    src={IMAGES.pestanaProbadorApis}
-                    alt="Vista principal del probador de APIs"
-                    width={600}
-                    height={400}
-                    className="rounded-lg border border-gray-700 group-hover:border-emerald-500 transition-colors"
-                  />
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">Vista Principal</span>
-                  </div>
-                </div>
-                <div className="relative group cursor-pointer" onClick={() => expandImage(IMAGES.modalConfiguracion)}>
-                  <PbImage
-                    src={IMAGES.modalConfiguracion}
-                    alt="Configuración de generación de API"
-                    width={600}
-                    height={400}
-                    className="rounded-lg border border-gray-700 group-hover:border-emerald-500 transition-colors"
-                  />
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">Configuración</span>
-                  </div>
-                </div>
+              <h2 className="text-lg font-semibold text-gray-200 mb-4">Tutorial de Vídeo</h2>
+              <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-black border border-gray-700">
+                <video
+                  src="https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/25h0p4965zbs411/hmi2nbpg3pm3d8w_o_ret_kz_ona_l_8p3qugtvyh.mp4"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-contain"
+                >
+                  Tu navegador no soporta la reproducción de vídeo.
+                </video>
               </div>
             </div>
           </div>

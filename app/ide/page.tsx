@@ -85,6 +85,10 @@ const features = [
   },
 ];
 
+// URL por defecto del tutorial de vídeo. Cambia el campo `videoUrl` de cada
+// herramienta para asignar un tutorial distinto a cada pestaña.
+const DEFAULT_TUTORIAL_VIDEO_URL = 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/25h0p4965zbs411/hmi2nbpg3pm3d8w_o_ret_kz_ona_l_8p3qugtvyh.mp4';
+
 const tools = [
   {
     id: 'folder-comparer',
@@ -95,6 +99,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Comparador de Carpetas.jpg',
     link: '/ide',
     keyPoints: ['Escaneo recursivo de dos carpetas', 'Comparación lado a lado', 'Detecta archivos nuevos, modificados o eliminados'],
+    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
   },
   {
     id: 'code-comparer',
@@ -105,6 +110,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Comparador de Codigo.jpg',
     link: '/ide',
     keyPoints: ['Comparación de bloques de código (diff)', 'Resaltado de diferencias', 'Soporta múltiples lenguajes'],
+    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
   },
   {
     id: 'code-corrector',
@@ -115,6 +121,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Corregir Codigo.jpg',
     link: '/ide',
     keyPoints: ['Análisis de errores de sintaxis y lógica', 'Corrección vía IA', 'Aplica parches automáticos con respaldo'],
+    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
   },
   {
     id: 'dependency-corrector',
@@ -125,6 +132,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Corregir Dependencias.jpg',
     link: '/ide',
     keyPoints: ['Verifica dependencias en package.json', 'Reinstalación y limpieza automática', 'Compatible con npm, yarn y pnpm'],
+    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
   },
   {
     id: 'import-corrector',
@@ -135,6 +143,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Corregir Importaciones Faltantes.jpg',
     link: '/ide',
     keyPoints: ['Detecta imports faltantes o incorrectas', 'Reconoce alias de path (@/*)', 'Ajusta rutas según la estructura real'],
+    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
   },
   {
     id: 'folder-schema',
@@ -145,6 +154,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Esquema de Carpetas.jpg',
     link: '/ide',
     keyPoints: ['Visualización jerárquica completa', 'Esquema simplificado o completo recursivo', 'Ignora node_modules y build files'],
+    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
   },
   {
     id: 'component-generator',
@@ -155,6 +165,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Generador de Componentes.jpg',
     link: '/ide',
     keyPoints: ['Componentes React con TypeScript', 'Estilos Tailwind CSS', 'Genera .tsx, .test.tsx y stories'],
+    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
   },
   {
     id: 'icon-generator',
@@ -165,6 +176,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Generar Icono.jpg',
     link: '/ide',
     keyPoints: ['Iconos .ico en múltiples tamaños', 'Generación con DALL-E 3', 'Descarga desde URL o subida de PNG'],
+    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
   },
   {
     id: 'code-formatter',
@@ -175,6 +187,7 @@ const tools = [
     image: '/uploads/Pestaña IDE-Formateador de Codigo.jpg',
     link: '/ide',
     keyPoints: ['Sigue mejores prácticas y estándares', 'Respeta configuración de Prettier y ESLint', 'Mantiene consistencia de estilo'],
+    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
   },
   {
     id: 'github-integration',
@@ -185,6 +198,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Comparador de Carpetas.jpg',
     link: '/ide',
     keyPoints: ['Panel Git local con detección automática', 'Operaciones completas: init, add, commit, push, pull', 'Modal GitHub con auth y gestión de repos'],
+    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
   },
 ];
 
@@ -360,16 +374,18 @@ export default function ExploradorPage() {
                         </ul>
                       </div>
                       <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
-                        <h4 className="text-lg font-semibold text-white mb-3">Vista Previa</h4>
-                        {tabImages[tool.id] && (
-                          <div className="cursor-pointer" onClick={() => expandImage(tabImages[tool.id])}>
-                            <Image
-                              src={tabImages[tool.id]}
-                              alt={tool.title}
-                              width={200}
-                              height={112}
-                              className="rounded-lg object-cover w-1/2 mx-auto hover:scale-105 transition-transform"
-                            />
+                        <h4 className="text-lg font-semibold text-white mb-3">Tutorial de Vídeo</h4>
+                        {tool.videoUrl && (
+                          <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-black">
+                            <video
+                              src={tool.videoUrl}
+                              controls
+                              playsInline
+                              preload="metadata"
+                              className="w-full h-full object-contain"
+                            >
+                              Tu navegador no soporta la reproducción de vídeo.
+                            </video>
                           </div>
                         )}
                       </div>

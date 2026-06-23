@@ -35,33 +35,6 @@ const features = [
   },
 ];
 
-const steps = [
-  {
-    number: '01',
-    title: 'Define tu API',
-    description: 'Describe los endpoints y modelos que necesitas.',
-    image: '/uploads/Pestaña Generador de Api- Inicio.jpg',
-  },
-  {
-    number: '02',
-    title: 'Configura',
-    description: 'Ajusta parámetros, autenticación y base de datos.',
-    image: '/uploads/Modal Configuracion Generar API.jpg',
-  },
-  {
-    number: '03',
-    title: 'Genera',
-    description: 'Zeus IA crea el código completo de tu API.',
-    image: '/uploads/Pestaña Generador APP-Generando Contenido.jpg',
-  },
-  {
-    number: '04',
-    title: 'Prueba',
-    description: 'Usa el probador de APIs integrado para verificar.',
-    image: '/uploads/Pestaña Probador de Apis.jpg',
-  },
-];
-
 const relatedPages = [
   { href: '/explorador', label: 'Explorador', image: '/uploads/Pestaña Explorador.jpg' },
   { href: '/ide', label: 'IDE', image: '/uploads/Pestaña IDE.jpg' },
@@ -158,33 +131,24 @@ export default function GeneradorDeApiPage() {
         </div>
       </section>
 
-      {/* How it Works */}
+      {/* Tutorial de Vídeo */}
       <section className="bg-gray-900/30 border-y border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-emerald-400">
-              Cómo Funciona
+              Tutorial de Vídeo
             </h2>
-            <p className="mt-4 text-lg text-gray-400">
-              Cuatro pasos simples para tener tu API lista.
-            </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step) => (
-              <div key={step.number} className="relative">
-                <div className="text-5xl font-bold text-emerald-800/40 mb-4">{step.number}</div>
-                <div className="relative h-40 rounded-lg overflow-hidden mb-4 border border-gray-800 cursor-pointer" onClick={() => expandImage(step.image)}>
-                  <PbImage
-                    src={step.image}
-                    alt={step.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold text-emerald-300">{step.title}</h3>
-                <p className="mt-2 text-gray-400">{step.description}</p>
-              </div>
-            ))}
+          <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden bg-black border border-gray-800">
+            <video
+              src="https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/25h0p4965zbs411/hmi2nbpg3pm3d8w_o_ret_kz_ona_l_8p3qugtvyh.mp4"
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-contain"
+            >
+              Tu navegador no soporta la reproducción de vídeo.
+            </video>
           </div>
         </div>
       </section>

@@ -6,7 +6,6 @@ import { PbImage } from '@/components/pb-image';
 import { IMAGES } from '@/lib/constants';
 import { useImageExpansion, ImageExpansionModal } from '@/components/image-expansion-modal';
 import {
-  Code2,
   Layers,
   Database,
   Box,
@@ -58,27 +57,6 @@ const features = [
     title: 'Configuración Flexible',
     description: 'Personaliza cada aspecto de la estructura según tus necesidades específicas.',
     image: IMAGES.pestanaGeneradorAppConfig,
-  },
-];
-
-const structureTypes = [
-  {
-    title: 'Frontend Moderno',
-    description: 'Next.js, React, Vue, Angular con estructura optimizada',
-    icon: Code2,
-    image: IMAGES.pestanaIDE,
-  },
-  {
-    title: 'Backend Escalable',
-    description: 'Node.js, Express, NestJS con arquitectura limpia',
-    icon: Database,
-    image: IMAGES.pestanaGeneradorApiProyecto,
-  },
-  {
-    title: 'Full Stack Completo',
-    description: 'Aplicaciones completas con frontend y backend integrados',
-    icon: Layers,
-    image: IMAGES.pestanaGeneradorAppAplicacion,
   },
 ];
 
@@ -184,44 +162,23 @@ export default function CreadorDeEstructurasPage() {
         </div>
       </section>
 
-      {/* Tipos de Estructuras */}
+      {/* Tutorial de Vídeo */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-            Tipos de <span className="text-emerald-400">Estructuras</span>
+            <span className="text-emerald-400">Tutorial</span> de Vídeo
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Selecciona entre diferentes tipos de estructuras optimizadas para cada necesidad
-          </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {structureTypes.map((type) => (
-            <div
-              key={type.title}
-              className="group relative bg-gray-900/50 rounded-2xl overflow-hidden border border-gray-800 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer"
-              onClick={() => expandImage(type.image)}
-            >
-              <div className="relative h-48 overflow-hidden">
-                <PbImage
-                  src={type.image}
-                  alt={type.title}
-                  width={400}
-                  height={300}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2 rounded-lg bg-emerald-500/10">
-                    <type.icon className="w-5 h-5 text-emerald-400" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white">{type.title}</h3>
-                </div>
-                <p className="text-gray-400 text-sm">{type.description}</p>
-              </div>
-            </div>
-          ))}
+        <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden bg-black border border-gray-800">
+          <video
+            src="https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/25h0p4965zbs411/hmi2nbpg3pm3d8w_o_ret_kz_ona_l_8p3qugtvyh.mp4"
+            controls
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-contain"
+          >
+            Tu navegador no soporta la reproducción de vídeo.
+          </video>
         </div>
       </section>
 

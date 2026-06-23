@@ -297,6 +297,31 @@ const HeroSection = memo(({ expandImage }: { expandImage: (imageUrl: string) => 
 
 HeroSection.displayName = 'HeroSection';
 
+const TutorialSection = memo(() => (
+  <section className="py-16 lg:py-24">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white">
+          <span className="text-green-400">Tutorial</span> de Vídeo
+        </h2>
+      </div>
+      <div className="relative w-full max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden bg-black border border-gray-800">
+        <video
+          src="https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/25h0p4965zbs411/hmi2nbpg3pm3d8w_o_ret_kz_ona_l_8p3qugtvyh.mp4"
+          controls
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-contain"
+        >
+          Tu navegador no soporta la reproducción de vídeo.
+        </video>
+      </div>
+    </div>
+  </section>
+));
+
+TutorialSection.displayName = 'TutorialSection';
+
 const FeaturesSection = memo(({ expandImage }: { expandImage: (imageUrl: string) => void }) => (
   <section className="py-16 lg:py-24 bg-gray-800/50">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -527,6 +552,7 @@ const ComponentesPage = memo(() => {
       <Navbar />
       <main>
         <HeroSection expandImage={expandImage} />
+        <TutorialSection />
         <FeaturesSection expandImage={expandImage} />
         <TestimonialsSection expandImage={expandImage} />
         <CTASection />

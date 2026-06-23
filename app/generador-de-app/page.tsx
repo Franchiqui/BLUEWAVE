@@ -106,6 +106,26 @@ export default function GeneradorAppPage() {
         </div>
       </section>
 
+      {/* Tutorial de Vídeo */}
+      <section className="py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            <span className="text-green-400">Tutorial</span> de Vídeo
+          </h2>
+          <div className="relative w-full max-w-3xl mx-auto aspect-video rounded-lg overflow-hidden bg-black border border-gray-800">
+            <video
+              src="https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/25h0p4965zbs411/hmi2nbpg3pm3d8w_o_ret_kz_ona_l_8p3qugtvyh.mp4"
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-contain"
+            >
+              Tu navegador no soporta la reproducción de vídeo.
+            </video>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonios */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
