@@ -372,6 +372,7 @@ export default function ExploradorPage() {
                             </li>
                           ))}
                         </ul>
+                        <p className="text-sm text-gray-400 leading-relaxed mt-4 pt-4 border-t border-gray-700 whitespace-pre-line">{tool.details}</p>
                       </div>
                       <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
                         <h4 className="text-lg font-semibold text-white mb-3">Tutorial de Vídeo</h4>
