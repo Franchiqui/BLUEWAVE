@@ -99,7 +99,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Comparador de Carpetas.jpg',
     link: '/ide',
     keyPoints: ['Escaneo recursivo de dos carpetas', 'Comparación lado a lado', 'Detecta archivos nuevos, modificados o eliminados'],
-    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
+    videoUrl: 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/2aijo178j5a7dj3/comparador_de_carpetas_3zb20m4vo7.mp4',
   },
   {
     id: 'code-comparer',
