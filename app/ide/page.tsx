@@ -110,7 +110,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Comparador de Codigo.jpg',
     link: '/ide',
     keyPoints: ['Comparación de bloques de código (diff)', 'Resaltado de diferencias', 'Soporta múltiples lenguajes'],
-    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
+    videoUrl: 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/cc4e175c904249j/comparador_de_c_digo_ihz5cl86fs.mp4',
   },
   {
     id: 'code-corrector',
