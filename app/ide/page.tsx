@@ -143,7 +143,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Corregir Importaciones Faltantes.jpg',
     link: '/ide',
     keyPoints: ['Detecta imports faltantes o incorrectas', 'Reconoce alias de path (@/*)', 'Ajusta rutas según la estructura real'],
-    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
+    videoUrl: 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/l368m7vfxep7y81/importaciones_faltantes_uhi8umzx2r.mp4',
   },
   {
     id: 'folder-schema',
