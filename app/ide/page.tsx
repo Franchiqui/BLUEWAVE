@@ -110,7 +110,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Comparador de Codigo.jpg',
     link: '/ide',
     keyPoints: ['Comparación de bloques de código (diff)', 'Resaltado de diferencias', 'Soporta múltiples lenguajes'],
-    videoUrl: 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/cc4e175c904249j/comparador_de_c_digo_ihz5cl86fs.mp4',
+    videoUrl: 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/cc4e175c904249j/comparador_de_c_digo_wk8zcki7db.mp4',
   },
   {
     id: 'code-corrector',
@@ -132,7 +132,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Corregir Dependencias.jpg',
     link: '/ide',
     keyPoints: ['Verifica dependencias en package.json', 'Reinstalación y limpieza automática', 'Compatible con npm, yarn y pnpm'],
-    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
+    videoUrl: 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/5v790sp8z127pi9/corrector_de_vendencias_lmx76skqae.mp4',
   },
   {
     id: 'import-corrector',
