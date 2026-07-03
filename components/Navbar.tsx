@@ -14,7 +14,7 @@ export interface NavbarProps {
 }
 
 export default function Navbar({
-  appName = process.env.NEXT_PUBLIC_APP_NAME ?? 'Zeus IA',
+  appName = 'Zeus IA',
   homePath = authPaths.home,
   paths,
   className = '',
@@ -35,9 +35,14 @@ export default function Navbar({
       <div className="flex items-center gap-6">
         <Link
           href={homePath}
-          className="text-xl font-bold hover:opacity-90 transition-opacity"
+          className="flex items-center gap-3 hover:opacity-90 transition-opacity"
         >
-          {appName}
+          <img
+            src="/LOGO_ZEUS.png"
+            alt="Zeus IA Logo"
+            className="h-8 w-auto"
+          />
+          <span className="text-xl font-bold">{appName}</span>
         </Link>
         <div className="hidden md:flex items-center gap-4 ml-4">
         <Link href="/explorador" className="text-sm font-medium hover:opacity-80 transition-opacity">Explorador</Link>
@@ -50,6 +55,9 @@ export default function Navbar({
         <Link href="/vista-previa" className="text-sm font-medium hover:opacity-80 transition-opacity">Vista Previa</Link>
         <Link href="/componentes" className="text-sm font-medium hover:opacity-80 transition-opacity">Componentes</Link>
         <Link href="/biblioteca" className="text-sm font-medium hover:opacity-80 transition-opacity">Biblioteca</Link>
+        </div>
+        <div className="hidden md:flex items-center ml-8 pl-8 border-l border-gray-300 dark:border-gray-700">
+        <Link href="/descargas" className="text-sm font-medium hover:opacity-80 transition-opacity">Descargas</Link>
         </div>
       </div>
       <div className="flex items-center gap-4">
