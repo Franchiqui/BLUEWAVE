@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import AuthStatus, { type AuthStatusPaths } from '@/components/auth/auth-status';
 import { authPaths } from '@/lib/auth-config';
-import logoZeus from './LOGO_ZEUS.png';
 
 export interface NavbarProps {
   appName?: string;
@@ -39,7 +38,7 @@ export default function Navbar({
           className="flex items-center gap-3 hover:opacity-90 transition-opacity"
         >
           <img
-            src={logoZeus.src}
+            src="/LOGO_ZEUS-ico.ico"
             alt="Zeus IA Logo"
             className="h-10 w-auto object-contain"
           />
