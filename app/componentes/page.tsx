@@ -1,11 +1,10 @@
 'use client';
 
-import React, { memo, useState, useCallback } from 'react';
+import React, { memo } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
-  Menu, X, Zap, MessageSquare, Code, Shield,
-  ChevronRight, Star, CheckCircle, ArrowRight,
+  Zap, ChevronRight, Star, CheckCircle, ArrowRight,
   Github, Twitter, Linkedin, Mail
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -130,87 +129,6 @@ const TESTIMONIALS: Testimonial[] = [
 ];
 
 // Components
-const Navbar = memo(() => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = useCallback(() => setIsOpen(prev => !prev), []);
-
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center space-x-2">
-            <Zap className="w-8 h-8 text-green-400" />
-            <span className="text-xl font-bold text-white">Zeus IA</span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {NAV_ITEMS.slice(0, 6).map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="px-3 py-2 text-sm text-gray-300 hover:text-green-400 hover:bg-gray-800 rounded-md transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="relative group">
-              <button className="px-3 py-2 text-sm text-gray-300 hover:text-green-400 hover:bg-gray-800 rounded-md transition-colors">
-                Más ▾
-              </button>
-              <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                {NAV_ITEMS.slice(6).map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block px-4 py-2 text-sm text-gray-300 hover:text-green-400 hover:bg-gray-700 first:rounded-t-lg last:rounded-b-lg"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={toggleMenu}
-            className="lg:hidden p-2 text-gray-400 hover:text-white"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden bg-gray-900 border-b border-gray-800"
-        >
-          <div className="px-4 py-3 space-y-1">
-            {NAV_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="block px-3 py-2 text-sm text-gray-300 hover:text-green-400 hover:bg-gray-800 rounded-md"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </nav>
-  );
-});
-
-Navbar.displayName = 'Navbar';
-
 const HeroSection = memo(({ expandImage }: { expandImage: (imageUrl: string) => void }) => (
   <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" />
@@ -549,7 +467,6 @@ const ComponentesPage = memo(() => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      <Navbar />
       <main>
         <HeroSection expandImage={expandImage} />
         <TutorialSection />
