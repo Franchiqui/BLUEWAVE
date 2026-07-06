@@ -86,3 +86,24 @@
     text-wrap: balance;
   }
 }
+
+/* Scrollbar del chat: estrecha, sin fondo (track transparente) y thumb
+   discreto. Funciona en WebKit (Chrome/Edge/Safari) y Firefox. */
+.zeus-chat-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.4) transparent;
+}
+.zeus-chat-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.zeus-chat-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.zeus-chat-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+}
+.zeus-chat-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(148, 163, 184, 0.6);
+}

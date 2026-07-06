@@ -100,3 +100,9 @@ logs/
 # Uploads (imágenes locales - ahora van en PocketBase)
 public/uploads/*
 !public/uploads/.gitkeep
+
+# Historial de conversación del chat (runtime local, no se sube)
+zeus-conversation-history.json
+
+# TypeScript incremental build info
+tsconfig.tsbuildinfo

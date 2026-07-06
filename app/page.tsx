@@ -5,6 +5,7 @@ import Footer from '@/components/layout/footer';
 import { PbImage } from '@/components/pb-image';
 import { IMAGES } from '@/lib/constants';
 import { useImageExpansion, ImageExpansionModal } from '@/components/image-expansion-modal';
+import { ZeusChat } from '@/components/zeus-chat';
 import {
   MessageSquare,
   Code2,
@@ -22,7 +23,6 @@ import {
   Check,
   X
 } from 'lucide-react';
-import { useState } from 'react';
 
 
 const features = [
@@ -146,6 +146,11 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Zeus IA Chat Section */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <ZeusChat />
       </section>
 
       {/* Stats Section */}

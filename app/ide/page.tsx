@@ -154,7 +154,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Esquema de Carpetas.jpg',
     link: '/ide',
     keyPoints: ['Visualización jerárquica completa', 'Esquema simplificado o completo recursivo', 'Ignora node_modules y build files'],
-    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
+    videoUrl: 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/kt853s2f460gi93/ver_esquema_q05mk1sn8i.mp4',
   },
   {
     id: 'component-generator',
@@ -165,7 +165,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Generador de Componentes.jpg',
     link: '/ide',
     keyPoints: ['Componentes React con TypeScript', 'Estilos Tailwind CSS', 'Genera .tsx, .test.tsx y stories'],
-    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
+    videoUrl: 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/842m489759gtvce/creaci_n_de_un_componente_cy5bixfp0j.mp4',
   },
   {
     id: 'icon-generator',
@@ -176,7 +176,7 @@ const tools = [
     image: '/uploads/Pestaña IDE- Generar Icono.jpg',
     link: '/ide',
     keyPoints: ['Iconos .ico en múltiples tamaños', 'Generación con DALL-E 3', 'Descarga desde URL o subida de PNG'],
-    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
+    videoUrl: 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/13149goq87l90xo/generar_icono_o72u8av19r.mp4',
   },
   {
     id: 'code-formatter',

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev -p 3000\" \"pocket-base\\\\pocketbase.exe serve --dir=pocket-base\\\\pb_data --http=127.0.0.1:8164\"",
+    "dev": "concurrently \"next dev -p 3700\" \"pocket-base\\\\pocketbase.exe serve --dir=pocket-base\\\\pb_data --http=127.0.0.1:8164\"",
     "postinstall": "node scripts/postinstall.js",
     "build": "next build",
     "start": "next start",

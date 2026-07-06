@@ -16,8 +16,8 @@ const FALLBACK_IMAGES: Record<string, string> = {
     'https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/fn4yw97p4rw378z/zeus_extencion_vc_48ooilvkxa.jpg',
   'NasServer Zeus':
     'https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/3p74z32vzwmxb4y/chat_expandido_6tnlwpmx07.jpg',
-  'Gestor de Contraseñas Zeus':
-    'https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/h1f3n5l9rc8jhcm/generador_contrase_as_lf5u0su1re.png',
+  'Zeus Pin Code':
+    'https://pocketbase-zeus.fly.dev/api/files/pbc_4028641008/orxwem53f3nzof7/screenshot_2_1us31fgj2c.jpg',
 };
 
 // Imagen de una tarjeta: prefiere la imagen de la base de datos (campo image)
