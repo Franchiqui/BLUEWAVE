@@ -15,7 +15,7 @@ const FALLBACK_IMAGES: Record<string, string> = {
   'Zeus IA Extensión Visual Studio':
     'https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/fn4yw97p4rw378z/zeus_extencion_vc_48ooilvkxa.jpg',
   'NasServer Zeus':
-    'https://pocketbase-zeus.fly.dev/api/files/pbc_1998862360/3p74z32vzwmxb4y/chat_expandido_6tnlwpmx07.jpg',
+    'https://pocketbase-zeus.fly.dev/api/files/pbc_4028641008/qck350cd62pjkc3/screenshot_1_cqbd5c6s4j.jpg',
   'Zeus Pin Code':
     'https://pocketbase-zeus.fly.dev/api/files/pbc_4028641008/orxwem53f3nzof7/screenshot_2_1us31fgj2c.jpg',
 };

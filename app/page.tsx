@@ -117,12 +117,24 @@ export default function HomePage() {
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-6">
               <Sparkles className="w-6 h-6 text-emerald-400" />
-              <span className="text-emerald-400 font-semibold text-sm uppercase tracking-wider">Zeus IA v2.0</span>
+              <span className="text-emerald-400 font-semibold text-sm uppercase tracking-wider">Zeus IA v1.0</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Tu <span className="text-emerald-400">IDE Inteligente</span> con
-              <br />
-              Asistencia de IA
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight flex items-center justify-center gap-4 flex-wrap">
+              <img
+                src="/Nuevo-Logo.png"
+                alt="Zeus IA Logo"
+                className="h-20 w-auto sm:h-24 md:h-28 object-contain"
+              />
+              <span>
+                Tu <span className="text-emerald-400">IDE Inteligente</span> con
+                <br />
+                Asistencia de IA
+              </span>
+              <img
+                src="/Nuevo-Logo.png"
+                alt="Zeus IA Logo"
+                className="h-20 w-auto sm:h-24 md:h-28 object-contain"
+              />
             </h1>
             <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-10">
               Studio de desarrollo multiplataforma con asistencia de IA. 

@@ -187,7 +187,7 @@ const tools = [
     image: '/uploads/Pestaña IDE-Formateador de Codigo.jpg',
     link: '/ide',
     keyPoints: ['Sigue mejores prácticas y estándares', 'Respeta configuración de Prettier y ESLint', 'Mantiene consistencia de estilo'],
-    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
+    videoUrl: 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/7nub64ib950q6ah/formateador_de_c_digo_hr7xv1320k.mp4',
   },
   {
     id: 'github-integration',
@@ -198,7 +198,18 @@ const tools = [
     image: '/uploads/Pestaña IDE- Comparador de Carpetas.jpg',
     link: '/ide',
     keyPoints: ['Panel Git local con detección automática', 'Operaciones completas: init, add, commit, push, pull', 'Modal GitHub con auth y gestión de repos'],
-    videoUrl: DEFAULT_TUTORIAL_VIDEO_URL,
+    videoUrl: 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/e0x65qw1al70j3w/integraci_n_git_hub_msa8g3npce.mp4',
+  },
+  {
+    id: 'extensiones-vs-code',
+    title: 'Extensiones VS Code',
+    description: 'Las extensiones de Visual Studio Code (VS Code) también están disponibles dentro de Zeus IA.',
+    details: 'Además, Zeus IA permite aplicar temas de extensión, lo que te permite personalizar el aspecto del editor de código. Puedes hacerlo utilizando el selector de temas (atajo `Ctrl+K Ctrl+T`), donde puedes combinar temas built-in con los registrados por extensiones y persistir la selección en `localStorage`.',
+    icon: Puzzle,
+    image: '/uploads/Pestaña IDE- Extensiones VS Code.jpg',
+    link: '/ide',
+    keyPoints: ['En esta pestaña, puedes buscar extensiones a través del marketplace de VS Code, instalar extensiones individualmente por su ID o desde archivos `.vsix`, y ver logs del CLI `code`. También puedes gestionar las extensiones que ya están instaladas en tu IDE..'],
+    videoUrl: 'https://pocketbase-zeus.fly.dev/api/files/pbc_3427925064/988piwi65b67j31/extenciones_vs_code_1_8nri615dfx.mp4',
   },
 ];
 

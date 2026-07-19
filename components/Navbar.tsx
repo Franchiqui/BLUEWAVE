@@ -38,7 +38,7 @@ export default function Navbar({
           className="flex items-center gap-3 hover:opacity-90 transition-opacity"
         >
           <img
-            src="/LOGO_ZEUS-ico.ico"
+            src="/Nuevo-Logo.png"
             alt="Zeus IA Logo"
             className="h-10 w-auto object-contain"
           />
